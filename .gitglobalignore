@@ -1,0 +1,17 @@
+
+# ignore vim swap files
+.*.swp
+.swp
+
+# ignore common backup filename: ends in ~
+*~
+
+# ignore openoffice lock files
+.~lock*#
+
+# ignore .pyc files
+*.pyc
+
+# ignore leksah state files
+*.lkshw
+*.lkshs

@@ -1,0 +1,4 @@
+:set editor vim
+:set prompt "\ESC[33m%s\n\ESC[32;1m\STXλ\ESC[m\STX "
+:def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
+:def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+GHC_TAG="x86_64-linux-ghc-7.6.3"
+HOOGLE_VERSION="4.2.36"
+
+CABAL_SHARE="${HOME}/.cabal/share"
+HOOGLE_DATABASES="${CABAL_SHARE}/${GHC_TAG}/hoogle-${HOOGLE_VERSION}/databases"
+
+
+for f in "${CABAL_SHARE}/doc/${GHC_TAG}"/*/html/*.txt; do
+    ${DRYRUN} hoogle convert "$f" "${HOOGLE_DATABASES}/$(basename "${f%.txt}.hoo")"
+done
+
+${DRYRUN} hoogle combine "${HOOGLE_DATABASES}"/*.hoo "${HOOGLE_DATABASES}/default.hoo"

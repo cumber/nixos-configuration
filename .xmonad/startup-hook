@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -exu
+
+mkdir -p "${HOME}/.local/log/xmonad"
+exec > "${HOME}/.local/log/xmonad/startup"
+
+setxkbmap -option 'compose:menu'
+
+if [[ -z $(pgrep compton) ]]; then
+    compton &
+fi
+
+if [[ -z $(pgrep taffybar) ]]; then
+    taffybar 1 &
+    taffybar 0 &
+fi
+
+if [[ -z $(pgrep nm-applet) ]]; then
+    nm-applet --sm-disable &
+fi
+
+if [[ -z $(pgrep system-config-printer-applet) ]]; then
+    system-config-printer-applet &
+fi
+
+if [[ -z $(pgrep gnome-keyring-daemon) ]]; then
+    gnome-keyring-daemon &
+fi
+
+if [[ -z $(pgrep synapse) ]]; then
+    synapse -s &
+fi

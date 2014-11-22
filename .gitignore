@@ -1,0 +1,13 @@
+# Ignore everything until explicitly added, as most stuff shouldn't be
+# versioned and would clog up listings from "git status" et al.
+/*
+
+# NOTE: explicitly adding a file will cause changes to that file to be tracked,
+# but to track changes to a *directory* (and thus start versioning any new files
+# that show up) requires an negated pattern in this file.
+# e.g:
+#   !/somedir
+
+# ~/bin mostly contains scripts and stuff I would like to start versioning
+# by default
+!/bin
