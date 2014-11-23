@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 set -exu
-
 mkdir -p "${HOME}/.local/log/xmonad"
-exec > "${HOME}/.local/log/xmonad/startup"
+exec > "${HOME}/.local/log/xmonad/startup-hook" 2>&1
 
 setxkbmap -option 'compose:menu'
 
