@@ -7,6 +7,7 @@ import System.Taffybar.Hooks.PagerHints (pagerHints)
 import XMonad
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Hooks.ManageDocks (ToggleStruts(ToggleStruts))
+import XMonad.Layout.Fullscreen (fullscreenEventHook, fullscreenManageHook)
 import XMonad.Util.EZConfig (additionalKeys)
 
 
@@ -23,12 +24,6 @@ myKeys =
   ]
 
 
--- Stolen from xmonad-contrib/src/XMonad-Hooks-DynamicLog.html, which doesn't
--- export it.
-toggleStrutsKey :: XConfig t -> (KeyMask, KeySym)
-toggleStrutsKey XConfig{modMask = modm} = (modm, xK_b )
-
-
 myStartupHook
   = do  spawn "~/.xmonad/startup-hook"
         liftIO $ do gkc <- liftIO $ getEnv "GNOME_KEYRING_CONTROL"
@@ -43,17 +38,20 @@ myStartupHook
 
 myManageHooks =
   [ appName =? "synapse" --> doIgnore
+  , fullscreenManageHook
   ]
 
 
 myConfig
   = desktopConfig
       { modMask = myModMask
+      , terminal = "gnome-terminal"
       , focusedBorderColor = "#1010bb"
       , normalBorderColor = "#000000"
       , borderWidth = 2
       , startupHook = startupHook desktopConfig >> myStartupHook
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
+      , handleEventHook = fullscreenEventHook
       }
     `additionalKeys` myKeys
 
