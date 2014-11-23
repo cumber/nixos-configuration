@@ -16,4 +16,4 @@
 [push]
     default = upstream
 [alias]
-    tree = log --graph --decorate --online -n 40
+    tree = log --graph --decorate --oneline -n 40
