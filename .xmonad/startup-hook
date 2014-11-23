@@ -24,9 +24,7 @@ if [[ -z $(pgrep system-config-printer-applet) ]]; then
     system-config-printer-applet &
 fi
 
-if [[ -z $(pgrep gnome-keyring-daemon) ]]; then
-    gnome-keyring-daemon &
-fi
+gnome-keyring-daemon --replace &
 
 if [[ -z $(pgrep synapse) ]]; then
     synapse -s &
