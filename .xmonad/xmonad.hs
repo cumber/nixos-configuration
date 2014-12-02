@@ -8,6 +8,7 @@ import XMonad
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Hooks.ManageDocks (ToggleStruts(ToggleStruts))
 import XMonad.Layout.Fullscreen (fullscreenEventHook, fullscreenManageHook)
+import XMonad.Layout.NoBorders (Ambiguity(Screen), lessBorders)
 import XMonad.Util.EZConfig (additionalKeys)
 
 
@@ -50,6 +51,7 @@ myConfig
       , normalBorderColor = "#000000"
       , borderWidth = 2
       , startupHook = startupHook desktopConfig >> myStartupHook
+      , layoutHook = lessBorders Screen $ layoutHook desktopConfig
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
       , handleEventHook = fullscreenEventHook
       }
