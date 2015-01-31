@@ -24,5 +24,5 @@ fi
 # Cabal
 export PATH="${HOME}/.cabal/bin:${PATH}"
 
-# GHC-7.8.3
-export PATH="/opt/ghc/7.8.3/bin:${PATH}"
+# GHC-7.8.4
+export PATH="/opt/ghc/7.8.4/bin:${PATH}"
