@@ -19,9 +19,12 @@ main = xmonad . pagerHints $ myConfig
 
 myModMask = mod4Mask
 myKeys =
-  [ ((myModMask, xK_p), spawn "synapse")
-  , ((myModMask .|. mod1Mask, xK_space), spawn "synapse")
-  , ((myModMask, xK_b), sendMessage ToggleStruts)
+  [ ((myModMask               , xK_p)         , spawn "synapse")
+  , ((myModMask .|. mod1Mask  , xK_space)     , spawn "synapse")
+  , ((myModMask               , xK_b)         , sendMessage ToggleStruts)
+  , ((0                       , 0x1008FF11)   , spawn "amixer set Master 2-")
+  , ((0                       , 0x1008FF13)   , spawn "amixer set Master 2+")
+  , ((0                       , 0x1008FF12)   , spawn "amixer set Master toggle")
   ]
 
 
