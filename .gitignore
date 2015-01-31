@@ -11,3 +11,7 @@
 # ~/bin mostly contains scripts and stuff I would like to start versioning
 # by default
 !/bin
+
+# Vim config should be versioned
+!/.vim
+/.vim/.netrwhist

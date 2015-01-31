@@ -16,8 +16,8 @@ set number
 filetype on
 filetype plugin on
 syntax enable
-let mercury_highlight_full_comment = 1
 set listchars=tab:»\ ,trail:·
 set list
 
-au BufNewFile,BufRead *.mako set ft=mako
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
