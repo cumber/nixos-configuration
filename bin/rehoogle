@@ -2,8 +2,9 @@
 
 set -e
 
-GHC_TAG="x86_64-linux-ghc-7.6.3"
-HOOGLE_VERSION="4.2.36"
+GHC_VERSION="$(ghc --version | sed -ne 's/^.*version \([0-9]\+\.[0-9]\+\.[0-9]\+\).*$/\1/p')"
+GHC_TAG="x86_64-linux-ghc-${GHC_VERSION}"
+HOOGLE_VERSION="$(hoogle --version | sed -ne 's/Hoogle v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*$/\1/p')"
 
 CABAL_SHARE="${HOME}/.cabal/share"
 HOOGLE_DATABASES="${CABAL_SHARE}/${GHC_TAG}/hoogle-${HOOGLE_VERSION}/databases"
