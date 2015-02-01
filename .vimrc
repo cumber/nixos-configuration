@@ -21,3 +21,5 @@ set list
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+
+let g:haddock_browser = "chromium-browser"
