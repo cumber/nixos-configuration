@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+function set-ghc {
+    local ghc_path="/opt/ghc/$1/bin"
+    if [[ -e "$ghc_path/ghc" && -x "$ghc_path/ghc" ]]; then
+        true
+    elif [[ -e $1/bin/ghc && -x $1/bin/ghc ]]; then
+        ghc_path="$1/bin"
+    else
+        echo >&2 "Error; use set-ghc X where X is either a version number"
+        echo >&2 "such that /opt/ghc/X/bin/ghc is a GHC executable, or"
+        echo >&2 "use set-ghc P where P is a path to a folder containing"
+        echo >&2 "a GHC install"
+        return 1
+    fi
+
+    if which ghc > /dev/null; then
+        local old_ghc_path="$(dirname "$(which ghc)")"
+        export PATH="${PATH/$old_ghc_path/$ghc_path}"
+        echo "${old_ghc_path} -> ${ghc_path}"
+    else
+        export PATH="${ghc_path}:${PATH}"
+        echo " -> ${ghc_path}"
+    fi
+
+}

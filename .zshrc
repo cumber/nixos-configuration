@@ -83,3 +83,6 @@ export PROMPT
 
 # Python startup file
 export PYTHONSTARTUP="${HOME}/.pythonrc"
+
+# GHC version switching
+autoload -U set-ghc
