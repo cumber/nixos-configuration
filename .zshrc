@@ -46,40 +46,65 @@ alias tree='tree -C'
 
 setopt extendedglob
 
-# set window title
-case $TERM in
-    *xterm*|*screen*)
-        precmd () {
-            print -Pn "\e]0;%m${VIRTUAL_ENV:+ }$(basename "${VIRTUAL_ENV}")${STY:+ }${STY#*.} %3~\a"
-        }
-esac
-
-# prompt
 autoload -U colors
 colors
 
-_colourhash_arr=("${fg_bold[green]}" "${fg_bold[yellow]}" "${fg_bold[magenta]}" "${fg_bold[cyan]}" "${fg_bold[red]}" "${fg_bold[blue]}")
+# Get __git_ps1 command
+source /etc/bash_completion.d/git-prompt
+
+_colourhash_arr=("${fg[green]}" "${fg[yellow]}" "${fg[magenta]}" "${fg[cyan]}" "${fg[red]}" "${fg[blue]}" "${fg[black]}")
 function colourhash () {
     x="$(echo "$1" | md5sum | cut -f1 -d' ')"
     x="0x${x[-22,-8]}"
-    index=$(( x % ${#_colourhash_arr} + 1))
+    index=$(( x % ${#_colourhash_arr} + 1)) 
     echo "${_colourhash_arr[$index]}"
 }
 
 setopt prompt_subst
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export ORIG_UID="$(id -u "cumber")"
-PROMPT=''
-PROMPT+='%(${ORIG_UID}#..%{$(colourhash "user:${USER}")%}%n%{${fg_no_bold[default]}%}@)'
-PROMPT+='%{$(colourhash "${HOST}")%}%m%{${fg_bold[default]}%}'
-PROMPT+='${VIRTUAL_ENV:+ }%{$(colourhash "venv:${VIRTUAL_ENV}")%}${VIRTUAL_ENV:+venv:}$(basename "${VIRTUAL_ENV}")'
-PROMPT+='${HSENV:+ }%{$(colourhash "hsenv:${HSENV}")%}${HSENV:+hsenv:}$(basename "${HSENV}")%{${fg_no_bold[default]}%}'
-PROMPT+='${STY:+ }%{$(colourhash "${STY}")%}${STY#*.}%{${fg_no_bold[default]}%}'
-PROMPT+=' %{$(colourhash "${PWD}")%}%3~%{${fg_no_bold[default]}%}'
-PROMPT+='%($(( $COLUMNS / 2 ))l.
+
+PRE_PROMPT=''
+PRE_PROMPT+='%(${ORIG_UID}#..%{$(colourhash "user:${USER}")%}%n%{${fg[default]}%}@)'
+PRE_PROMPT+='%{$(colourhash "${HOST}")%}%m%{${fg[default]}%}'
+PRE_PROMPT+='%B${VIRTUAL_ENV:+ }%{$(colourhash "venv:${VIRTUAL_ENV}")%}${VIRTUAL_ENV:+venv:}$(basename "${VIRTUAL_ENV}")%b'
+PRE_PROMPT+='${STY:+ }%{$(colourhash "${STY}")%}${STY#*.}%{${fg[default]}%}'
+PRE_PROMPT+=' %B%{$(colourhash "${PWD}")%}%3~'
+PRE_PROMPT+='%{${fg_no_bold[default]}%}'
+
+POST_PROMPT=''
+POST_PROMPT+='%($(( $COLUMNS / 2 ))l.
 . )'
-PROMPT+='%{$(colourhash "${HOST}")%}%# %{${fg_no_bold[default]}%}'
-export PROMPT
+POST_PROMPT+='%B%{$(colourhash "${HOST}")%}%# '
+POST_PROMPT+='%{${fg_no_bold[default]}%}'
+
+export GIT_PS1_SHOWDIRTYSTATE="yes"
+export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_SHOWSTASHSTATE="yes"
+export GIT_PS1_SHOWUNTRACKEDFILES="yes"
+export GIT_PS1_SHOWCOLORHINTS="yes"
+
+function precmd() {
+    __git_ps1 "${PRE_PROMPT}" "${POST_PROMPT}"
+
+    # set window title
+    case $TERM in
+        *xterm*|*screen*)
+            print -Pn "\e]0;%m${VIRTUAL_ENV:+  }$(basename "${VIRTUAL_ENV}")${STY:+  }${STY#*.}  %3~  %%\a"
+            ;;
+    esac
+}
+
+function preexec() {
+    local command="${1//\%/\\\%}"
+
+    case $TERM in
+        *xterm*|*screen*)
+            print -Pn "\e]0;${command}\a"
+            ;;
+    esac
+}
+
 
 # Python startup file
 export PYTHONSTARTUP="${HOME}/.pythonrc"
