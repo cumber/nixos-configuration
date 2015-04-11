@@ -28,7 +28,9 @@ fi
 export HISTSIZE=2000
 export HISTFILE="$HOME/.history"
 export SAVEHIST=$HISTSIZE
-setopt histignorealldups
+setopt hist_ignore_all_dups
+setopt inc_append_history_time
+setopt extended_history
 
 # make ls pretty
 alias ls='ls --color=auto'
