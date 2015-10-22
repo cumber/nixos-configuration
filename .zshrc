@@ -52,7 +52,7 @@ autoload -U colors
 colors
 
 # Get __git_ps1 command
-source /etc/bash_completion.d/git-prompt
+source "$(dirname "$(readlink -f "$(which git)")")/../share/git/contrib/completion/git-prompt.sh"
 
 _colourhash_arr=("${fg[green]}" "${fg[yellow]}" "${fg[magenta]}" "${fg[cyan]}" "${fg[red]}" "${fg[blue]}" "${fg[black]}")
 function colourhash () {
