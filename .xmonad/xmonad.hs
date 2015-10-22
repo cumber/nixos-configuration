@@ -49,7 +49,7 @@ myManageHooks =
 myConfig
   = desktopConfig
       { modMask = myModMask
-      , terminal = "gnome-terminal"
+      , terminal = "xfce4-terminal"
       , focusedBorderColor = "#1010bb"
       , normalBorderColor = "#000000"
       , borderWidth = 2
