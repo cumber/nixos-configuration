@@ -73,7 +73,7 @@
   users.users.cumber = {
     isNormalUser = true;
     description = "Cumber";
-    password = "password";
+    passwordFile = "/etc/nixos/passwords/cumber";
     extraGroups =  [ "wheel" "networkmanager" ];
     shell = "/run/current-system/sw/bin/zsh";
   };
