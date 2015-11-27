@@ -18,6 +18,8 @@ setopt autopushd pushdignoredups
 # Bind ctrl+left and ctrl+right to forward/backward by word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
+bindkey 'OF' end-of-line
+bindkey 'OH' beginning-of-line
 
 # Better history search, if available
 if zle -al | grep -q history-incremental-pattern-search-backward; then

@@ -5,6 +5,7 @@ import Data.Maybe
 import System.Environment
 
 import System.Taffybar
+import System.Taffybar.Battery
 import System.Taffybar.Pager
 import System.Taffybar.Systray
 import System.Taffybar.SimpleClock
@@ -28,8 +29,10 @@ main = do
                                                }
       tray = systrayNew
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
+      battery = batteryBarNew defaultBatteryConfig 20
+
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager ]
-                                        , endWidgets = [ tray, clock, cpu ]
+                                        , endWidgets = [ tray, clock, cpu, battery ]
                                         , monitorNumber = fromMaybe (monitorNumber defaultTaffybarConfig) monitor
                                         , widgetSpacing = 20
                                         }
