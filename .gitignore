@@ -15,3 +15,6 @@
 # Vim config should be versioned
 !/.vim
 /.vim/.netrwhist
+
+# Nix config should definitely be versioned!
+!/.nixpkgs
