@@ -30,9 +30,16 @@ main = do
       tray = systrayNew
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
       battery = batteryBarNew defaultBatteryConfig 20
+      batteryTime = textBatteryNew "($time$)" 20
 
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager ]
-                                        , endWidgets = [ tray, clock, cpu, battery ]
+                                        , endWidgets
+                                            = [ tray
+                                              , clock
+                                              , cpu
+                                              , batteryTime
+                                              , battery
+                                              ]
                                         , monitorNumber = fromMaybe (monitorNumber defaultTaffybarConfig) monitor
                                         , widgetSpacing = 20
                                         }
