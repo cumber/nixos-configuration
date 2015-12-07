@@ -18,10 +18,10 @@
       set guifont=Deja\ Vu\ Sans\ Mono\ 14
       if has('gui_running')
         set guioptions-=T
-        "colorscheme google_prettify
+        colorscheme google
       else
         set t_Co=256
-        "colorscheme darkbone
+        colorscheme darkbone
       endif
 
       " Make it easy to move over lines
@@ -75,6 +75,8 @@
       { name = "syntastic"; }
       { name = "tagbar"; }
       { name = "vim-hdevtools"; ft_regex = "^haskell$"; }
+      { name = "vim-colorschemes"; }
+      { name = "CSApprox"; }
     ];
   };
 }
