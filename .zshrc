@@ -115,3 +115,6 @@ export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 # GHC version switching
 autoload -U set-ghc
+
+# Don't use nano
+export EDITOR=vim
