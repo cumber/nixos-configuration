@@ -71,9 +71,10 @@ export ORIG_UID="$(id -u "cumber")"
 PRE_PROMPT=''
 PRE_PROMPT+='%(${ORIG_UID}#..%{$(colourhash "user:${USER}")%}%n%{${fg[default]}%}@)'
 PRE_PROMPT+='%{$(colourhash "${HOST}")%}%m%{${fg[default]}%}'
+PRE_PROMPT+='%B%{${fg[white]}%}${IN_NIX_SHELL+ nix}%{${fg[default]}%}%b'
 PRE_PROMPT+='%B${VIRTUAL_ENV:+ }%{$(colourhash "venv:${VIRTUAL_ENV}")%}${VIRTUAL_ENV:+venv:}$(basename "${VIRTUAL_ENV}")%b'
 PRE_PROMPT+='${STY:+ }%{$(colourhash "${STY}")%}${STY#*.}%{${fg[default]}%}'
-PRE_PROMPT+=' %B%{$(colourhash "${PWD}")%}%3~'
+PRE_PROMPT+=' %B%{$(colourhash "${PWD}")%}%3~%b'
 PRE_PROMPT+='%{${fg_no_bold[default]}%}'
 
 POST_PROMPT=''
