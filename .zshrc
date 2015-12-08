@@ -113,8 +113,10 @@ function preexec() {
 # Python startup file
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 
-# GHC version switching
-autoload -U set-ghc
+# Set NIX_GHC* variables if there's a ghc in path
+if whence -p ghc > /dev/null; then
+    eval "$(grep '^export NIX_GHC' "$(whence -p ghc)")"
+fi
 
 # Don't use nano
 export EDITOR=vim
