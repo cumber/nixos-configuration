@@ -1,14 +1,16 @@
-{vim_configurable, vimPlugins, vimUtils, fetchgit }: rec {
+{ vim_configurable, vimPlugins, vimUtils, fetchgit }: rec {
 
-  rainbow = vimUtils.buildVimPluginFrom2Nix {
-    name = "rainbow_parentheses-2015-12-02";
+  rainbow-parentheses-improved = vimUtils.buildVimPluginFrom2Nix {
+    name = "rainbow-parentheses-improved-2015-12-02";
     src = fetchgit {
       url = "git://github.com/luochen1990/rainbow";
       rev = "18b7bc1b721f32fcabe740e098d693eace6ad655";
-      sha256 = "47975a426d06f41811882691d8a51f32bc72f590477ed52b298660486b2488e3";
+      sha256 = "0wyhifdpdzbgppsq1gyh41nf2dgwcvmh29qc69r0akphpqhhk3m4";
     };
     dependencies = [];
   };
+
+  knownPlugins = vimPlugins // { inherit rainbow-parentheses-improved; };
 
   vim = vim_configurable.customize {
     name = "vim";
@@ -23,6 +25,11 @@
         set t_Co=256
         colorscheme darkbone
       endif
+
+      " Rainbow parentheses does nothing if this variable isn't set, so had
+      " to delay that plugin from loading
+      let g:rainbow_active = 1
+      call vam#Scripts([], {'tag_regex': 'delay'})
 
       " Make it easy to move over lines
       set whichwrap=b,s,<,>,[,]
@@ -67,9 +74,7 @@
       au FileType haskell nnoremap <buffer> <F3> :HdevtoolsInfo<CR>
     '';
 
-    vimrcConfig.vam.knownPlugins = vimPlugins // {
-      inherit rainbow;
-    };
+    vimrcConfig.vam.knownPlugins = knownPlugins;
     vimrcConfig.vam.pluginDictionaries = [
       { name = "youcompleteme"; }
       { name = "syntastic"; }
@@ -77,6 +82,7 @@
       { name = "vim-hdevtools"; ft_regex = "^haskell$"; }
       { name = "vim-colorschemes"; }
       { name = "CSApprox"; }
+      { name = "rainbow-parentheses-improved"; tag = "delayed"; }
     ];
   };
 }
