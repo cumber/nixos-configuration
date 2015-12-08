@@ -1,11 +1,6 @@
 {
   packageOverrides = pkgs_: with pkgs_; {
-    vim-custom = import ./vim {
-      inherit vim_configurable;
-      inherit vimPlugins;
-      inherit vimUtils;
-      inherit fetchgit;
-    };
+    vim-custom = callPackage ./vim {};
 
     mine = with pkgs; buildEnv {
       name = "mine";
