@@ -1,4 +1,4 @@
-{ vim_configurable, vimPlugins, vimUtils, fetchgit, ... }: rec {
+{ vim_configurable, vimPlugins, vimUtils, fetchgit }: rec {
 
   rainbow-parentheses-improved = vimUtils.buildVimPluginFrom2Nix {
     name = "rainbow-parentheses-improved-2015-12-02";

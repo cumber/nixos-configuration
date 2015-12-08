@@ -10,7 +10,6 @@
         chromium
         ctags
         # ctagsWrapped.ctagsWrapped
-        ghc
         gitAndTools.gitFull
         blueman
         gnome3.gnome-system-monitor
