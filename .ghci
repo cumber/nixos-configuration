@@ -1,5 +1,4 @@
--- vim: filetype=haskell
-:set editor gvim
+:set editor vim -g
 :set prompt "\ESC[33m%s\n\ESC[32;1m\STXλ\ESC[m\STX "
 :set prompt2 "\ESC[32;1m\STX|\ESC[m\STX "
 :set +m +t
