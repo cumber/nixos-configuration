@@ -5,27 +5,37 @@
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
+        # System
+        arc-gtk-theme
+        compton
+        gnome3.gnome-system-monitor
+        inconsolata
+        networkmanagerapplet
+        synapse
+        taffybar
+        xfce.terminal
+        blueman
+
+        # Devlopment
         cabal-install
         cabal2nix
-        chromium
         ctags
         # ctagsWrapped.ctagsWrapped
+        # haskellPackages.hothasktags
         gitAndTools.gitFull
-        blueman
-        gnome3.gnome-system-monitor
         haskellPackages.hdevtools
         haskellPackages.hlint
-        haskellPackages.hoogle
-        # haskellPackages.hothasktags
         nix-repl
         python
         vim-custom.vim
-        xfce.terminal
 
-        compton
-        networkmanagerapplet
-        synapse
-        pkgs.taffybar
+        # Office
+        chromium
+        evince
+        gimp
+        libreoffice
+        lyx
+        texLiveFull
       ];
     };
   };
