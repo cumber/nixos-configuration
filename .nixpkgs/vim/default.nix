@@ -17,7 +17,7 @@
 
     vimrcConfig.customRC = ''
       " Pretty stuff
-      set guifont=Deja\ Vu\ Sans\ Mono\ 14
+      set guifont=Inconsolata\ 15
       if has('gui_running')
         set guioptions-=T
         colorscheme google
@@ -52,7 +52,7 @@
 
       " Show line numbers
       map <Leader>0 :set number!<CR>
-      set colorcolumn=80
+      set colorcolumn=81
       set numberwidth=6
       set number
 

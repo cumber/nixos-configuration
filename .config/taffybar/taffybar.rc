@@ -1,5 +1,5 @@
 gtk_color_scheme = "black:#000000\nwhite:#FFFFFF\ngreen:#00FF00\nred:#FF0000"
-gtk-font-name = "Ubuntu Mono 14"
+gtk-font-name = "Inconsolata 15"
 
 style "default" {
   bg[NORMAL]   = @black
