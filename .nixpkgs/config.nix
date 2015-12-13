@@ -9,16 +9,23 @@
         arc-gtk-theme
         compton
         gnome3.gnome-system-monitor
+        gnome3.nautilus
+        gtk-engine-murrine
         inconsolata
+        libnotify
         networkmanagerapplet
+        notify-osd
+        numix-icon-theme
         synapse
         taffybar
+        tree
         xfce.terminal
         blueman
 
         # Devlopment
         cabal-install
         cabal2nix
+        colordiff
         ctags
         # ctagsWrapped.ctagsWrapped
         # haskellPackages.hothasktags
@@ -36,6 +43,7 @@
         libreoffice
         lyx
         texLiveFull
+        thunderbird
       ];
     };
   };
