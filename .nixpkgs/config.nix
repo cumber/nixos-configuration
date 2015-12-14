@@ -42,6 +42,7 @@
         gimp
         libreoffice
         lyx
+        speedcrunch
         texLiveFull
         thunderbird
       ];
