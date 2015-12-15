@@ -1,12 +1,17 @@
 {-# LANGUAGE FlexibleContexts #-}
 
-import System.Posix
+import Data.Monoid ((<>))
+
+import System.IO (Handle, hGetContents)
+import System.Posix.Env (getEnv, setEnv, putEnv)
+import System.Process (StdStream(CreatePipe), proc, createProcess, std_out)
 
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 import XMonad
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Hooks.ManageDocks (ToggleStruts(ToggleStruts))
+import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Layout.Fullscreen (fullscreenEventHook, fullscreenManageHook)
 import XMonad.Layout.NoBorders (Ambiguity(Screen), lessBorders)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -22,6 +27,8 @@ myKeys =
   [ ((myModMask               , xK_p)         , spawn "synapse")
   , ((myModMask .|. mod1Mask  , xK_space)     , spawn "synapse")
   , ((myModMask               , xK_b)         , sendMessage ToggleStruts)
+
+  -- TODO: make this work
   , ((0                       , 0x1008FF11)   , spawn "amixer set Master 2-")
   , ((0                       , 0x1008FF13)   , spawn "amixer set Master 2+")
   , ((0                       , 0x1008FF12)   , spawn "amixer set Master toggle")
@@ -29,15 +36,26 @@ myKeys =
 
 
 myStartupHook
-  = do  spawn "~/.xmonad/startup-hook"
-        liftIO $ do gkc <- liftIO $ getEnv "GNOME_KEYRING_CONTROL"
-                    maybe
-                        (return ())
-                        (\path
-                         -> liftIO $ setEnv "SSH_AUTH_SOCK" (path ++ "/ssh") True
-                        )
-                        gkc
-                    setEnv "GTK2_RC_FILES" "$HOME/.gtkrc-2.0" True
+  = do  home <- liftIO $ getEnv "HOME"
+        mapM_ spawn commands
+        setWMName "LG3D"  -- helps with Java GUIs
+        liftIO $ do mapM_ (putEnv . gtk2RcFiles) =<< getEnv "HOME"
+                    (_, Just hout, _, _) <- gnomeKeyringDaemon
+                    mapM_ putEnv =<< lines <$> hGetContents hout
+
+  where gtk2RcFiles home = "GTK2_RC_FILES=" <> home <> "/.gtkrc-2.0"
+        gnomeKeyringDaemon
+          = createProcess $ (proc "gnome-keyring-daemon" ["--replace"])
+                            { std_out = CreatePipe }
+
+commands
+  =   [ "setxkbmap -option 'compose:menu'"  -- TODO: what do I want?
+      , "synapse -s"
+      , "compton"
+      , "nm-applet --sm-disable"
+      , "system-config-printer-applet"
+      , "taffybar 0"
+      ]
 
 
 myManageHooks =
