@@ -8,7 +8,9 @@
         # System
         arc-gtk-theme
         compton
+        gnome3.gcr  # needed for gnome-keyring-daemon
         gnome3.gnome-system-monitor
+        gnome3.gnome_keyring
         gnome3.nautilus
         gtk-engine-murrine
         inconsolata
