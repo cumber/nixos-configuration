@@ -8,6 +8,7 @@
         # System
         arc-gtk-theme
         compton
+        gnome3.adwaita-icon-theme  # fallback icons from numix
         gnome3.gcr  # needed for gnome-keyring-daemon
         gnome3.gnome-system-monitor
         gnome3.gnome_keyring
@@ -15,6 +16,7 @@
         gtk-engine-murrine
         inconsolata
         libnotify
+        lxappearance
         networkmanagerapplet
         notify-osd
         numix-icon-theme
