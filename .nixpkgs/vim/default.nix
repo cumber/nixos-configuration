@@ -28,6 +28,17 @@
 
       " Rainbow parentheses does nothing if this variable isn't set, so had
       " to delay that plugin from loading
+      let g:rainbow_conf = {
+      \ 'separately': {
+      \   'haskell': {
+      \     'parentheses': [
+      \       'start=/(/ end=/)/',
+      \       'start=/\[/ end=/\]/',
+      \       'start=/{-\@!/ end=/-\@<!}/',
+      \     ]
+      \   }
+      \ }
+      \}
       let g:rainbow_active = 1
       call vam#Scripts([], {'tag_regex': 'delay'})
 
@@ -83,6 +94,7 @@
       { name = "vim-colorschemes"; }
       { name = "CSApprox"; }
       { name = "rainbow-parentheses-improved"; tag = "delayed"; }
+      { name = "hasksyn"; }
     ];
   };
 }
