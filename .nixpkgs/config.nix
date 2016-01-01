@@ -1,4 +1,8 @@
 {
+  haskellPackageOverrides = self: super: {
+    lushtags = self.callPackage (import ./lushtags) {};
+  };
+
   packageOverrides = pkgs_: with pkgs_; {
     vim-custom = callPackage ./vim {};
 
@@ -36,6 +40,7 @@
         gitAndTools.gitFull
         haskellPackages.hdevtools
         haskellPackages.hlint
+        haskellPackages.lushtags
         nix-repl
         python
         vim-custom.vim
