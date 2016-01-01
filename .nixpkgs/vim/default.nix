@@ -73,11 +73,13 @@
 
       " syntastic
       map <silent> <Leader>e :Errors<CR>
+      map <silent> <leader>E :lcl<CR>
       map <Leader>s :SyntasticToggleMode<CR>
 
       " tagbar
-      map <Leader>= :TagbarToggle<CR>
+      map <silent> <Leader>= :TagbarToggle<CR>
       let g:tagbar_autofocus = 1
+      let g:tagbar_autoclose = 1
 
       " Get type or info of thing under cursor
       au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
