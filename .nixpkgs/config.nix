@@ -43,6 +43,7 @@
         haskellPackages.lushtags
         nix-repl
         python
+        stack
         vim-custom.vim
 
         # Office

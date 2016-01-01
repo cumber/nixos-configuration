@@ -8,6 +8,8 @@ unsetopt EQUALS
 # completion
 autoload -U compinit
 compinit
+autoload -U bashcompinit
+bashcompinit
 
 # correction
 setopt correct
@@ -121,3 +123,7 @@ fi
 
 # Don't use nano
 export EDITOR=vim
+
+if whence stack > /dev/null; then
+    eval "$(stack --bash-completion-script stack)"
+fi
