@@ -18,7 +18,8 @@ cpuCallback = do
   return [ totalLoad, systemLoad ]
 
 main = do
-  monitor <- fmap read . listToMaybe <$> getArgs
+  let defaultMonitor = monitorNumber defaultTaffybarConfig
+  monitor <- fromMaybe defaultMonitor . fmap read . listToMaybe <$> getArgs
   let cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1), (1, 0, 1, 0.5)]
                                   , graphLabel = Just "cpu"
                                   }
@@ -32,14 +33,10 @@ main = do
       battery = batteryBarNew defaultBatteryConfig 20
       batteryTime = textBatteryNew "($time$)" 20
 
+      widgets = if monitor == 0 then [ tray, clock, cpu, batteryTime, battery ] else [ clock, cpu ]
+
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager ]
-                                        , endWidgets
-                                            = [ tray
-                                              , clock
-                                              , cpu
-                                              , batteryTime
-                                              , battery
-                                              ]
-                                        , monitorNumber = fromMaybe (monitorNumber defaultTaffybarConfig) monitor
+                                        , endWidgets = widgets
+                                        , monitorNumber = monitor
                                         , widgetSpacing = 20
                                         }
