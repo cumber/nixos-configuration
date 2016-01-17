@@ -1,16 +1,22 @@
 {
-  haskellPackageOverrides = self: super: {
-    lushtags = self.callPackage (import ./lushtags) {};
-  };
+  #haskellPackageOverrides = self: super: {
+  #  lushtags = self.callPackage (import ./lushtags) {};
+  #};
 
-  packageOverrides = pkgs_: with pkgs_; {
+  packageOverrides = pkgs_: with pkgs_; rec {
+
+    vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
     vim-custom = callPackage ./vim {};
+
+    # gnome-system-monitor 3.18.0.1 doesn't have the annoying grey box bug
+    gnome3 = gnome3_18;
 
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
         # System
         arc-gtk-theme
+        blueman
         compton
         gnome3.adwaita-icon-theme  # fallback icons from numix
         gnome3.gcr  # needed for gnome-keyring-daemon
@@ -28,7 +34,6 @@
         taffybar
         tree
         xfce.terminal
-        blueman
 
         # Devlopment
         cabal-install
@@ -40,10 +45,9 @@
         gitAndTools.gitFull
         haskellPackages.hdevtools
         haskellPackages.hlint
-        haskellPackages.lushtags
+        #haskellPackages.lushtags
         nix-repl
-        python
-        stack
+        python27Full
         vim-custom.vim
 
         # Office
@@ -51,10 +55,16 @@
         evince
         gimp
         libreoffice
-        lyx
         speedcrunch
-        texLiveFull
-        thunderbird
+
+        # LyX / LaTeX
+        lyx
+        (texlive.combine {
+          inherit (texlive)
+            collection-latex
+            collection-latexrecommended
+          ;
+        })
       ];
     };
   };

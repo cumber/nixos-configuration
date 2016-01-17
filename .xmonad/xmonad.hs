@@ -14,6 +14,7 @@ import XMonad.Hooks.ManageDocks (ToggleStruts(ToggleStruts))
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Layout.Fullscreen (fullscreenEventHook, fullscreenManageHook)
 import XMonad.Layout.NoBorders (Ambiguity(Screen), lessBorders)
+import XMonad.Hooks.Place (fixed, inBounds, placeHook)
 import XMonad.Util.EZConfig (additionalKeys)
 
 
@@ -59,7 +60,9 @@ commands
 
 
 myManageHooks =
-  [ appName =? "synapse" --> doIgnore
+  [ placeHook . inBounds . fixed $ (0.5, 0.5)
+  , appName =? "synapse" --> doIgnore
+  , appName =? "speedcrunch" --> doFloat
   , fullscreenManageHook
   ]
 

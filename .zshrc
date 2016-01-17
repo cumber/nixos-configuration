@@ -10,6 +10,9 @@ autoload -U compinit
 compinit
 autoload -U bashcompinit
 bashcompinit
+if [[ -f ~/.bash_completion ]]; then
+    source ~/.bash_completion
+fi
 
 # correction
 setopt correct
@@ -30,7 +33,7 @@ fi
 
 # history
 export HISTSIZE=2000
-export HISTFILE="$HOME/.history"
+export HISTFILE="$HOME/.shellhistory"
 export SAVEHIST=$HISTSIZE
 setopt hist_ignore_all_dups
 setopt inc_append_history_time
@@ -52,6 +55,7 @@ alias tree='tree -C'
 
 setopt extendedglob
 
+# prompt
 autoload -U colors
 colors
 
@@ -62,7 +66,7 @@ _colourhash_arr=("${fg[green]}" "${fg[yellow]}" "${fg[magenta]}" "${fg[cyan]}" "
 function colourhash () {
     x="$(echo "$1" | md5sum | cut -f1 -d' ')"
     x="0x${x[-22,-8]}"
-    index=$(( x % ${#_colourhash_arr} + 1)) 
+    index=$(( x % ${#_colourhash_arr} + 1))
     echo "${_colourhash_arr[$index]}"
 }
 
@@ -70,20 +74,23 @@ setopt prompt_subst
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export ORIG_UID="$(id -u "cumber")"
 
-PRE_PROMPT=''
+PRE_PROMPT=' '
 PRE_PROMPT+='%(${ORIG_UID}#..%{$(colourhash "user:${USER}")%}%n%{${fg[default]}%}@)'
-PRE_PROMPT+='%{$(colourhash "${HOST}")%}%m%{${fg[default]}%}'
-PRE_PROMPT+='%B%{${fg[white]}%}${IN_NIX_SHELL+ nix}%{${fg[default]}%}%b'
-PRE_PROMPT+='%B${VIRTUAL_ENV:+ }%{$(colourhash "venv:${VIRTUAL_ENV}")%}${VIRTUAL_ENV:+venv:}$(basename "${VIRTUAL_ENV}")%b'
 PRE_PROMPT+='${STY:+ }%{$(colourhash "${STY}")%}${STY#*.}%{${fg[default]}%}'
-PRE_PROMPT+=' %B%{$(colourhash "${PWD}")%}%3~%b'
-PRE_PROMPT+='%{${fg_no_bold[default]}%}'
+PRE_PROMPT+='%B%{$(colourhash "${PWD}")%}%3~%b'
+PRE_PROMPT+='%f%b'
 
 POST_PROMPT=''
 POST_PROMPT+='%($(( $COLUMNS / 2 ))l.
 . )'
 POST_PROMPT+='%B%{$(colourhash "${HOST}")%}%# '
-POST_PROMPT+='%{${fg_no_bold[default]}%}'
+POST_PROMPT+='%f%b'
+
+RPROMPT=''
+RPROMPT+='%B%{${fg[white]}%}${IN_NIX_SHELL+nix }%{${fg[default]}%}%b'
+RPROMPT+='%B%{$(colourhash "venv:${VIRTUAL_ENV}")%}${VIRTUAL_ENV:+venv:}$(basename "${VIRTUAL_ENV}")%b${VIRTUAL_ENV:+ }'
+RPROMPT+='%{$(colourhash "${HOST}")%}%m%{${fg[default]}%}'
+RPROMPT+='%f%b'
 
 export GIT_PS1_SHOWDIRTYSTATE="yes"
 export GIT_PS1_SHOWUPSTREAM="auto"
@@ -112,6 +119,8 @@ function preexec() {
     esac
 }
 
+# Prevent "error connecting to disability bus" messages from GTK programs
+export NO_AT_BRIDGE=1
 
 # Python startup file
 export PYTHONSTARTUP="${HOME}/.pythonrc"
@@ -124,6 +133,12 @@ fi
 # Don't use nano
 export EDITOR=vim
 
+# Completion for stack
 if whence stack > /dev/null; then
     eval "$(stack --bash-completion-script stack)"
+fi
+
+# autolaunch development shell if we're in an appropriate directory
+if [[ $IN_NIX_SHELL != 1 && ( -f default.nix || -f shell.nix ) ]]; then
+    exec nix-shell --command zsh
 fi

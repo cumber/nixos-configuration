@@ -14,8 +14,9 @@
   boot.loader.gummiboot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Needed to recognise touchpad
-  boot.kernelPackages = pkgs.linuxPackages_4_2;
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel enable=1
+  '';
 
   networking.hostName = "vanwa"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -30,16 +31,8 @@
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    wget
-    zsh
-  ];
-
   # List services that you want to enable:
-
-  services.gnome3.gnome-keyring.enable = true;
+  programs.zsh.enable = true;
 
   services.printing.enable = true;
 
@@ -60,6 +53,9 @@
   #   uid = 1000;
   # };
   users.mutableUsers = false;
+  users.users.root = {
+    passwordFile = "/etc/nixos/passwords/root";
+  };
   users.users.cumber = {
     isNormalUser = true;
     description = "Cumber";
