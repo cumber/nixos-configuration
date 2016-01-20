@@ -41,13 +41,16 @@ set list
 " Highlight searches, and clear highlight
 set hlsearch
 set incsearch
-map <Leader>/ :nohlsearch<CR>
+map <silent> <Leader>/ :nohlsearch<CR>
 
 " Show line numbers
-map <Leader>0 :set number!<CR>
+map <silent> <Leader>0 :set number!<CR>
 set colorcolumn=81
 set numberwidth=6
 set number
+
+" provide an 'open' command
+map <silent> <Leader>o :Explore<CR><Leader>0
 
 set pastetoggle=<F11>
 
