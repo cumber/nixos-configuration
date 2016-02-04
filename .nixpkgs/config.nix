@@ -36,7 +36,6 @@
         xfce.terminal
 
         # Devlopment
-        cabal-install
         cabal2nix
         colordiff
         ctags
