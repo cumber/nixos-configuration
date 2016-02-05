@@ -41,16 +41,19 @@ set list
 " Highlight searches, and clear highlight
 set hlsearch
 set incsearch
-map <silent> <Leader>/ :nohlsearch<CR>
+map <Leader>/ :nohlsearch<CR>
 
 " Show line numbers
-map <silent> <Leader>0 :set number!<CR>
+map <Leader>0 :set number!<CR>
 set colorcolumn=81
 set numberwidth=6
 set number
 
-" provide an 'open' command
-map <silent> <Leader>o :Explore<CR><Leader>0
+" Add an 'open' command
+map <silent> <Leader>o :Explore<CR>
+
+" Override buffer settings for netrw so we have line numbers
+let g:netrw_bufsettings = 'noma nomod number nobl nowrap ro'
 
 set pastetoggle=<F11>
 
@@ -65,6 +68,10 @@ map <Leader>s :SyntasticToggleMode<CR>
 map <silent> <Leader>= :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_autoclose = 1
+
+" avoid double-indent in python files
+let g:pyindent_open_paren = '&sw'
+let g:pyindent_continue = '&sw'
 
 " Get type or info of thing under cursor
 au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>

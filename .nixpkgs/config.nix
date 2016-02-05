@@ -11,6 +11,10 @@
     # gnome-system-monitor 3.18.0.1 doesn't have the annoying grey box bug
     gnome3 = gnome3_18;
 
+    haskellEnvWithHoogle = import ./haskellEnvWithHoogle.nix;
+
+    nda = callPackage ./nda {};
+
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
@@ -47,7 +51,7 @@
         haskellPackages.hlint
         #haskellPackages.lushtags
         nix-repl
-        python27Full
+        nda
         vim-custom.vim
 
         # Office
