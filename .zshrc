@@ -137,8 +137,3 @@ export EDITOR=vim
 if whence stack > /dev/null; then
     eval "$(stack --bash-completion-script stack)"
 fi
-
-# autolaunch development shell if we're in an appropriate directory
-if [[ $IN_NIX_SHELL != 1 && ( -f default.nix || -f shell.nix ) ]]; then
-    exec nix-shell --command zsh
-fi
