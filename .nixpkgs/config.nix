@@ -52,6 +52,7 @@
         #haskellPackages.lushtags
         nix-repl
         nda
+        python27Full    # need to keep in profile for YouCompleteMe
         vim-custom.vim
 
         # Office
