@@ -60,7 +60,9 @@ autoload -U colors
 colors
 
 # Get __git_ps1 command
-source "$(dirname "$(readlink -f "$(which git)")")/../share/git/contrib/completion/git-prompt.sh"
+if whence git > /dev/null; then
+    source "$(dirname "$(readlink -f "$(which git)")")/../share/git/contrib/completion/git-prompt.sh"
+fi
 
 _colourhash_arr=("${fg[green]}" "${fg[yellow]}" "${fg[magenta]}" "${fg[cyan]}" "${fg[red]}" "${fg[blue]}" "${fg[black]}")
 function colourhash () {
@@ -72,10 +74,8 @@ function colourhash () {
 
 setopt prompt_subst
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export ORIG_UID="$(id -u "cumber")"
 
 PRE_PROMPT=' '
-PRE_PROMPT+='%(${ORIG_UID}#..%{$(colourhash "user:${USER}")%}%n%{${fg[default]}%}@)'
 PRE_PROMPT+='${STY:+ }%{$(colourhash "${STY}")%}${STY#*.}%{${fg[default]}%}'
 PRE_PROMPT+='%B%{$(colourhash "${PWD}")%}%3~%b'
 PRE_PROMPT+='%f%b'
@@ -89,6 +89,7 @@ POST_PROMPT+='%f%b'
 RPROMPT=''
 RPROMPT+='%B%{${fg[white]}%}${IN_NIX_SHELL+nix }%{${fg[default]}%}%b'
 RPROMPT+='%B%{$(colourhash "venv:${VIRTUAL_ENV}")%}${VIRTUAL_ENV:+venv:}$(basename "${VIRTUAL_ENV}")%b${VIRTUAL_ENV:+ }'
+RPROMPT+='%{$(colourhash "user:${USER}")%}%n%f%b@'
 RPROMPT+='%{$(colourhash "${HOST}")%}%m%{${fg[default]}%}'
 RPROMPT+='%f%b'
 
@@ -99,7 +100,11 @@ export GIT_PS1_SHOWUNTRACKEDFILES="yes"
 export GIT_PS1_SHOWCOLORHINTS="yes"
 
 function precmd() {
-    __git_ps1 "${PRE_PROMPT}" "${POST_PROMPT}"
+    if whence __git_ps1 > /dev/null; then
+        __git_ps1 "${PRE_PROMPT}" "${POST_PROMPT}"
+    else
+        PROMPT="${PRE_PROMPT} ${POST_PROMPT}"
+    fi
 
     # set window title
     case $TERM in
