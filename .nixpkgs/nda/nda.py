@@ -56,7 +56,6 @@ def launch(drv, command):
     if command:
         shell_args.extend(['--command', command])
 
-    subprocess.check_call(shell_args)
     os.execvp('nix-shell', shell_args)
 
 
