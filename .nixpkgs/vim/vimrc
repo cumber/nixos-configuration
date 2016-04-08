@@ -55,6 +55,10 @@ map <silent> <Leader>o :Explore<CR>
 " Override buffer settings for netrw so we have line numbers
 let g:netrw_bufsettings = 'noma nomod number nobl nowrap ro'
 
+" Statusline
+set laststatus=2
+let g:airline_powerline_fonts = 1
+
 set pastetoggle=<F11>
 
 let g:haddock_browser = "chromium-browser"

@@ -52,6 +52,7 @@
         #haskellPackages.lushtags
         nix-repl
         nda
+        powerline-fonts
         python27Full    # need to keep in profile for YouCompleteMe
         vim-custom.vim
 
@@ -61,13 +62,17 @@
         gimp
         libreoffice
         speedcrunch
+        vlc
 
         # LyX / LaTeX
         lyx
         (texlive.combine {
           inherit (texlive)
+            collection-fontsrecommended
             collection-latex
             collection-latexrecommended
+
+            paralist
           ;
         })
       ];

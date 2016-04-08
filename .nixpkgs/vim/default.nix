@@ -14,6 +14,10 @@
       { name = "rainbow-parentheses-improved"; tag = "delayed"; }
       { name = "easytags"; }
       { name = "hasksyn"; }
+      { name = "sleuth"; }
+      { name = "fugitive"; }
+      { name = "gitgutter"; }
+      { name = "airline"; }
     ];
 
     vimrcConfig.customRC = builtins.readFile ./vimrc;

@@ -88,6 +88,13 @@ def main(raw_args):
 
     is_cabal = bool(glob.glob(os.path.join(path, '*.cabal')))
 
+    if 'IN_NIX_SHELL' in os.environ and not args.instantiate:
+        print >> sys.stderr, (
+            "Already in a nix shell; not launching another one\n"
+            "use --instantiate to build shell.drv without launching a shell"
+        )
+        return 120
+
     instantiate(shell_drv, default_nix, shell_nix, haskell_shell=is_cabal)
 
     if not args.instantiate:
