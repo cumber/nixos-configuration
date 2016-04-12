@@ -62,6 +62,7 @@
         gimp
         libreoffice
         speedcrunch
+        thunderbird
         vlc
 
         # LyX / LaTeX
