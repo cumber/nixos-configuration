@@ -54,7 +54,7 @@
         nda
         powerline-fonts
         python27Full    # need to keep in profile for YouCompleteMe
-        vim-custom.vim
+        vim-custom
 
         # Office
         chromium
