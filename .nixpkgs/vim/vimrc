@@ -82,10 +82,10 @@ au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <F2> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <F3> :HdevtoolsInfo<CR>
 
-" hdevtools should treat typed holes as warnings so that it doesn't block
-" using :HdevToolsType to fill them
-let g:hdevtools_options = '-g-fdefer-typed-holes'
-let g:syntastic_hdevtools_args = g:hdevtools_options
+" hdevtools should treat typed holes and type errors as warnings so that it
+" doesn't block using :HdevToolsType
+let g:hdevtools_options = '-g-fdefer-typed-holes -g-fdefer-type-errors'
+let g:syntastic_haskell_hdevtools_args = g:hdevtools_options
 
 " Don't complain about redundant parntheses in haskell files
 let g:syntastic_haskell_hlint_args = '--ignore "Redundant bracket"'
