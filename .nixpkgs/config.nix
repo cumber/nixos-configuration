@@ -36,8 +36,9 @@
         numix-icon-theme
         synapse
         taffybar
+        termite
         tree
-        xfce.terminal
+        xsel
 
         # Devlopment
         cabal-install

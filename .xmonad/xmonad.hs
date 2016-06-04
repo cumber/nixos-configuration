@@ -70,7 +70,7 @@ myManageHooks =
 myConfig
   = desktopConfig
       { modMask = myModMask
-      , terminal = "xfce4-terminal"
+      , terminal = "termite"
       , focusedBorderColor = "#1010bb"
       , normalBorderColor = "#000000"
       , borderWidth = 2
