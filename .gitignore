@@ -18,3 +18,11 @@
 
 # Nix config should definitely be versioned!
 !/.nixpkgs
+
+# Unignore .config and then ignore everything in it, so I can selectively
+# version some config folders
+!/.config/
+/.config/*
+
+# Termite config
+!/.config/termite/
