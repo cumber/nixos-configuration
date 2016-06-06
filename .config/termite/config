@@ -1,44 +1,43 @@
 [options]
-
-font = Inconsolata 15
+font = Inconsolata for powerline 15
 
 
 [colors]
 
 # special
-foreground      = #ffffff
-foreground_bold = #ffffff
-cursor          = #2222cc
-background      = #000000
+foreground      = #222233
+foreground_bold = #222233
+cursor          = #222233
+background      = #e0e0e0
 
 # black
-color0  = #505050
-color8  = #505050
+color0  = #333333
+color8  = #666666
 
 # red
-color1  = #e92f2f
-color9  = #e92f2f
+color1  = #cc342b
+color9  = #cc342b
 
 # green
-color2  = #0ed839
-color10 = #0ed839
+color2  = #19a824
+color10 = #19a824
 
 # yellow
-color3  = #dddd13
-color11 = #dddd13
+color3  = #cb8922
+color11 = #cb8922
 
 # blue
-color4  = #3b48e3
-color12 = #3b48e3
+color4  = #3951fd
+color12 = #3951fd
 
 # magenta
-color5  = #f996e2
-color13 = #f996e2
+color5  = #833ac7
+color13 = #833ac7
 
 # cyan
-color6  = #23edda
-color14 = #23edda
+color6  = #14b0b0
+color14 = #14b0b0
 
 # white
-color7  = #ababab
-color15 = #f9f9f9
+color7  = #888888
+color15 = #ffffff

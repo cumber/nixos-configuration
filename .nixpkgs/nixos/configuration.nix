@@ -36,8 +36,6 @@
   time.timeZone = "Australia/Melbourne";
 
   # List services that you want to enable:
-  programs.zsh.enable = true;
-
   services.printing.enable = true;
 
   services.upower.enable = true;
@@ -65,7 +63,7 @@
     description = "Cumber";
     passwordFile = "/etc/nixos/passwords/cumber";
     extraGroups =  [ "wheel" "networkmanager" ];
-    shell = "/run/current-system/sw/bin/zsh";
+    shell = "/home/cumber/.nix-profile/bin/zsh";
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.

@@ -1,0 +1,5 @@
+# Prevent "error connecting to disability bus" messages from GTK programs
+export NO_AT_BRIDGE=1
+
+# Don't use nano
+export EDITOR=vim

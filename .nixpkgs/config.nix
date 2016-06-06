@@ -8,12 +8,20 @@
     vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
     vim-custom = callPackage ./vim {};
 
-    # gnome-system-monitor 3.18.0.1 doesn't have the annoying grey box bug
-    gnome3 = gnome3_18;
-
     haskellEnvWithHoogle = import ./haskellEnvWithHoogle.nix;
 
     nda = callPackage ./nda {};
+
+    zshConfig = callPackage ./zsh/zshConfig.nix { vte = gnome3.vte-select-text; };
+    zsh-custom = callPackage ./zsh {};
+
+    powerline-gitstatus = callPackage ./powerline-gitstatus.nix {};
+    powerlineWithGitStatus = pythonPackages.powerline.overrideDerivation (
+      super: {
+        propagatedNativeBuildInputs
+          = [ powerline-gitstatus ] ++ super.propagatedNativeBuildInputs;
+        }
+    );
 
     mine = with pkgs; buildEnv {
       name = "mine";
@@ -39,6 +47,7 @@
         termite
         tree
         xsel
+        zsh-custom
 
         # Devlopment
         cabal-install
@@ -51,10 +60,10 @@
         haskellPackages.hdevtools
         haskellPackages.hlint
         #haskellPackages.lushtags
-        nix-repl
         nda
+        nix-repl
+        powerlineWithGitStatus
         powerline-fonts
-        python27Full    # need to keep in profile for YouCompleteMe
         vim-custom
 
         # Office

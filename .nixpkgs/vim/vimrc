@@ -1,16 +1,12 @@
 " Pretty stuff
-set guifont=Inconsolata\ 15
-if has('gui_running')
-    set guioptions-=T
-    colorscheme google
-else
-    set t_Co=256
-    colorscheme darkbone
-endif
+set guifont=Inconsolata\ for\ Powerline\ 15
+set background=light
+colorscheme automation
 
 " Rainbow parentheses does nothing if this variable isn't set, so had
 " to delay that plugin from loading
 let g:rainbow_conf = {
+\ 'ctermfgs': ['red', 'yellow', 'green', 'cyan', 'blue', 'magenta'],
 \ 'separately': {
 \   'haskell': {
 \     'parentheses': [

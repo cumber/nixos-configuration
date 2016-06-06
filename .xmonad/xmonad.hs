@@ -56,6 +56,7 @@ commands
       , "nm-applet --sm-disable"
       , "system-config-printer-applet"
       , "taffybar 0"
+      , "powerline-daemon --replace"
       ]
 
 

@@ -26,3 +26,6 @@
 
 # Termite config
 !/.config/termite/
+
+# Powerline config
+!/.config/powerline

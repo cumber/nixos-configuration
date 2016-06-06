@@ -1,0 +1,149 @@
+# unset this option to stop commands like [ 'x' == 'y' ] complaining
+unsetopt EQUALS
+
+# completion
+autoload -U compinit
+compinit
+autoload -U bashcompinit
+bashcompinit
+if [[ -f ~/.bash_completion ]]; then
+    source ~/.bash_completion
+fi
+
+# correction
+setopt correct
+
+# automatically keep directory stack
+setopt autopushd pushdignoredups
+
+# Vi-like keybindings, but set backspace/delete to non-vi commands; not being
+# able to backspace past the start of insert is annoying
+bindkey -v
+bindkey -M vicmd '^[[3~' delete-char
+bindkey -M viins '^[[3~' delete-char
+bindkey -M vicmd '^?' backward-delete-char
+bindkey -M viins '^?' backward-delete-char
+bindkey -M vicmd '^H' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+
+# Bind ctrl+left and ctrl+right to forward/backward by word
+bindkey -M vicmd '^[[1;5D' backward-word
+bindkey -M viins '^[[1;5D' backward-word
+bindkey -M vicmd '^[[1;5C' forward-word
+bindkey -M viins '^[[1;5C' forward-word
+
+# Bind home/end
+bindkey -M vicmd '^[OH' beginning-of-line
+bindkey -M viins '^[OH' beginning-of-line
+bindkey -M vicmd '^[[H' beginning-of-line
+bindkey -M viins '^[[H' beginning-of-line
+bindkey -M vicmd '^[OF' end-of-line
+bindkey -M viins '^[OF' end-of-line
+bindkey -M vicmd '^[[F' end-of-line
+bindkey -M viins '^[[F' end-of-line
+bindkey -M vicmd '^[[1~' beginning-of-line
+bindkey -M viins '^[[1~' beginning-of-line
+bindkey -M vicmd '^[[4~' end-of-line
+bindkey -M viins '^[[4~' end-of-line
+
+
+# Better history search, if available
+if zle -al | grep -q history-incremental-pattern-search-backward; then
+    bindkey '\C-r' history-incremental-pattern-search-backward
+fi
+
+# history
+export HISTSIZE=2000
+export HISTFILE="$HOME/.shellhistory"
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+setopt inc_append_history_time
+setopt extended_history
+
+# make ls pretty
+alias ls='ls --color=auto'
+
+# make diff pretty
+alias diff='colordiff -u'
+
+# If LS_COLORS is unset, tree needs to be explicitly told about colours.
+alias tree='tree -C'
+
+# Extended globbing that I never remember (how to) use
+setopt extendedglob
+
+autoload -U colors
+colors
+
+_colourhash_arr=("${fg[green]}" "${fg[yellow]}" "${fg[magenta]}" "${fg[cyan]}" "${fg[red]}" "${fg[blue]}" "${fg[black]}")
+function colourhash () {
+    x="$(echo "$1" | md5sum | cut -f1 -d' ')"
+    x="0x${x[-22,-8]}"
+    index=$(( x % ${#_colourhash_arr} + 1))
+    echo "${_colourhash_arr[$index]}"
+}
+
+
+# Powerline prompt
+source "$(dirname $(realpath $(which powerline)))/../share/zsh/site-contrib/powerline.zsh"
+
+function precmd() {
+    # set xterm window title
+    case $TERM in
+        *xterm*|*screen*)
+            print -Pn "\e]0;%m${STY:+  }${STY#*.}  %3~  %%\a"
+    esac
+
+    # set screen window title
+    case $TERM in
+        *screen*)
+            print -Pn "\ek%3~  %%\e\\"
+    esac
+}
+
+function preexec() {
+    local command="${1//\%/\%\%}"
+    local max_screen_length=$(( COLUMNS - 25 ))
+
+    xterm_extras="...   ($(hostname -s))"
+    # Not entirely sure where the extra - 5 comes from, but that makes it
+    # fit in my 100 char limit for taffybar
+    local max_xterm_length=$(( 100 - ${#xterm_extras} - 5 ))
+
+    if [[ ${#command} -gt ${max_screen_length} ]]; then
+        local screen_ellipsis='...'
+    else
+        local screen_ellipsis=''
+    fi
+
+    if [[ ${#command} -gt ${max_xterm_length} ]]; then
+        local xterm_ellipsis='...'
+    else
+        local xterm_ellipsis=''
+    fi
+
+    # set xterm window title
+    case $TERM in
+        *xterm*|*screen*)
+            print -Pn "\e]0;$(printf "%-${max_xterm_length}.${max_xterm_length}s" "${command}")${xterm_ellipsis}   (%m)\a"
+    esac
+
+    # set screen window title
+    case $TERM in
+        *screen*)
+            print -Pn "\ek$(printf "%.${max_screen_length}s" "${command}")${screen_ellipsis}\e\\"
+    esac
+}
+
+# Python startup file
+export PYTHONSTARTUP="${HOME}/.pythonrc"
+
+# Set NIX_GHC* variables if there's a ghc in path
+if whence -p ghc > /dev/null; then
+    eval "$(grep '^export NIX_GHC' "$(whence -p ghc)")"
+fi
+
+# Completion for stack
+if whence stack > /dev/null; then
+    eval "$(stack --bash-completion-script stack)"
+fi
