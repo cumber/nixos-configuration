@@ -49,6 +49,8 @@
   };
   services.xserver.synaptics.enable = true;
 
+  environment.systemPackages = [ pkgs.shared_mime_info ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.extraUsers.guest = {
   #   isNormalUser = true;
