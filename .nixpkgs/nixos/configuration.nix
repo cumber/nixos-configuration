@@ -22,8 +22,12 @@
     options snd_hda_intel enable=1
   '';
 
-  networking.hostName = "vanwa"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  # Define your hostname.
+  networking = rec {
+    hostName = "vanwa";
+    extraHosts = "127.0.0.1 ${hostName}";
+    networkmanager.enable = true;
+  };
 
   # Select internationalisation properties.
   i18n = {
