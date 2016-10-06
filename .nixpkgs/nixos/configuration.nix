@@ -8,24 +8,23 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      (throw "replace this throw with machine-specific module")
     ];
 
   nix.extraOptions = ''
     auto-optimise-store = true
   '';
 
-  # Use the gummiboot efi boot loader.
-  boot.loader.gummiboot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader is expected to be defined in machine-specific module
 
   boot.extraModprobeConfig = ''
     options snd_hda_intel enable=1
   '';
 
-  # Define your hostname.
-  networking = rec {
-    hostName = "vanwa";
-    extraHosts = "127.0.0.1 ${hostName}";
+  # hostName is expected to be defined in machine-specific module;
+  networking = {
+    extraHosts = "127.0.0.1 ${config.networking.hostName}";
     networkmanager.enable = true;
   };
 
@@ -44,14 +43,17 @@
 
   services.upower.enable = true;
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.windowManager.xmonad = {
+  services.xserver = {
     enable = true;
-    enableContribAndExtras = true;
-    extraPackages = haskellPackages : [ haskellPackages.taffybar ];
+
+    displayManager.lightdm.enable = true;
+
+    windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = haskellPackages : [ haskellPackages.taffybar ];
+    };
   };
-  services.xserver.synaptics.enable = true;
 
   environment.systemPackages = [ pkgs.shared_mime_info ];
 
