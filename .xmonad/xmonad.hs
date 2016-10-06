@@ -63,7 +63,7 @@ startupCommands screenCount
         mapM_ spawn $ intersperse "sleep 0.1" spawnBars
 
 simpleCommands
-  =   [ "setxkbmap -option 'compose:menu'"  -- TODO: what do I want?
+  =   [ "setxkbmap -option 'compose:ralt'"
       , "synapse -s"
       , "compton"
       , "nm-applet --sm-disable"
