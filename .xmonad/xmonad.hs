@@ -1,6 +1,11 @@
 {-# LANGUAGE FlexibleContexts #-}
 
+import Control.Monad ((<=<))
+
+import Data.List (intersperse)
 import Data.Monoid ((<>))
+
+import Graphics.X11.Xinerama (getScreenInfo)
 
 import System.IO (Handle, hGetContents)
 import System.Posix.Env (getEnv, setEnv, putEnv)
@@ -36,9 +41,12 @@ myKeys =
   ]
 
 
+withScreenCount f = withDisplay $ f . length <=< liftIO . getScreenInfo
+
+
 myStartupHook
   = do  home <- liftIO $ getEnv "HOME"
-        mapM_ spawn commands
+        withScreenCount startupCommands
         setWMName "LG3D"  -- helps with Java GUIs
         liftIO $ do mapM_ (putEnv . gtk2RcFiles) =<< getEnv "HOME"
                     (_, Just hout, _, _) <- gnomeKeyringDaemon
@@ -49,13 +57,17 @@ myStartupHook
           = createProcess $ (proc "gnome-keyring-daemon" ["--replace"])
                             { std_out = CreatePipe }
 
-commands
+startupCommands screenCount
+  = do  mapM_ spawn simpleCommands
+        let spawnBars = [ "taffybar " ++ show n | n <- [0 .. screenCount - 1] ]
+        mapM_ spawn $ intersperse "sleep 0.1" spawnBars
+
+simpleCommands
   =   [ "setxkbmap -option 'compose:menu'"  -- TODO: what do I want?
       , "synapse -s"
       , "compton"
       , "nm-applet --sm-disable"
       , "system-config-printer-applet"
-      , "taffybar 0"
       , "powerline-daemon --replace"
       ]
 
