@@ -125,7 +125,7 @@ function preexec() {
     # set xterm window title
     case $TERM in
         *xterm*|*screen*)
-            print -Pn "\e]0;$(printf "%-${max_xterm_length}.${max_xterm_length}s" "${command}")${xterm_ellipsis}   (%m)\a"
+            print -Pn '\e]0;$(printf "%-${max_xterm_length}.${max_xterm_length}s" "${command}")${xterm_ellipsis}   (%m)\a'
     esac
 
     # set screen window title
