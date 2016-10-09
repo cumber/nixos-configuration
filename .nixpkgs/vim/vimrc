@@ -93,6 +93,9 @@ let g:haskell_tags_generator = 'hasktags'
 " Turn off concealing from vim2hs; background colour makes it ugly
 let g:haskell_conceal = 0
 
+" Allow syntax highlighting of multiline haskell strings
+let g:haskell_multiline_strings = 1
+
 " Configure Tagbar to use hasktags
 let g:tagbar_type_haskell = {
     \ 'ctagsbin'  : 'hasktags',
