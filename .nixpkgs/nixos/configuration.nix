@@ -39,6 +39,8 @@
   time.timeZone = "Australia/Melbourne";
 
   # List services that you want to enable:
+  services.locate.enable = true;
+
   services.printing.enable = true;
 
   services.upower.enable = true;
