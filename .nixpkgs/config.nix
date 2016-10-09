@@ -57,9 +57,9 @@
         # ctagsWrapped.ctagsWrapped
         # haskellPackages.hothasktags
         gitAndTools.gitFull
+        haskellPackages.hasktags
         haskellPackages.hdevtools
         haskellPackages.hlint
-        #haskellPackages.lushtags
         nda
         nix-repl
         powerlineWithGitStatus

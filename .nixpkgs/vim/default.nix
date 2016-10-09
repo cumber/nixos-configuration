@@ -14,7 +14,7 @@
         { name = "CSApprox"; }
         { name = "rainbow-parentheses-improved"; tag = "delayed"; }
         { name = "easytags"; }
-        { name = "hasksyn"; }
+        { name = "vim2hs"; }
         { name = "vim-addon-nix"; }
         { name = "sleuth"; }
         { name = "fugitive"; }
