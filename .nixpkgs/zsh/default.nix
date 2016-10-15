@@ -5,11 +5,10 @@
     '';
 
     postInstall = super.postInstall + ''
+      echo "ZDOTDIR=$out/etc/zdotdir" > $out/etc/zshenv
 
-      echo "ZDOTDIR=$out/zdotdir" > $out/etc/zshenv
-
-      mkdir -p $out/zdotdir
-      echo "source ${vte}/etc/profile.d/vte.sh" | cat ${./zshrc} - > $out/zdotdir/.zshrc
-      cp ${./zshenv} $out/zdotdir/.zshenv
+      mkdir -p $out/etc/zdotdir
+      cp ${./zshenv} $out/etc/zdotdir/.zshenv
+      echo "source ${vte}/etc/profile.d/vte.sh" | cat ${./zshrc} - > $out/etc/zdotdir/.zshrc
     '';
   })
