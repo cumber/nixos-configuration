@@ -150,3 +150,7 @@ fi
 if whence stack > /dev/null; then
     eval "$(stack --bash-completion-script stack)"
 fi
+
+# alias to launch zsh in nis-shell named for current directory
+alias ns='nix-shell --command "export NIX_SHELL_NAME=\"$(basename "$PWD")\"; zsh"'
+alias nsc='ns --expr "$(cabal2nix . --shell)"'
