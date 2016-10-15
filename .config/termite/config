@@ -1,6 +1,7 @@
 [options]
 font = Inconsolata for powerline 15
 
+scrollback_lines = 100000
 
 [colors]
 
