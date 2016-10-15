@@ -84,8 +84,11 @@ function colourhash () {
 }
 
 
-# Powerline prompt
-source "$(dirname $(realpath $(which powerline)))/../share/zsh/site-contrib/powerline.zsh"
+# Powerline prompt, only if running in a graphical shell
+if [[ $(tset -q) = "linux" ]]; then
+else
+    source "$(dirname $(realpath $(which powerline)))/../share/zsh/site-contrib/powerline.zsh"
+fi
 
 function precmd() {
     # set xterm window title
