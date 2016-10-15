@@ -12,8 +12,7 @@
 
     nda = callPackage ./nda {};
 
-    zshConfig = callPackage ./zsh/zshConfig.nix { vte = gnome3.vte-select-text; };
-    zsh-custom = callPackage ./zsh {};
+    zsh-custom = callPackage ./zsh { vte = gnome3.vte-select-text; };
 
     powerline-gitstatus = callPackage ./powerline-gitstatus.nix {};
     powerlineWithGitStatus = pythonPackages.powerline.overrideDerivation (
