@@ -53,8 +53,6 @@
         cabal2nix
         colordiff
         ctags
-        # ctagsWrapped.ctagsWrapped
-        # haskellPackages.hothasktags
         gitAndTools.gitFull
         haskellPackages.hasktags
         haskellPackages.hdevtools
