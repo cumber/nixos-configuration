@@ -14,7 +14,11 @@
 
     zsh-custom = callPackage ./zsh { vte = gnome3.vte-select-text; };
 
-    powerline-gitstatus = callPackage ./powerline-gitstatus.nix {};
+    powerline-gitstatus = (
+      callPackage
+        ./powerline-gitstatus.nix
+        { inherit (pythonPackages) buildPythonPackage; }
+    );
     powerlineWithGitStatus = pythonPackages.powerline.overrideDerivation (
       super: {
         propagatedNativeBuildInputs
@@ -26,7 +30,7 @@
       name = "mine";
       paths = [
         # System
-        arc-gtk-theme
+        arc-theme
         blueman
         compton
         gnome3.adwaita-icon-theme  # fallback icons from numix
