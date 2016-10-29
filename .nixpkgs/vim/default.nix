@@ -12,8 +12,8 @@
         { name = "vim-hdevtools"; ft_regex = "^haskell$"; }
         { name = "vim-colorschemes"; }
         { name = "CSApprox"; }
-        { name = "rainbow-parentheses-improved"; tag = "delayed"; }
-        { name = "easytags"; }
+        { name = "rainbow"; tag = "delayed"; }
+        { name = "vim-easytags"; }
         { name = "hasksyn"; }
         { name = "vim-addon-nix"; }
         { name = "sleuth"; }

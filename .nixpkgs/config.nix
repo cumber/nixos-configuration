@@ -5,7 +5,6 @@
 
   packageOverrides = pkgs_: with pkgs_; rec {
 
-    vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
     vim-custom = callPackage ./vim {};
 
     haskellEnvWithHoogle = import ./haskellEnvWithHoogle.nix;
