@@ -11,7 +11,7 @@
 
     nda = callPackage ./nda {};
 
-    zsh-custom = callPackage ./zsh { vte = gnome3.vte-select-text; };
+    zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
     powerline-gitstatus = (
       callPackage
