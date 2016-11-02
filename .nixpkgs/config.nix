@@ -25,6 +25,10 @@
         }
     );
 
+    hlint = haskellPackages.hlint_1_9_37.override {
+      haskell-src-exts = haskellPackages.haskell-src-exts_1_18_2;
+    };
+
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
@@ -59,7 +63,7 @@
         gitAndTools.gitFull
         haskellPackages.hasktags
         haskellPackages.hdevtools
-        haskellPackages.hlint
+        hlint
         nda
         nix-repl
         powerlineWithGitStatus
