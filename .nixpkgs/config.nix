@@ -25,9 +25,17 @@
         }
     );
 
-    hlint = haskellPackages.hlint_1_9_37.override {
-      haskell-src-exts = haskellPackages.haskell-src-exts_1_18_2;
-    };
+    updatedHaskellSrcTools = (
+      let hp = haskellPackages.override {
+            overrides = super: self: {
+              haskell-src-exts = self.haskell-src-exts_1_18_2;
+              hlint = self.hlint_1_9_37;
+            };
+          };
+      in  {
+        inherit (hp) hlint;
+      }
+    );
 
     mine = with pkgs; buildEnv {
       name = "mine";
@@ -63,7 +71,7 @@
         gitAndTools.gitFull
         haskellPackages.hasktags
         haskellPackages.hdevtools
-        hlint
+        updatedHaskellSrcTools.hlint
         nda
         nix-repl
         powerlineWithGitStatus
