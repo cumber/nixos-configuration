@@ -38,42 +38,44 @@
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
-  # List services that you want to enable:
-  services.locate.enable = true;
+  services = {
+    locate.enable = true;
 
-  services.printing.enable = true;
+    printing.enable = true;
 
-  services.upower.enable = true;
+    upower.enable = true;
 
-  services.xserver = {
-    enable = true;
-
-    displayManager.lightdm.enable = true;
-
-    windowManager.xmonad = {
+    xserver = {
       enable = true;
-      enableContribAndExtras = true;
-      extraPackages = haskellPackages : [ haskellPackages.taffybar ];
+
+      displayManager.lightdm.enable = true;
+
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = haskellPackages : [ haskellPackages.taffybar ];
+      };
     };
   };
 
   environment.systemPackages = [ pkgs.shared_mime_info ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.extraUsers.guest = {
-  #   isNormalUser = true;
-  #   uid = 1000;
-  # };
-  users.mutableUsers = false;
-  users.users.root = {
-    passwordFile = "/etc/nixos/passwords/root";
-  };
-  users.users.cumber = {
-    isNormalUser = true;
-    description = "Cumber";
-    passwordFile = "/etc/nixos/passwords/cumber";
-    extraGroups =  [ "wheel" "networkmanager" ];
-    shell = "/home/cumber/.nix-profile/bin/zsh";
+  users = {
+    mutableUsers = false;
+
+    users = {
+      root = {
+        passwordFile = "/etc/nixos/passwords/root";
+      };
+
+      cumber = {
+        isNormalUser = true;
+        description = "Cumber";
+        passwordFile = "/etc/nixos/passwords/cumber";
+        extraGroups =  [ "wheel" "networkmanager" ];
+        shell = "/home/cumber/.nix-profile/bin/zsh";
+      };
+    };
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.

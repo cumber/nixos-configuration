@@ -15,5 +15,9 @@
       '';
     };
 
-    services.xserver.xrandrHeads = [ "DisplayPort-0" "DisplayPort-1" ];
+    services = {
+      sshd.enable = true;
+
+      xserver.xrandrHeads = [ "DisplayPort-0" "DisplayPort-1" ];
+    };
   }
