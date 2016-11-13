@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
 
       (throw "replace this throw with machine-specific module")
+
+      ./reflex-frp.nix
     ];
 
   nix.extraOptions = ''
