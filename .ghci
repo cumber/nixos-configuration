@@ -4,9 +4,9 @@
 :set +m +t
 :def hoogle \x -> return $ ":! hoogle search -cl \"" ++ x ++ "\""
 :def doc \x -> return $ ":! hoogle search -cl --info \"" ++ x ++ "\""
-:seti -fdefer-typed-holes
-:seti -fdefer-type-errors
-:seti -fno-warn-type-defaults
+:set -fdefer-typed-holes
+:set -fdefer-type-errors
+:set -fno-warn-type-defaults
 :seti -XOverloadedStrings
 :seti -XPartialTypeSignatures
 :seti -fno-warn-partial-type-signatures
