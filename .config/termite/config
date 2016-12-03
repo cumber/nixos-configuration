@@ -1,5 +1,5 @@
 [options]
-font = Inconsolata for powerline 15
+font = Cousine for powerline 14
 
 scrollback_lines = 100000
 
