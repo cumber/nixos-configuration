@@ -27,7 +27,7 @@
 
     updatedHaskellSrcTools = (
       let hp = haskellPackages.override {
-            overrides = super: self: {
+            overrides = self: super: {
               haskell-src-exts = self.haskell-src-exts_1_18_2;
               hlint = self.hlint_1_9_37;
             };
