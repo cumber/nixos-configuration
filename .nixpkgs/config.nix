@@ -13,6 +13,8 @@
 
     zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
+    vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
+
     powerline-gitstatus = (
       callPackage
         ./powerline-gitstatus.nix

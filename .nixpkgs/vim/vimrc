@@ -78,6 +78,9 @@ au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <F2> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <F3> :HdevtoolsInfo<CR>
 
+" Insert type signature for binding under cursor in Haskell
+au FileType haskell nnoremap <buffer> <Leader>t :HdevtoolsSig<CR>
+
 " hdevtools should treat typed holes and type errors as warnings so that it
 " doesn't block using :HdevToolsType
 let g:hdevtools_options = '-g-fdefer-typed-holes -g-fdefer-type-errors'
