@@ -83,7 +83,7 @@ au FileType haskell nnoremap <buffer> <Leader>t :HdevtoolsSig<CR>
 
 " hdevtools should treat typed holes and type errors as warnings so that it
 " doesn't block using :HdevToolsType
-let g:hdevtools_options = '-g-fdefer-typed-holes -g-fdefer-type-errors'
+let g:hdevtools_options = '-g-fdefer-typed-holes -g-fdefer-type-errors -g-XPartialTypeSignatures'
 let g:syntastic_haskell_hdevtools_args = g:hdevtools_options
 
 " Don't complain about redundant parntheses in haskell files
