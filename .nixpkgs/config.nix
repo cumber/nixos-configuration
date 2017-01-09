@@ -39,6 +39,12 @@
       }
     );
 
+    haskellPackages = pkgs_.haskellPackages.override {
+      overrides = self: super: {
+        type-natural = self.callPackage ./type-natural-0.7.1.2.nix {};
+      };
+    };
+
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
