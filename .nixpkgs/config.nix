@@ -45,6 +45,15 @@
       };
     };
 
+    boo = callPackage ./boo {
+      inherit (gnome2) gtksourceview;
+      mono = mono46;
+    };
+
+    banshee = pkgs_.banshee.override {
+      inherit boo;
+    };
+
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
@@ -87,6 +96,7 @@
         vim-custom
 
         # Office
+        banshee
         chromium
         evince
         gimp
