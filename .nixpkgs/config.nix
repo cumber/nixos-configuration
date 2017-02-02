@@ -77,6 +77,7 @@
         taffybar
         termite
         tree
+        udiskie
         xsel
         zsh-custom
 

@@ -69,6 +69,7 @@ simpleCommands
       , "nm-applet --sm-disable"
       , "system-config-printer-applet"
       , "powerline-daemon --replace"
+      , "udiskie --tray"
       ]
 
 
