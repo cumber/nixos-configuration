@@ -31,19 +31,13 @@
       let hp = haskellPackages.override {
             overrides = self: super: {
               haskell-src-exts = self.haskell-src-exts_1_19_1;
-              hlint = self.hlint_1_9_39;
+              hlint = self.hlint_1_9_40;
             };
           };
       in  {
         inherit (hp) hlint;
       }
     );
-
-    haskellPackages = pkgs_.haskellPackages.override {
-      overrides = self: super: {
-        type-natural = self.callPackage ./type-natural-0.7.1.2.nix {};
-      };
-    };
 
     boo = callPackage ./boo {
       inherit (gnome2) gtksourceview;
@@ -75,7 +69,8 @@
         numix-icon-theme
         synapse
         taffybar
-        termite
+        #termite
+        xfce.terminal  # termite not working for now; fix has been made upstream
         tree
         udiskie
         xsel
