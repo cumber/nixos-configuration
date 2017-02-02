@@ -152,7 +152,7 @@ if whence stack > /dev/null; then
 fi
 
 # alias to launch zsh in nix-shell named for current directory
-alias ns='nix-shell --command "export NIX_SHELL_NAME=\"${NIX_SHELL_NAME-"$(basename "$PWD")"}\"; export SHELL=\"$(which zsh)\"; zsh"'
+alias ns=$'nix-shell --command \'export NIX_SHELL_NAME="${NIX_SHELL_NAME-"$(basename "$PWD")"}"; export SHELL="$(which zsh)"; zsh\''
 alias nsc='ns --expr "$(cabal2nix . --shell)"'
 
 # nohup termite, to easily launch a new terminal with the current env
