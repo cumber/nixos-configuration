@@ -69,8 +69,7 @@
         numix-icon-theme
         synapse
         taffybar
-        #termite
-        xfce.terminal  # termite not working for now; fix has been made upstream
+        termite
         tree
         udiskie
         xsel
