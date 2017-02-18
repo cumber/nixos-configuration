@@ -31,7 +31,6 @@
       let hp = haskellPackages.override {
             overrides = self: super: {
               haskell-src-exts = self.haskell-src-exts_1_19_1;
-              hlint = self.hlint_1_9_40;
             };
           };
       in  {
