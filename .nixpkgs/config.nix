@@ -81,7 +81,9 @@
         colordiff
         ctags
         gitAndTools.gitFull
-        haskellPackages.hasktags
+        # hasktags needs a version bump on directory dependency
+        # has been made upstream, needs to make it into hackage and then nixpkgs
+        #haskellPackages.hasktags
         haskellPackages.hdevtools
         updatedHaskellSrcTools.hlint
         nda
