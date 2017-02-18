@@ -151,9 +151,18 @@ if whence stack > /dev/null; then
     eval "$(stack --bash-completion-script stack)"
 fi
 
-# alias to launch zsh in nix-shell named for current directory
+# launch zsh in nix-shell named for current directory
 alias ns=$'nix-shell --command \'export NIX_SHELL_NAME="${NIX_SHELL_NAME-"$(basename "$PWD")"}"; export SHELL="$(which zsh)"; zsh\''
-alias nsc='ns --expr "$(cabal2nix . --shell)"'
+
+# launch nix shell from cabal file in current directory
+function nsc() {
+    NIX_SHELL_NAME="${$(echo *.cabal)%.*}" ns --expr "$(cabal2nix . --shell)"
+}
+
+# launch nix shell with a set of haskell packages available
+function nsh() {
+    NIX_SHELL_NAME="λ $*" ns -p "ghc.withPackages (set: with set; [ $* ])"
+}
 
 # nohup termite, to easily launch a new terminal with the current env
 function termite() {
