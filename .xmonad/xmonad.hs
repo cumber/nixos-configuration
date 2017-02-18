@@ -70,6 +70,7 @@ simpleCommands
       , "system-config-printer-applet"
       , "powerline-daemon --replace"
       , "udiskie --tray"
+      , "syncthing-gtk --minimized"
       ]
 
 

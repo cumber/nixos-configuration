@@ -67,6 +67,7 @@
         networkmanagerapplet
         notify-osd
         numix-icon-theme
+        python27Packages.syncthing-gtk
         synapse
         taffybar
         termite
