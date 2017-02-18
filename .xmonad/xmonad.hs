@@ -17,7 +17,7 @@ import XMonad
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Hooks.ManageDocks (ToggleStruts(ToggleStruts))
 import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Layout.Fullscreen (fullscreenEventHook, fullscreenManageHook)
+import XMonad.Layout.Fullscreen (fullscreenSupport)
 import XMonad.Layout.NoBorders (Ambiguity(Screen), lessBorders)
 import XMonad.Hooks.Place (fixed, inBounds, placeHook)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -25,7 +25,7 @@ import XMonad.Util.EZConfig (additionalKeys)
 
 
 main :: IO ()
-main = xmonad . pagerHints $ myConfig
+main = xmonad . pagerHints . fullscreenSupport $ myConfig
 
 
 myModMask = mod4Mask
@@ -78,7 +78,6 @@ myManageHooks =
   [ placeHook . inBounds . fixed $ (0.5, 0.5)
   , appName =? "synapse" --> doIgnore
   , appName =? "speedcrunch" --> doFloat
-  , fullscreenManageHook
   ]
 
 
@@ -92,7 +91,6 @@ myConfig
       , startupHook = startupHook desktopConfig >> myStartupHook
       , layoutHook = lessBorders Screen $ layoutHook desktopConfig
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
-      , handleEventHook = fullscreenEventHook
       }
     `additionalKeys` myKeys
 
