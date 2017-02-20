@@ -59,25 +59,20 @@
         # System
         arc-theme
         blueman
-        compton
         gnome3.adwaita-icon-theme  # fallback icons from numix
         gnome3.gcr  # needed for gnome-keyring-daemon
         gnome3.gnome-system-monitor
-        gnome3.gnome_keyring
         gnome3.nautilus
         gtk-engine-murrine
         inconsolata
         libnotify
         lxappearance
-        networkmanagerapplet
         notify-osd
         numix-icon-theme
         python27Packages.syncthing-gtk
-        synapse
         taffybar
         termite
         tree
-        udiskie
         xmonad-custom
         xsel
         zsh-custom
