@@ -51,11 +51,13 @@
       enable = true;
 
       displayManager.lightdm.enable = true;
-
-      windowManager.xmonad = {
-        enable = true;
-        extraPackages = haskellPackages : [ haskellPackages.taffybar ];
-      };
+      displayManager.session = [
+        {
+          manage = "window";
+          name = "xmonad";
+          start = "xmonad";
+        }
+      ];
     };
   };
 

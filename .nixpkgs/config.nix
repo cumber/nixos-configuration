@@ -47,6 +47,12 @@
       inherit boo;
     };
 
+    xmonad-custom = haskellPackages.callPackage ./xmonad-custom {
+      powerline = powerlineWithGitStatus;
+      inherit (python27Packages) syncthing-gtk;
+      inherit (gnome3) gnome_keyring;
+    };
+
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
@@ -72,6 +78,7 @@
         termite
         tree
         udiskie
+        xmonad-custom
         xsel
         zsh-custom
 

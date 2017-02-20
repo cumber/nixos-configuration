@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -eu
+
+packages=($(grep '@[^@]*@' src/Main.hs | sed -e 's/.*@\(.*\)@.*/\1/' | sort -u))
+
+extra_args=(--extra-arguments fetchgit)
+for p in "${packages[@]}"; do
+    extra_args+=(--extra-arguments "$p")
+done
+
+cabal2nix . "${extra_args[@]}" \
+    | head -n-1
+
+echo "  executableSystemDepends = ["
+for p in "${packages[@]}"; do
+    echo "    $p"
+done
+echo "  ];"
+
+echo "  patchPhase = ''";
+echo "    substituteInPlace src/Main.hs \\"
+for p in "${packages[@]}"; do
+    echo "      --replace '@$p@' '\${$p}' \\"
+done
+echo "  '';"
+
+echo "}"
