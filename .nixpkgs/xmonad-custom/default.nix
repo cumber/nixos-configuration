@@ -1,5 +1,5 @@
 { mkDerivation, base, compton, fetchgit, networkmanagerapplet
-, powerline, setxkbmap, stdenv, synapse, syncthing-gtk
+, notify-osd, powerline, setxkbmap, stdenv, synapse, syncthing-gtk
 , system-config-printer, taffybar, udiskie, unix, X11, xmonad
 , xmonad-contrib
 }:
@@ -17,6 +17,7 @@ mkDerivation {
   executableSystemDepends = [
     compton
     networkmanagerapplet
+    notify-osd
     powerline
     setxkbmap
     synapse
@@ -28,6 +29,7 @@ mkDerivation {
     substituteInPlace src/Main.hs \
       --replace '@compton@' '${compton}' \
       --replace '@networkmanagerapplet@' '${networkmanagerapplet}' \
+      --replace '@notify-osd@' '${notify-osd}' \
       --replace '@powerline@' '${powerline}' \
       --replace '@setxkbmap@' '${setxkbmap}' \
       --replace '@synapse@' '${synapse}' \

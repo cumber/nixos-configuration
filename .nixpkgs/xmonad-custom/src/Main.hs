@@ -59,6 +59,7 @@ startupCommands screens
 
 simpleCommands
   =   [ "@setxkbmap@/bin/setxkbmap -option 'compose:ralt'"
+      , "@notify-osd@/bin/notify-osd"
       , "@synapse@/bin/synapse -s"
       , "@compton@/bin/compton"
       , "@networkmanagerapplet@/bin/nm-applet --sm-disable"

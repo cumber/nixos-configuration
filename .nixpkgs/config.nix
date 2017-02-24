@@ -63,9 +63,7 @@
         gnome3.nautilus
         gtk-engine-murrine
         inconsolata
-        libnotify
         lxappearance
-        notify-osd
         numix-icon-theme
         python27Packages.syncthing-gtk
         taffybar
