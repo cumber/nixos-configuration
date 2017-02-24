@@ -50,7 +50,6 @@
     xmonad-custom = haskellPackages.callPackage ./xmonad-custom {
       powerline = powerlineWithGitStatus;
       inherit (python27Packages) syncthing-gtk;
-      inherit (gnome3) gnome_keyring;
     };
 
     mine = with pkgs; buildEnv {
@@ -60,7 +59,6 @@
         arc-theme
         blueman
         gnome3.adwaita-icon-theme  # fallback icons from numix
-        gnome3.gcr  # needed for gnome-keyring-daemon
         gnome3.gnome-system-monitor
         gnome3.nautilus
         gtk-engine-murrine

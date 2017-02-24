@@ -54,8 +54,11 @@
       displayManager.session = [
         {
           manage = "window";
-          name = "xmonad";
-          start = "xmonad";
+          name = "xmonad-custom";
+          start = ''
+            ssh-agent -t 1h xmonad-custom &
+            waitPID=$!
+          '';
         }
       ];
     };

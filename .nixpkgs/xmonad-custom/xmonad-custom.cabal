@@ -9,11 +9,10 @@ copyright: Benjamin Mellor 2017
 build-type: Simple
 cabal-version: >=1.10
 
-executable xmonad
+executable xmonad-custom
   main-is: Main.hs
   -- other-modules:
   build-depends: base == 4.9.*
-               , process == 1.4.*
                , taffybar == 0.4.*
                , unix == 2.7.*
                , xmonad == 0.13.*

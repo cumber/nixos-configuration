@@ -10,9 +10,7 @@ import Data.Monoid ((<>))
 
 import Graphics.X11.Xinerama (getScreenInfo)
 
-import System.IO (hGetContents)
 import System.Posix.Env (getEnv, putEnv)
-import System.Process (StdStream(CreatePipe), proc, createProcess, std_out)
 
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 
@@ -49,14 +47,10 @@ withScreenCount f = withDisplay $ f . length <=< liftIO . getScreenInfo
 myStartupHook
   = do  withScreenCount startupCommands
         setWMName "LG3D"  -- helps with Java GUIs
-        liftIO $ do mapM_ (putEnv . gtk2RcFiles) =<< getEnv "HOME"
-                    (_, Just hout, _, _) <- gnomeKeyringDaemon
-                    mapM_ putEnv =<< lines <$> hGetContents hout
+        liftIO $ mapM_ (putEnv . gtk2RcFiles) =<< getEnv "HOME"
 
   where gtk2RcFiles home = "GTK2_RC_FILES=" <> home <> "/.gtkrc-2.0"
-        gnomeKeyringDaemon
-          = createProcess $ (proc "@gnome_keyring@/bin/gnome-keyring-daemon" ["--replace"])
-                            { std_out = CreatePipe }
+
 
 startupCommands screens
   = do  mapM_ spawn simpleCommands
