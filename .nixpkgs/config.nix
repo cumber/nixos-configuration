@@ -27,6 +27,16 @@
         }
     );
 
+    haskellPackages = pkgs_.haskellPackages.override {
+      overrides = self: super: {
+        type-nat-solver = self.callPackage ./type-nat-solver {
+          # There's a haskell package called z3 that would automatically be
+          # chosen by callPackage; we need the z3 executable
+          z3-exe = pkgs_.z3;
+        };
+      };
+    };
+
     updatedHaskellSrcTools = (
       let hp = haskellPackages.override {
             overrides = self: super: {
