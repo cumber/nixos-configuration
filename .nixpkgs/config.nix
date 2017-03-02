@@ -66,14 +66,15 @@
       name = "mine";
       paths = [
         # System
-        arc-theme
         blueman
         gnome3.adwaita-icon-theme  # fallback icons from numix
         gnome3.gnome-system-monitor
         gnome3.nautilus
-        gtk-engine-murrine
+        hicolor_icon_theme
         inconsolata
         lxappearance
+        numix-gtk-theme
+        numix-icon-theme-square
         numix-icon-theme
         python27Packages.syncthing-gtk
         taffybar
