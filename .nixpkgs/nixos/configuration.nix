@@ -56,7 +56,7 @@
           manage = "window";
           name = "xmonad-custom";
           start = ''
-            ssh-agent -t 1h xmonad-custom &
+            xmonad-custom &
             waitPID=$!
           '';
         }
