@@ -64,7 +64,10 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.shared_mime_info ];
+  environment.systemPackages = with pkgs; [
+    gnome3.nautilus
+    shared_mime_info
+  ];
 
   users = {
     mutableUsers = false;
