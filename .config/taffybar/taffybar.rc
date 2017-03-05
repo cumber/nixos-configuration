@@ -1,4 +1,4 @@
-gtk-font-name = "Cousine 15"
+gtk-font-name = "Source Code Pro 14"
 
 style "taffybar-default" {
   color["black"] = "#000000"

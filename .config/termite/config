@@ -1,5 +1,5 @@
 [options]
-font = Cousine for powerline 14
+font = Source Code Pro 13
 
 scrollback_lines = 100000
 
