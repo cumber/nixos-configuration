@@ -77,6 +77,7 @@
         numix-icon-theme
         psmisc
         python27Packages.syncthing-gtk
+        source-code-pro
         taffybar
         termite
         tree
@@ -90,9 +91,7 @@
         colordiff
         ctags
         gitAndTools.gitFull
-        # hasktags needs a version bump on directory dependency
-        # has been made upstream, needs to make it into hackage and then nixpkgs
-        #haskellPackages.hasktags
+        haskellPackages.hasktags
         haskellPackages.hdevtools
         updatedHaskellSrcTools.hlint
         nda
