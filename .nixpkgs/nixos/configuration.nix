@@ -56,6 +56,7 @@
           manage = "window";
           name = "xmonad-custom";
           start = ''
+            export GIO_EXTRA_MODULES="/run/current-system/sw/lib/gio/modules"
             xmonad-custom &
             waitPID=$!
           '';
@@ -65,6 +66,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    gnome3.dconf
+    gnome3.gconf
     gnome3.nautilus
     shared_mime_info
   ];
