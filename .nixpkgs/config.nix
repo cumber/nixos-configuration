@@ -48,15 +48,6 @@
       }
     );
 
-    boo = callPackage ./boo {
-      inherit (gnome2) gtksourceview;
-      mono = mono46;
-    };
-
-    banshee = pkgs_.banshee.override {
-      inherit boo;
-    };
-
     xmonad-custom = haskellPackages.callPackage ./xmonad-custom {
       powerline = powerlineWithGitStatus;
       inherit (python27Packages) syncthing-gtk;
@@ -101,11 +92,11 @@
         vim-custom
 
         # Office
-        banshee
         chromium
         evince
         gimp
         libreoffice
+        rhythmbox
         speedcrunch
         thunderbird
         vlc
