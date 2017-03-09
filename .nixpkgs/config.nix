@@ -95,6 +95,7 @@
         chromium
         evince
         gimp
+        gnome3.eog
         libreoffice
         rhythmbox
         speedcrunch
