@@ -64,7 +64,6 @@
         inconsolata
         lxappearance
         numix-gtk-theme
-        numix-icon-theme-square
         numix-icon-theme
         psmisc
         python27Packages.syncthing-gtk
