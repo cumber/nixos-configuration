@@ -19,12 +19,8 @@ mkDerivation {
   patchPhase = ''
     mkdir -p $out
 
-    cp src/TypeNatSolver.hs $out/pre-subst.hs
-
     substituteInPlace src/TypeNatSolver.hs \
       --replace 'exe = "z3"' 'exe = "${z3-exe}/bin/z3"'
-
-    cp src/TypeNatSolver.hs $out/post-subst.hs
 
     substituteInPlace type-nat-solver.cabal \
       --replace 'main-is: A.hs' 'main-is: Test.hs'
