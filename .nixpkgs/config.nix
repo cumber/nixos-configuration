@@ -1,11 +1,8 @@
 {
-  #haskellPackageOverrides = self: super: {
-  #  lushtags = self.callPackage (import ./lushtags) {};
-  #};
-
   packageOverrides = pkgs_: with pkgs_; rec {
 
     vim-custom = callPackage ./vim {};
+    vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
 
     haskellEnvWithHoogle = import ./haskellEnvWithHoogle.nix;
 
@@ -13,7 +10,6 @@
 
     zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
-    vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
 
     powerline-gitstatus = (
       callPackage
