@@ -10,6 +10,18 @@
 
     zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
+    pythonPackages = pkgs_.pythonPackages.override {
+      overrides = self: super: {
+        pygit2 = super.pygit2.override rec {
+          name = "pygit2-0.25.0";
+
+          src = fetchurl {
+            url = "mirror://pypi/p/pygit2/${name}.tar.gz";
+            sha256 = "0wf5rp0fvrw7j3j18dvwjq6xqlbm611wd55aphrfpps0v1gxh3ny";
+          };
+        };
+      };
+    };
 
     powerline-gitstatus = (
       callPackage
