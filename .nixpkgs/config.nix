@@ -10,28 +10,32 @@
 
     zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
-    pythonPackages = pkgs_.pythonPackages.override {
+    pythonPackagesWithOldCffi = pythonPackages.override {
       overrides = self: super: {
-        pygit2 = super.pygit2.override rec {
-          name = "pygit2-0.25.0";
-
-          src = fetchurl {
-            url = "mirror://pypi/p/pygit2/${name}.tar.gz";
-            sha256 = "0wf5rp0fvrw7j3j18dvwjq6xqlbm611wd55aphrfpps0v1gxh3ny";
-          };
-        };
+        cffi = super.cffi.overrideDerivation (
+          super: rec {
+            pname = super.pname;
+            version = "1.9.1";
+            name = "${pname}-${version}";
+            src = self.fetchPypi {
+              inherit pname version;
+              sha256 = "1y6s1wczd400w4r0dpg97n0xifiskfjb65rjax8w20ys7zahngjn";
+            };
+          }
+        );
       };
     };
-
     powerline-gitstatus = (
       callPackage
         ./powerline-gitstatus.nix
-        { inherit (pythonPackages) buildPythonPackage; }
+        { inherit (pythonPackagesWithOldCffi) buildPythonPackage; }
     );
-    powerlineWithGitStatus = pythonPackages.powerline.overrideDerivation (
+    powerlineWithGitStatus = pythonPackagesWithOldCffi.powerline.overrideDerivation (
       super: {
-        propagatedNativeBuildInputs
-          = [ powerline-gitstatus ] ++ super.propagatedNativeBuildInputs;
+        propagatedBuildInputs
+          = [ powerline-gitstatus ]
+            ++ builtins.filter (dep: dep != bazaar)
+                 super.propagatedBuildInputs;
         }
     );
 
