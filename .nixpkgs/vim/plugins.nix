@@ -9,19 +9,6 @@
         dependencies = [];
       };
 
-      vim-misc = vimUtils.buildVimPluginFrom2Nix {
-        name = "vim-misc-2015-05-21";
-        src = fetchgit {
-          url = "git://github.com/xolox/vim-misc";
-          rev = "3e6b8fb6f03f13434543ce1f5d24f6a5d3f34f0b";
-          sha256 = "0rd9788dyfc58py50xbiaz5j7nphyvf3rpp3yal7yq2dhf0awwfi";
-        };
-        dependencies = [];
-
-      };
-
-
   in  super // {
         inherit vim-hdevtools;
-        inherit vim-misc;
       }
