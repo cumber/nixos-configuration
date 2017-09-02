@@ -72,6 +72,10 @@
     shared_mime_info
   ];
 
+  programs = {
+    ssh.startAgent = true;
+  };
+
   users = {
     mutableUsers = false;
 
