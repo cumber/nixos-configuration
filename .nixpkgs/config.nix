@@ -95,6 +95,7 @@
         gitAndTools.gitFull
         haskellPackages.hasktags
         haskellPackages.hdevtools
+        haskellPackages.tinc
         updatedHaskellSrcTools.hlint
         nda
         nix-repl
