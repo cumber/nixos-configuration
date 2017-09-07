@@ -10,27 +10,10 @@
 
     zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
-    pythonPackagesWithOldCffi = pythonPackages.override {
-      overrides = self: super: {
-        cffi = super.cffi.overrideDerivation (
-          super: rec {
-            pname = super.pname;
-            version = "1.9.1";
-            name = "${pname}-${version}";
-            src = self.fetchPypi {
-              inherit pname version;
-              sha256 = "1y6s1wczd400w4r0dpg97n0xifiskfjb65rjax8w20ys7zahngjn";
-            };
-          }
-        );
-      };
-    };
     powerline-gitstatus = (
-      callPackage
-        ./powerline-gitstatus.nix
-        { inherit (pythonPackagesWithOldCffi) buildPythonPackage; }
+      pythonPackages.callPackage ./powerline-gitstatus.nix {}
     );
-    powerlineWithGitStatus = pythonPackagesWithOldCffi.powerline.overrideDerivation (
+    powerlineWithGitStatus = pythonPackages.powerline.overrideDerivation (
       super: {
         propagatedBuildInputs
           = [ powerline-gitstatus ]
