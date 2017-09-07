@@ -4,10 +4,6 @@
     vim-custom = callPackage ./vim {};
     vimPlugins = callPackage ./vim/plugins.nix {} pkgs_.vimPlugins;
 
-    haskellEnvWithHoogle = import ./haskellEnvWithHoogle.nix;
-
-    nda = callPackage ./nda {};
-
     zsh-custom = callPackage ./zsh { vte = gnome3.vte; };
 
     powerline-gitstatus = (
@@ -84,7 +80,6 @@
         haskellPackages.hdevtools
         haskellPackages.tinc
         updatedHaskellSrcTools.hlint
-        nda
         nix-repl
         powerlineWithGitStatus
         powerline-fonts
