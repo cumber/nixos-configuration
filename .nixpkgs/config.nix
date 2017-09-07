@@ -46,14 +46,13 @@
         z3-exe = pkgs_.z3;
       };
 
-      #distributed-process = self.callHackage "distributed-process" "0.7.1" {};
-
-      extended-reals = super.extended-reals.override {
-        HUnit = self.callHackage "HUnit" "1.3.1.2" {};
-        test-framework-hunit = super.test-framework-hunit.override {
-          HUnit = self.callHackage "HUnit" "1.3.1.2" {};
-        };
-      };
+      extended-reals = super.extended-reals.overrideAttrs (super: {
+        patchPhase = ''
+          substituteInPlace extended-reals.cabal \
+            --replace 'HUnit >=1.2 && <1.4' 'HUnit >=1.2 && <1.6' \
+            --replace 'QuickCheck >=2.6 && <2.9' 'QuickCheck >=2.6 && <2.10'
+        '';
+      });
     });
 
     updatedHaskellSrcTools = (
