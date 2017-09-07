@@ -39,22 +39,27 @@
         }
     );
 
-    haskellPackages = pkgs_.haskellPackages.override {
-      overrides = self: super: {
-        type-nat-solver = self.callPackage ./type-nat-solver {
-          # There's a haskell package called z3 that would automatically be
-          # chosen by callPackage; we need the z3 executable
-          z3-exe = pkgs_.z3;
+    haskellPackages = pkgs_.haskellPackages.extend (self: super: {
+      type-nat-solver = self.callPackage ./type-nat-solver {
+        # There's a haskell package called z3 that would automatically be
+        # chosen by callPackage; we need the z3 executable
+        z3-exe = pkgs_.z3;
+      };
+
+      #distributed-process = self.callHackage "distributed-process" "0.7.1" {};
+
+      extended-reals = super.extended-reals.override {
+        HUnit = self.callHackage "HUnit" "1.3.1.2" {};
+        test-framework-hunit = super.test-framework-hunit.override {
+          HUnit = self.callHackage "HUnit" "1.3.1.2" {};
         };
       };
-    };
+    });
 
     updatedHaskellSrcTools = (
-      let hp = haskellPackages.override {
-            overrides = self: super: {
-              haskell-src-exts = self.haskell-src-exts_1_19_1;
-            };
-          };
+      let hp = haskellPackages.extend (self: super: {
+            haskell-src-exts = self.haskell-src-exts_1_19_1;
+          });
       in  {
         inherit (hp) hlint;
       }
