@@ -24,14 +24,6 @@
         # chosen by callPackage; we need the z3 executable
         z3-exe = pkgs_.z3;
       };
-
-      extended-reals = super.extended-reals.overrideAttrs (super: {
-        patchPhase = ''
-          substituteInPlace extended-reals.cabal \
-            --replace 'HUnit >=1.2 && <1.4' 'HUnit >=1.2 && <1.6' \
-            --replace 'QuickCheck >=2.6 && <2.9' 'QuickCheck >=2.6 && <2.10'
-        '';
-      });
     });
 
     updatedHaskellSrcTools = (
