@@ -2,8 +2,8 @@
 :set prompt "\ESC[33m%s\n\ESC[32;1m\STXλ\ESC[m\STX "
 :set prompt2 "\ESC[32;1m\STX|\ESC[m\STX "
 :set +m +t
-:def hoogle \x -> return $ ":! hoogle search -cl \"" ++ x ++ "\""
-:def doc \x -> return $ ":! hoogle search -cl --info \"" ++ x ++ "\""
+:def hoogle \x -> return $ ":! hoogle search --colour --link \"" ++ x ++ "\""
+:def doc \x -> return $ ":! hoogle search --colour --link --info \"" ++ x ++ "\""
 :set -fdefer-typed-holes
 :set -fdefer-type-errors
 :set -fno-warn-type-defaults
