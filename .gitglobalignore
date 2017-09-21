@@ -1,7 +1,10 @@
-
 # ignore vim swap files
 .*.swp
 .swp
+
+# ignore emacs autosave and lock files
+\#.*\#
+.\#*
 
 # ignore common backup filename: ends in ~
 *~

@@ -29,3 +29,7 @@
 
 # Powerline config
 !/.config/powerline
+
+# Unignore .emacs.d, and ignore autosaves
+!/.emacs.d/
+/.emacs.d/auto-save-list/

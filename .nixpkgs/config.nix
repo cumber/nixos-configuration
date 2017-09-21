@@ -40,6 +40,31 @@
       inherit (python27Packages) syncthing-gtk;
     };
 
+    emacs-custom = emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
+      haskell-mode
+      # structured-haskell-mode
+      # ghc-mod
+      company-cabal
+      # company-ghc
+      flycheck-haskell
+
+      nix-mode
+      nix-sandbox
+
+      magit
+      gitattributes-mode
+      gitconfig-mode
+      gitignore-mode
+
+      company-flx
+      fill-column-indicator
+      ivy
+      linum-relative
+      rainbow-delimiters
+      swiper
+    ]);
+
+
     mine = with pkgs; buildEnv {
       name = "mine";
       paths = [
@@ -66,7 +91,7 @@
         cabal-install
         cabal2nix
         colordiff
-        ctags
+        emacs-custom
         gitAndTools.gitFull
         haskellPackages.hasktags
         haskellPackages.hdevtools

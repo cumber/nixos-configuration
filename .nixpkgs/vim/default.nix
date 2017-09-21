@@ -13,7 +13,6 @@
         { name = "vim-colorschemes"; }
         { name = "CSApprox"; }
         { name = "rainbow"; tag = "delayed"; }
-        { name = "vim-easytags"; }
         { name = "hasksyn"; }
         { name = "vim-addon-nix"; }
         { name = "sleuth"; }
