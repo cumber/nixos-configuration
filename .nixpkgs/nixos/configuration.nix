@@ -73,7 +73,10 @@
   ];
 
   programs = {
-    ssh.startAgent = true;
+    ssh = {
+      startAgent = true;
+      agentTimeout = "1h";
+    };
   };
 
   users = {
