@@ -17,5 +17,11 @@
       ];
     };
 
-    services.xserver.synaptics.enable = true;
+    services.xserver.synaptics = {
+      enable = true;
+      palmDetect = true;
+      horizEdgeScroll = false;
+      vertEdgeScroll = false;
+      twoFingerScroll = true;
+    };
   }
