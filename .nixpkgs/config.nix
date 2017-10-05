@@ -42,11 +42,12 @@
 
     emacs-custom = emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
       haskell-mode
-      # structured-haskell-mode
-      # ghc-mod
+      #structured-haskell-mode
+      #ghc-mod
       company-cabal
-      # company-ghc
+      #company-ghc
       flycheck-haskell
+      flycheck-hdevtools
 
       nix-mode
       nix-sandbox
