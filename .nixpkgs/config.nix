@@ -99,6 +99,7 @@
         haskellPackages.tinc
         updatedHaskellSrcTools.hlint
         nix-repl
+        nox
         powerlineWithGitStatus
         powerline-fonts
         vim-custom
