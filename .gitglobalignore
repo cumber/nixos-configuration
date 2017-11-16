@@ -18,3 +18,6 @@
 # ignore leksah state files
 *.lkshw
 *.lkshs
+
+# Ignore tags files
+TAGS
