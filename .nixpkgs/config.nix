@@ -116,6 +116,8 @@
         thunderbird
         vlc
 
+        chatty
+
         # LyX / LaTeX
         lyx
         (texlive.combine {
