@@ -65,6 +65,7 @@
       swiper
     ]);
 
+    chatty = callPackage ./chatty.nix {};
 
     mine = with pkgs; buildEnv {
       name = "mine";
