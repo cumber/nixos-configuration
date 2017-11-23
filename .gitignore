@@ -16,9 +16,6 @@
 !/.vim
 /.vim/.netrwhist
 
-# Nix config should definitely be versioned!
-!/.nixpkgs
-
 # Unignore .config and then ignore everything in it, so I can selectively
 # version some config folders
 !/.config/
@@ -29,6 +26,9 @@
 
 # Powerline config
 !/.config/powerline
+
+# Nix config should definitely be versioned!
+!/.config/nixpkgs
 
 # Unignore .emacs.d, and ignore autosaves
 !/.emacs.d/
