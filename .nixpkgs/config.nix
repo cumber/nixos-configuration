@@ -97,7 +97,6 @@
         gitAndTools.gitFull
         haskellPackages.hasktags
         haskellPackages.hdevtools
-        haskellPackages.tinc
         updatedHaskellSrcTools.hlint
         nix-repl
         nox
