@@ -10,3 +10,4 @@
 :seti -XOverloadedStrings
 :seti -XPartialTypeSignatures
 :seti -fno-warn-partial-type-signatures
+:seti -Wno-missing-import-lists

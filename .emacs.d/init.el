@@ -17,6 +17,8 @@
 
 (setq-default cursor-type 'bar)
 
+(delete-selection-mode t)
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -67,34 +69,25 @@ and its other argument, or else is the identify function."
         (apply sandbox-function (nix-current-sandbox) (listify args))
       args)))
 
+(require 'flycheck)
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (setq flycheck-command-wrapper-function
       (nix-wrap-if-sandbox 'nix-shell-command)
 
       flycheck-executable-find
       (nix-wrap-if-sandbox 'nix-executable-find))
-(eval-after-load 'flycheck
-  '(require 'flycheck-hdevtools))
 
-;; Allow haskell-mode to find ghc in a nix-shell
-(setq haskell-process-wrapper-function
-      (nix-wrap-if-sandbox 'nix-shell-command))
-(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
+(require 'intero)
+(setq intero-stack-executable "intero-nix-shim-exe")
+(add-hook 'haskell-mode-hook 'intero-mode)
 
+
+(require 'which-func)
 (eval-after-load 'which-func
   '(add-to-list 'which-func-modes 'haskell-mode))
 
-(add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
-(eval-after-load 'speedbar '(speedbar-add-supported-extension ".hs"))
-(setq haskell-tags-on-save t)
-
 ;; Set up company for in buffer completions
 (add-hook 'prog-mode-hook 'company-mode)
-(setq company-backends
-  '( (company-files company-dabbrev-code company-gtags company-etags company-keywords company-capf)
-     company-dabbrev
-   )
-  )
 
 ;; Uses flx to provide fuzzy matching for completion-at-point
 (require 'company-flx)

@@ -26,9 +26,10 @@ self: super: {
       cabal2nix
       colordiff
       emacs-custom
+      emacs-edit
       gitAndTools.gitFull
       haskellPackages.hasktags
-      haskellPackages.hdevtools
+      haskellPackages.intero-nix-shim
       updatedHaskellSrcTools.hlint
       nix-repl
       nox

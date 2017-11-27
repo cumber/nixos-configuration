@@ -3,7 +3,7 @@
 .swp
 
 # ignore emacs autosave and lock files
-\#.*\#
+\#*\#
 .\#*
 
 # ignore common backup filename: ends in ~
@@ -21,3 +21,6 @@
 
 # Ignore tags files
 TAGS
+
+# Ignore stack work directories
+.stack-work/

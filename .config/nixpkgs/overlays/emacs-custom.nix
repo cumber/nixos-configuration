@@ -1,12 +1,7 @@
 self: super: {
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
-    haskell-mode
-    #structured-haskell-mode
-    #ghc-mod
     company-cabal
-    #company-ghc
-    flycheck-haskell
-    flycheck-hdevtools
+    intero
 
     nix-mode
     nix-sandbox
@@ -23,4 +18,13 @@ self: super: {
     rainbow-delimiters
     swiper
   ]);
+
+  # launcher script for using emacs client
+  emacs-edit = super.writeShellScriptBin "ee" ''
+    ${self.emacs-custom}/bin/emacsclient \
+      --alternate-editor "" \
+      --create-frame \
+      --no-wait \
+      "$@"
+  '';
 }
