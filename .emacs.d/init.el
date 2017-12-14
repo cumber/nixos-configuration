@@ -1,7 +1,4 @@
-;; -*- lexical-binding: t -*-
-;;; init.el --- Summary
-;;; Commentary:
-;;; Code:
+;; -*- lexical-binding: t; flycheck-disabled-checkers: (emacs-lisp-checkdoc); -*-
 
 ;; No menu or tool bar
 (menu-bar-mode -1)
@@ -18,6 +15,9 @@
 (setq-default cursor-type 'bar)
 
 (delete-selection-mode t)
+
+(setq safe-local-variable-values
+      '((flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -110,5 +110,3 @@ and its other argument, or else is the identify function."
 (global-diff-hl-mode)
 (diff-hl-flydiff-mode)
 (diff-hl-dired-mode)
-
-;;; init.el ends here
