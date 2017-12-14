@@ -6,6 +6,7 @@ self: super: {
     nix-mode
     nix-sandbox
 
+    diff-hl
     magit
     gitattributes-mode
     gitconfig-mode

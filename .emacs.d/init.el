@@ -105,6 +105,10 @@ and its other argument, or else is the identify function."
 (require 'swiper)
 (global-set-key "\C-s" 'swiper)
 
-
+;; Highlight diffs with indicators
+(require 'diff-hl)
+(global-diff-hl-mode)
+(diff-hl-flydiff-mode)
+(diff-hl-dired-mode)
 
 ;;; init.el ends here
