@@ -8,8 +8,8 @@ mkDerivation {
   src = fetchFromGitHub {
     owner = "cumber";
     repo = "intero-nix-shim";
-    rev = "a4dff59919e8a072ea6e3277ee6e4b2328fefba4";
-    sha256 = "1337mdcp1d8m6kgjh8r81raiwjflip1b19ci6vyi7y11z53y0nv7";
+    rev = "ee504e490093567c4b1c122dc45358419d451fb5";
+    sha256 = "07vsqr9cf6n2r7zzb5w3dy78adii9ghknz7476lhlgfv4g6nwx74";
   };
   isLibrary = false;
   isExecutable = true;
