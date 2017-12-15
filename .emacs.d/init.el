@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; flycheck-disabled-checkers: (emacs-lisp-checkdoc); -*-
+;; -*- lexical-binding: t; flycheck-disabled-checkers: (emacs-lisp-checkdoc); byte-compile-warnings: (not make-local); -*-
 
 ;; No menu or tool bar
 (menu-bar-mode -1)
@@ -19,39 +19,52 @@
 (setq safe-local-variable-values
       '((flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
 
+(add-hook 'after-init-hook (lambda () (load-theme 'leuven)))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(add-hook 'after-init-hook (lambda () (load-theme 'leuven)))
+(eval-when-compile
+  (require 'use-package))
+
 
 ;; Relative line numbers enabled globally
-(require 'linum-relative)
-(define-globalized-minor-mode global-linum-relative-mode linum-relative-mode
-  (lambda () (linum-relative-mode t)))
-(global-linum-relative-mode)
+(use-package linum-relative
+  :defines global-linum-relative-mode
+  :functions global-linum-relative-mode global-linum-relative-mode-enable-in-buffers
+  :config
+  (define-globalized-minor-mode global-linum-relative-mode linum-relative-mode
+    (lambda () (linum-relative-mode t)))
+  (global-linum-relative-mode))
 
 ;; Match parentheses
-(require 'rainbow-delimiters)
-(define-globalized-minor-mode global-rainbow-delimiters-mode rainbow-delimiters-mode
-  (lambda () (rainbow-delimiters-mode t)))
-(global-rainbow-delimiters-mode)
-(show-paren-mode)
+(use-package rainbow-delimiters
+  :defines global-rainbow-delimiters-mode
+  :functions global-rainbow-delimiters-mode global-rainbow-delimiters-mode-enable-in-buffers
+  :config
+  (define-globalized-minor-mode global-rainbow-delimiters-mode rainbow-delimiters-mode
+    (lambda () (rainbow-delimiters-mode t)))
+  (global-rainbow-delimiters-mode)
+  (show-paren-mode))
 
 ;; Visisble tabs and trailing whitespace
-(require 'whitespace)
-(setq whitespace-style '(face tabs tab-mark trailing))
-(global-whitespace-mode)
+(use-package whitespace
+  :config
+  (setq whitespace-style '(face tabs tab-mark trailing))
+  (global-whitespace-mode))
 
 ;; Ruler at fill column, fill column 80
-(setq fill-column 80)
-(require 'fill-column-indicator)
-(define-globalized-minor-mode global-fci-mode fci-mode
-  (lambda () (fci-mode t)))
-(global-fci-mode)
-
+(use-package fill-column-indicator
+  :defines global-fci-mode
+  :functions global-fci-mode global-fci-mode-enable-in-buffers
+  :config
+  (define-globalized-minor-mode global-fci-mode fci-mode
+    (lambda () (fci-mode t)))
+  (setq fill-column 80)
+  (global-fci-mode))
 
 (defun listify (v)
   "Return V if V is a list, else wrap it in a singleton list."
@@ -59,54 +72,67 @@
       v
     (list v)))
 
-(require 'nix-sandbox)
-(defun nix-wrap-if-sandbox (sandbox-function)
-  "Generate a wrapper function using the current nix sandbox, if any.
+(use-package nix-sandbox
+  :functions nix-wrap-if-sandbox
+  :config
+  (defun nix-wrap-if-sandbox (sandbox-function)
+    "Generate a wrapper function using the current nix sandbox, if any.
 The wrapper will either call SANDBOX-FUNCTION with the current sandbox
 and its other argument, or else is the identify function."
-  (lambda (args)
-    (if (nix-current-sandbox)
-        (apply sandbox-function (nix-current-sandbox) (listify args))
-      args)))
+    (lambda (args)
+      (if (nix-current-sandbox)
+          (apply sandbox-function (nix-current-sandbox) (listify args))
+        args))))
 
-(require 'flycheck)
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(setq flycheck-command-wrapper-function
-      (nix-wrap-if-sandbox 'nix-shell-command)
+(use-package flycheck
+  :commands flycheck-mode
+  :init
+  (add-hook 'prog-mode-hook 'flycheck-mode)
+  :config
+  (setq flycheck-command-wrapper-function
+        (nix-wrap-if-sandbox 'nix-shell-command)
 
-      flycheck-executable-find
-      (nix-wrap-if-sandbox 'nix-executable-find))
+        flycheck-executable-find
+        (nix-wrap-if-sandbox 'nix-executable-find)))
 
-(require 'intero)
-(setq intero-stack-executable "intero-nix-shim-exe")
-(add-hook 'haskell-mode-hook 'intero-mode)
+(use-package intero
+  :commands intero-mode
+  :init
+  (add-hook 'haskell-mode-hook 'intero-mode)
+  :config
+  (setq intero-stack-executable "intero-nix-shim-exe"))
 
 
-(require 'which-func)
-(eval-after-load 'which-func
+(use-package which-func
+  :config
   '(add-to-list 'which-func-modes 'haskell-mode))
 
 ;; Set up company for in buffer completions
-(add-hook 'prog-mode-hook 'company-mode)
+(use-package company
+  :commands company-mode
+  :init
+  (add-hook 'prog-mode-hook 'company-mode))
 
 ;; Uses flx to provide fuzzy matching for completion-at-point
-(require 'company-flx)
-(with-eval-after-load 'company
+(use-package company-flx
+  :after company
+  :config
   (company-flx-mode +1))
 
 ;; Ivy provides better menus with search
-(require 'ivy)
-(setq ivy-re-builders-alist
-  '( (t . ivy--regex-fuzzy) )
-)
-(ivy-mode)
+(use-package ivy
+  :config
+  (setq ivy-re-builders-alist
+        '( (t . ivy--regex-fuzzy) ))
+  (ivy-mode))
 
 ;; Better search with swiper
-(require 'swiper)
-(global-set-key "\C-s" 'swiper)
+(use-package swiper
+  :bind ("\C-s" . swiper))
 
 ;; Highlight diffs with indicators
-(require 'diff-hl)
-(global-diff-hl-mode)
-(diff-hl-flydiff-mode)
-(diff-hl-dired-mode)
+(use-package diff-hl
+  :config
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode)
+  (diff-hl-dired-mode))

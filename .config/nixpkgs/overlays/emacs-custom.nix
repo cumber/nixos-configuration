@@ -1,5 +1,7 @@
 self: super: {
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
+    use-package
+
     company-cabal
     intero
 
