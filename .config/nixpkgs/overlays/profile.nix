@@ -30,7 +30,7 @@ self: super: {
       gitAndTools.gitFull
       haskellPackages.hasktags
       haskellPackages.intero-nix-shim
-      updatedHaskellSrcTools.hlint
+      haskellPackages.hlint
       nix-repl
       nox
       powerlineWithGitStatus
