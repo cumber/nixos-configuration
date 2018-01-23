@@ -5,6 +5,8 @@ self: super: {
     company-cabal
     intero
 
+    php-mode
+
     nix-mode
     nix-sandbox
 
