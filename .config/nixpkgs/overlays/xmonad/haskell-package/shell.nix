@@ -8,9 +8,10 @@ let
                        then pkgs.haskellPackages
                        else pkgs.haskell.packages.${compiler};
 
-  drv = haskellPackages.callPackage ./default.nix {
+  drv = haskellPackages.callPackage ./xmonad-custom.nix {
     powerline = pkgs.powerlineWithGitStatus;
-    syncthingGtk = pkgs.python27Packages.syncthing-gtk;
+    syncthing-gtk = pkgs.python27Packages.syncthing-gtk;
+    slack = pkgs.slack;  # clash with haskellPackages.slack
   };
 
 in

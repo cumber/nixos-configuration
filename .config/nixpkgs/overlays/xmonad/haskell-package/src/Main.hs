@@ -67,6 +67,7 @@ simpleCommands
       , "@powerline@/bin/powerline-daemon --replace"
       , "@udiskie@/bin/udiskie --tray"
       , "@syncthing-gtk@/bin/syncthing-gtk --minimized"
+      , "@slack@/bin/slack --startup"
       ]
 
 

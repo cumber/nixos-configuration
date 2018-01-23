@@ -5,6 +5,7 @@ self: super: {
       {
         powerline = self.powerlineWithGitStatus;
         inherit (self.python27Packages) syncthing-gtk;
+        inherit (self) slack;  # avoid clash with haskellPackages.slack
       }
   );
 }
