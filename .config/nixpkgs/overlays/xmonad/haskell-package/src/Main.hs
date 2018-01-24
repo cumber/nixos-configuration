@@ -68,6 +68,7 @@ simpleCommands
       , "@udiskie@/bin/udiskie --tray"
       , "@syncthing-gtk@/bin/syncthing-gtk --minimized"
       , "@slack@/bin/slack --startup"
+      , "@signal-desktop@/bin/signal-desktop --start-in-tray"
       ]
 
 
