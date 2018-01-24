@@ -19,6 +19,7 @@ self: super: {
     company-flx
     fill-column-indicator
     ivy
+    ivy-hydra
     linum-relative
     rainbow-delimiters
     swiper
