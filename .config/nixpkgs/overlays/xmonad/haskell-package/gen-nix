@@ -2,7 +2,7 @@
 
 set -eu
 
-packages=($(grep '@[^@]*@' src/Main.hs | sed -e 's/.*@\(.*\)@.*/\1/' | sort -u))
+packages=($(grep '@[^@]*@/' src/Main.hs | sed -e 's|.*@\(.*\)@/.*|\1|' | sort -u))
 
 extra_args=(--extra-arguments fetchgit)
 for p in "${packages[@]}"; do

@@ -1,7 +1,7 @@
 { mkDerivation, base, compton, fetchgit, networkmanagerapplet
-, notify-osd, powerline, setxkbmap, signal-desktop, slack, stdenv
-, synapse, syncthing-gtk, system-config-printer, taffybar, udiskie
-, unix, X11, xmonad, xmonad-contrib
+, notify-osd, powerline, pulseaudioLight, setxkbmap, signal-desktop
+, slack, stdenv, synapse, syncthing-gtk, system-config-printer
+, taffybar, udiskie, unix, X11, xmonad, xmonad-contrib
 }:
 mkDerivation {
   pname = "xmonad-custom";
@@ -19,6 +19,7 @@ mkDerivation {
     networkmanagerapplet
     notify-osd
     powerline
+    pulseaudioLight
     setxkbmap
     signal-desktop
     slack
@@ -33,6 +34,7 @@ mkDerivation {
       --replace '@networkmanagerapplet@' '${networkmanagerapplet}' \
       --replace '@notify-osd@' '${notify-osd}' \
       --replace '@powerline@' '${powerline}' \
+      --replace '@pulseaudioLight@' '${pulseaudioLight}' \
       --replace '@setxkbmap@' '${setxkbmap}' \
       --replace '@signal-desktop@' '${signal-desktop}' \
       --replace '@slack@' '${slack}' \

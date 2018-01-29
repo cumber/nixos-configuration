@@ -35,9 +35,15 @@ myKeys =
   , ((myModMask               , xK_b)         , sendMessage ToggleStruts)
 
   -- TODO: make this work on vanwa
-  , ((0                       , 0x1008FF11)   , spawn "amixer set Master 2-")
-  , ((0                       , 0x1008FF13)   , spawn "amixer set Master 2+")
-  , ((0                       , 0x1008FF12)   , spawn "amixer set Master toggle")
+  , ( (0, 0x1008FF11)
+    , spawn "@pulseaudioLight@/bin/pactl set-sink-volume '@DEFAULT_SINK@' '-5%'"
+    )
+  , ( (0, 0x1008FF13)
+    , spawn "@pulseaudioLight@/bin/pactl set-sink-volume '@DEFAULT_SINK@' '+5%'"
+    )
+  , ( (0, 0x1008FF12)
+    , spawn "@pulseaudioLight@/bin/pactl set-sink-mute '@DEFAULT_SINK@' toggle"
+    )
   ]
 
 
