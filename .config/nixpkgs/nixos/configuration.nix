@@ -26,7 +26,10 @@
 
   # hostName is expected to be defined in machine-specific module;
   networking = {
-    extraHosts = "127.0.0.1 ${config.networking.hostName}";
+    extraHosts = ''
+      127.0.0.1 ${config.networking.hostName}
+      127.0.0.1 localhost.com
+    '';
     networkmanager.enable = true;
   };
 
