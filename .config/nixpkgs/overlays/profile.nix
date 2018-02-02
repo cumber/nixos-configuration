@@ -9,6 +9,7 @@ self: super: {
       hicolor_icon_theme
       inconsolata
       lxappearance
+      nixos-config
       numix-gtk-theme
       numix-icon-theme
       psmisc
