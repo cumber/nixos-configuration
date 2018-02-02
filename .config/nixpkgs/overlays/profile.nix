@@ -12,7 +12,7 @@ self: super: {
       numix-gtk-theme
       numix-icon-theme
       psmisc
-      python27Packages.syncthing-gtk
+      syncthing-gtk
       source-code-pro
       taffybar
       termite

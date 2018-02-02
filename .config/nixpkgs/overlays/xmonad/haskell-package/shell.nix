@@ -10,7 +10,6 @@ let
 
   drv = haskellPackages.callPackage ./xmonad-custom.nix {
     powerline = pkgs.powerlineWithGitStatus;
-    syncthing-gtk = pkgs.python27Packages.syncthing-gtk;
     slack = pkgs.slack;  # clash with haskellPackages.slack
   };
 
