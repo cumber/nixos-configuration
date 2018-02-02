@@ -47,7 +47,6 @@
       enable = true;
       extraConfig = ''
         address=/localhost.com/127.0.0.1
-        local=/goldie/
       '';
     };
 
