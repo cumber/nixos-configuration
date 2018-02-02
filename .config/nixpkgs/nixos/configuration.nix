@@ -26,11 +26,10 @@
 
   # hostName is expected to be defined in machine-specific module;
   networking = {
-    extraHosts = ''
-      127.0.0.1 ${config.networking.hostName}
-      127.0.0.1 localhost.com
-    '';
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      useDnsmasq = true;
+    };
   };
 
   # Select internationalisation properties.
@@ -44,6 +43,14 @@
   time.timeZone = "Australia/Melbourne";
 
   services = {
+    dnsmasq = {
+      enable = true;
+      extraConfig = ''
+        address=/localhost.com/127.0.0.1
+        local=/goldie/
+      '';
+    };
+
     locate.enable = true;
 
     printing.enable = true;
