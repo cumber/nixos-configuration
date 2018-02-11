@@ -19,6 +19,12 @@
 (setq safe-local-variable-values
       '((flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
 
+;; Provide a new MAJORMODE-local-vars-hook
+(add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
+(defun run-local-vars-mode-hook ()
+  "Run a hook for the major-mode after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+
 (add-hook 'after-init-hook (lambda () (load-theme 'leuven)))
 
 ;; Added by Package.el.  This must come before configurations of
@@ -85,13 +91,17 @@
         flycheck-executable-find
         (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
-(use-package intero
-  :commands intero-mode
+(use-package dante
+  :after haskell-mode
+  :commands 'dante-mode
   :init
-  (add-hook 'haskell-mode-hook 'intero-mode)
-  :config
-  (setq intero-stack-executable "intero-nix-shim-exe"))
-
+  ;; Want Dante to start after local variables have been applied (e.g. from .dir-locals.el),
+  ;; otherwise it starts GHCI without applying settings (e.g. target), which is confusing
+  (put 'dante-target 'safe-local-variable 'stringp)
+  (add-hook 'haskell-mode-local-vars-hook 'dante-mode)
+  (add-hook 'dante-mode-hook
+    '(lambda () (flycheck-add-next-checker 'haskell-dante
+                 '(warning . haskell-hlint)))))
 
 (use-package which-func
   :config

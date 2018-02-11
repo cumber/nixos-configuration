@@ -14,7 +14,7 @@ self: super: {
     use-package
 
     company-cabal
-    intero
+    dante
 
     php-mode
 

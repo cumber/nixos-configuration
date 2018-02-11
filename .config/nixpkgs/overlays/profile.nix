@@ -30,7 +30,6 @@ self: super: {
       emacs-edit
       gitAndTools.gitFull
       haskellPackages.hasktags
-      haskellPackages.intero-nix-shim
       haskellPackages.hlint
       nix-repl
       nox
