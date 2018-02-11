@@ -72,17 +72,7 @@
       v
     (list v)))
 
-(use-package nix-sandbox
-  :functions nix-wrap-if-sandbox
-  :config
-  (defun nix-wrap-if-sandbox (sandbox-function)
-    "Generate a wrapper function using the current nix sandbox, if any.
-The wrapper will either call SANDBOX-FUNCTION with the current sandbox
-and its other argument, or else is the identify function."
-    (lambda (args)
-      (if (nix-current-sandbox)
-          (apply sandbox-function (nix-current-sandbox) (listify args))
-        args))))
+(use-package nix-sandbox)
 
 (use-package flycheck
   :commands flycheck-mode
@@ -90,10 +80,10 @@ and its other argument, or else is the identify function."
   (add-hook 'prog-mode-hook 'flycheck-mode)
   :config
   (setq flycheck-command-wrapper-function
-        (nix-wrap-if-sandbox 'nix-shell-command)
+        (lambda (cmd) (apply 'nix-shell-command (nix-current-sandbox) cmd))
 
         flycheck-executable-find
-        (nix-wrap-if-sandbox 'nix-executable-find)))
+        (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
 (use-package intero
   :commands intero-mode
