@@ -151,6 +151,11 @@ if whence stack > /dev/null; then
     eval "$(stack --bash-completion-script stack)"
 fi
 
+# This function is called whenever a command is not found.
+function command_not_found_handler() {
+    command-not-found "$@"
+}
+
 # launch zsh in nix-shell named for current directory
 alias ns=$'nix-shell --command \'export NIX_SHELL_NAME="${NIX_SHELL_NAME-"$(basename "$PWD")"}"; export SHELL="$(which zsh)"; zsh\''
 
@@ -168,3 +173,5 @@ function nsh() {
 function termite() {
     command termite "$@" 2>&1 > /dev/null &!
 }
+
+

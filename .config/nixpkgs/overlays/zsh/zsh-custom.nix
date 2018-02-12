@@ -1,4 +1,4 @@
-{ stdenv, coreutils, vte, zsh, writeScript }:
+{ stdenv, coreutils, vte, zsh }:
   zsh.overrideDerivation (super: {
     preConfigure = super.preConfigure + ''
       configureFlags="$configureFlags --enable-etcdir=$out/etc"
