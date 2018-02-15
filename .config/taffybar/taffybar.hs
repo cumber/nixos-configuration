@@ -6,6 +6,7 @@ import System.Environment
 
 import System.Taffybar
 import System.Taffybar.Battery
+import System.Taffybar.MPRIS2
 import System.Taffybar.Pager
 import System.Taffybar.Systray
 import System.Taffybar.SimpleClock
@@ -32,8 +33,12 @@ main = do
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
       battery = batteryBarNew defaultBatteryConfig 20
       batteryTime = textBatteryNew "($time$)" 20
+      mpris = mpris2New
 
-      widgets = if monitor == 0 then [ tray, clock, cpu, batteryTime, battery ] else [ clock, cpu ]
+      widgets
+        = if monitor == 0
+            then  [ tray, clock, cpu, batteryTime, battery ]
+            else  [ mpris, clock, cpu ]
 
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager ]
                                         , endWidgets = widgets
