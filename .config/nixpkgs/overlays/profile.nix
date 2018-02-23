@@ -35,7 +35,6 @@ self: super: {
       nox
       powerlineWithGitStatus
       powerline-fonts
-      vim-custom
 
       # Office
       chromium
