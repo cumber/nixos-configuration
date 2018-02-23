@@ -136,3 +136,6 @@
   (global-diff-hl-mode)
   (diff-hl-flydiff-mode)
   (diff-hl-dired-mode))
+
+;; Explicitly using magit makes it activate for git commit messages
+(use-package magit)

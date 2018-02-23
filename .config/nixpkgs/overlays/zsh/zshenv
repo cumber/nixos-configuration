@@ -1,5 +1,5 @@
 # Prevent "error connecting to disability bus" messages from GTK programs
 export NO_AT_BRIDGE=1
 
-# Don't use nano
-export EDITOR=vim
+# Set VISUAL to be picked up by git commit
+export VISUAL="emacsclient --alternate-editor '' --create-frame"
