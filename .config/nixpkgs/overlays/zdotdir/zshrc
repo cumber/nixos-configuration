@@ -2,8 +2,6 @@
 unsetopt EQUALS
 
 # completion
-autoload -U compinit
-compinit
 autoload -U bashcompinit
 bashcompinit
 if [[ -f ~/.bash_completion ]]; then
@@ -53,8 +51,6 @@ if zle -al | grep -q history-incremental-pattern-search-backward; then
 fi
 
 # history
-export HISTSIZE=2000
-export HISTFILE="$HOME/.shellhistory"
 export SAVEHIST=$HISTSIZE
 setopt hist_ignore_all_dups
 setopt inc_append_history_time
@@ -151,11 +147,6 @@ if whence stack > /dev/null; then
     eval "$(stack --bash-completion-script stack)"
 fi
 
-# This function is called whenever a command is not found.
-function command_not_found_handler() {
-    command-not-found "$@"
-}
-
 # launch zsh in nix-shell named for current directory
 alias ns=$'nix-shell --command \'export NIX_SHELL_NAME="${NIX_SHELL_NAME-"$(basename "$PWD")"}"; export SHELL="$(which zsh)"; zsh\''
 
@@ -173,5 +164,3 @@ function nsh() {
 function termite() {
     command termite "$@" 2>&1 > /dev/null &!
 }
-
-

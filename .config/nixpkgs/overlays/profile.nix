@@ -20,7 +20,7 @@ self: super: {
       tree
       xmonad-custom
       xsel
-      zsh-custom
+      zdotdir
 
       # Devlopment
       cabal-install

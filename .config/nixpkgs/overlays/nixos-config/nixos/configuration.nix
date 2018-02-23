@@ -86,6 +86,17 @@
       startAgent = true;
       agentTimeout = "1h";
     };
+
+    zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      syntaxHighlighting = {
+        enable = true;
+        highlighters = [ "main" "brackets" ];
+      };
+
+      shellInit = ''export ZDOTDIR="$HOME/.nix-profile/etc/zdotdir"'';
+    };
   };
 
   users = {
@@ -101,14 +112,10 @@
         description = "Cumber";
         passwordFile = "/etc/nixos/passwords/cumber";
         extraGroups =  [ "wheel" "networkmanager" ];
-        shell = "/home/cumber/.nix-profile/bin/zsh";
+        shell = pkgs.zsh;
       };
     };
   };
-
-  environment.shells = [
-    "/home/cumber/.nix-profile/bin/zsh"
-  ];
 
   hardware.pulseaudio = {
     enable = true;
