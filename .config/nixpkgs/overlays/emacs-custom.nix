@@ -18,6 +18,8 @@ self: super: {
 
     php-mode
 
+    markdown-mode
+
     nix-mode
     nix-sandbox
 
