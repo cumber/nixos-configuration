@@ -14,6 +14,8 @@
 
 (setq-default cursor-type 'bar)
 
+(global-visual-line-mode)
+
 (delete-selection-mode t)
 
 (setq safe-local-variable-values
