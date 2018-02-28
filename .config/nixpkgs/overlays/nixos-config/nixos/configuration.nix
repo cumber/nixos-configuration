@@ -30,6 +30,9 @@
       enable = true;
       useDnsmasq = true;
     };
+
+    # Needed to allow autodetection of network printer via BJNP
+    firewall.allowedUDPPorts = [ 8611 ];
   };
 
   # Select internationalisation properties.
@@ -52,7 +55,10 @@
 
     locate.enable = true;
 
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.cups-bjnp pkgs.gutenprint ];
+    };
 
     upower.enable = true;
 
