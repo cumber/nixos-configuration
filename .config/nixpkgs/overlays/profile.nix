@@ -31,7 +31,6 @@ self: super: {
       gitAndTools.gitFull
       haskellPackages.hasktags
       haskellPackages.hlint
-      nix-repl
       nox
       powerlineWithGitStatus
       powerline-fonts
