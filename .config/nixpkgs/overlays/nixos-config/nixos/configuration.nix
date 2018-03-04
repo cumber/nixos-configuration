@@ -9,6 +9,9 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
+      # see https://nixos.wiki/wiki/Scanners#Network_scanning
+      ./sane-extra-config.nix
+
       (throw "replace this throw with machine-specific module")
 
       ./reflex-frp.nix
@@ -117,7 +120,7 @@
         isNormalUser = true;
         description = "Cumber";
         passwordFile = "/etc/nixos/passwords/cumber";
-        extraGroups =  [ "wheel" "networkmanager" ];
+        extraGroups =  [ "wheel" "networkmanager" "scanner" ];
         shell = pkgs.zsh;
       };
     };
@@ -125,6 +128,13 @@
 
   hardware.pulseaudio = {
     enable = true;
+  };
+
+  hardware.sane = {
+    enable = true;
+    extraConfig = {
+      "pixma" = "bjnp://192.168.1.229";
+    };
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
