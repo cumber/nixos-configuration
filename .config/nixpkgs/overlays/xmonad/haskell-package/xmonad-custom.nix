@@ -1,7 +1,8 @@
-{ mkDerivation, base, compton, fetchgit, networkmanagerapplet
-, notify-osd, powerline, pulseaudioLight, setxkbmap, signal-desktop
-, slack, stdenv, synapse, syncthing-gtk, system-config-printer
-, taffybar, udiskie, unix, X11, xmonad, xmonad-contrib
+{ mkDerivation, base, compton, fetchgit, lightlocker
+, networkmanagerapplet, notify-osd, powerline, pulseaudioLight
+, setxkbmap, signal-desktop, slack, stdenv, synapse, syncthing-gtk
+, system-config-printer, taffybar, udiskie, unix, X11, xmonad
+, xmonad-contrib
 }:
 mkDerivation {
   pname = "xmonad-custom";
@@ -16,6 +17,7 @@ mkDerivation {
   license = stdenv.lib.licenses.bsd3;
   executableSystemDepends = [
     compton
+    lightlocker
     networkmanagerapplet
     notify-osd
     powerline
@@ -31,6 +33,7 @@ mkDerivation {
   patchPhase = ''
     substituteInPlace src/Main.hs \
       --replace '@compton@' '${compton}' \
+      --replace '@lightlocker@' '${lightlocker}' \
       --replace '@networkmanagerapplet@' '${networkmanagerapplet}' \
       --replace '@notify-osd@' '${notify-osd}' \
       --replace '@powerline@' '${powerline}' \

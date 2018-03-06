@@ -45,6 +45,9 @@ myKeys =
   , ( (0, 0x1008FF12)
     , spawn "@pulseaudioLight@/bin/pactl set-sink-mute '@DEFAULT_SINK@' toggle"
     )
+
+    -- Win-z locks screen
+  , ( (myModMask, xK_z) , spawn "@lightlocker@/bin/light-locker-command -l")
   ]
 
 
@@ -76,6 +79,7 @@ simpleCommands
       , "@syncthing-gtk@/bin/syncthing-gtk --minimized"
       , "@slack@/bin/slack --startup"
       , "@signal-desktop@/bin/signal-desktop --start-in-tray"
+      , "@lightlocker@/bin/light-locker --lock-on-suspend"
       ]
 
 
