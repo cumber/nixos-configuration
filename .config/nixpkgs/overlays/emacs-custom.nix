@@ -29,6 +29,8 @@ self: super: {
     gitconfig-mode
     gitignore-mode
 
+    yaml-mode
+
     company-flx
     fill-column-indicator
     ivy
