@@ -31,10 +31,11 @@ main = launch . pagerHints . fullscreenSupport $ myConfig
 myModMask = mod4Mask
 myKeys =
   [ ((myModMask               , xK_p)         , spawn "@synapse@/bin/synapse")
+  , ((myModMask               , xK_x)         , spawn "@synapse@/bin/synapse")
   , ((myModMask .|. mod1Mask  , xK_space)     , spawn "@synapse@/bin/synapse")
+
   , ((myModMask               , xK_b)         , sendMessage ToggleStruts)
 
-  -- TODO: make this work on vanwa
   , ( (0, 0x1008FF11)
     , spawn "@pulseaudioLight@/bin/pactl set-sink-volume '@DEFAULT_SINK@' '-5%'"
     )
