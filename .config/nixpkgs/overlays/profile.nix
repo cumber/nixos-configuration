@@ -37,12 +37,12 @@ self: super: {
       powerline-fonts
 
       # Office
+      audacious
       chromium
       evince
       gimp
       gnome3.eog
       libreoffice
-      rhythmbox
       speedcrunch
       thunderbird
       vlc
