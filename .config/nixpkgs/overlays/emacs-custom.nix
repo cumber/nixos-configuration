@@ -32,10 +32,12 @@ self: super: {
     yaml-mode
 
     company-flx
+    counsel-projectile
     fill-column-indicator
     ivy
     ivy-hydra
     linum-relative
+    projectile
     rainbow-delimiters
     rainbow-identifiers
     swiper
