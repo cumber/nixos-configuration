@@ -37,6 +37,7 @@ self: super: {
     ivy-hydra
     linum-relative
     rainbow-delimiters
+    rainbow-identifiers
     swiper
   ]);
 

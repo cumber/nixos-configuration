@@ -27,6 +27,7 @@
   "Run a hook for the major-mode after the local variables have been processed."
   (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
 
+;; Set theme
 (add-hook 'after-init-hook (lambda () (load-theme 'leuven)))
 
 ;; Added by Package.el.  This must come before configurations of
@@ -37,7 +38,6 @@
 
 (eval-when-compile
   (require 'use-package))
-
 
 ;; Relative line numbers enabled globally
 (use-package linum-relative
@@ -55,8 +55,16 @@
   :config
   (define-globalized-minor-mode global-rainbow-delimiters-mode rainbow-delimiters-mode
     (lambda () (rainbow-delimiters-mode t)))
-  (global-rainbow-delimiters-mode)
-  (show-paren-mode))
+  (global-rainbow-delimiters-mode))
+(use-package paren
+  :config
+  (show-paren-mode)
+  (setq show-paren-style 'expression))
+
+(use-package rainbow-identifiers
+  :commands rainbow-identifiers-mode
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
 
 ;; Visisble tabs and trailing whitespace
 (use-package whitespace
