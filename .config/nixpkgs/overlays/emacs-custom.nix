@@ -29,6 +29,8 @@ self: super: {
     gitconfig-mode
     gitignore-mode
 
+    web-mode
+
     yaml-mode
 
     company-flx
