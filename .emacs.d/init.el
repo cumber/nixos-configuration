@@ -12,6 +12,9 @@
 ;; Don't indent with tabs
 (setq-default indent-tabs-mode nil)
 
+;; 2-space indents in javascript
+(setq-default js-indent-level 2)
+
 (setq-default cursor-type 'bar)
 
 (global-visual-line-mode)
