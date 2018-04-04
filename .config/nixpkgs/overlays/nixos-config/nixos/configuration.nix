@@ -45,9 +45,6 @@
     defaultLocale = "en_AU.UTF-8";
   };
 
-  # Set your time zone.
-  time.timeZone = "Australia/Melbourne";
-
   services = {
     dnsmasq = {
       enable = true;
@@ -57,6 +54,9 @@
     };
 
     locate.enable = true;
+
+    # Update timezone based on location
+    localtime.enable = true;
 
     printing = {
       enable = true;
