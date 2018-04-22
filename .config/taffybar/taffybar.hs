@@ -12,6 +12,7 @@ import System.Taffybar.Systray
 import System.Taffybar.SimpleClock
 import System.Taffybar.TaffyPager
 import System.Taffybar.Widgets.PollingGraph
+import System.Taffybar.WorkspaceHUD
 import System.Information.CPU
 
 cpuCallback = do
@@ -20,28 +21,30 @@ cpuCallback = do
 
 main = do
   let defaultMonitor = monitorNumber defaultTaffybarConfig
-  monitor <- fromMaybe defaultMonitor . fmap read . listToMaybe <$> getArgs
+  monitor <- maybe defaultMonitor read . listToMaybe <$> getArgs
   let cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1), (1, 0, 1, 0.5)]
                                   , graphLabel = Just "cpu"
                                   }
       clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
-      pager = taffyPagerNew defaultPagerConfig { activeWindow = escape . shorten 100
-                                               , widgetSep = colorize "grey" "" "  |  "
-                                               , emptyWorkspace = colorize "grey" "" . escape
-                                               }
+      pagerConfig = defaultPagerConfig { activeWindow = escape . shorten 100
+                                       , widgetSep = colorize "grey" "" "  |  "
+                                       , emptyWorkspace = colorize "grey" "" . escape
+                                       }
+      pager = taffyPagerHUDNew pagerConfig defaultWorkspaceHUDConfig
       tray = systrayNew
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-      battery = batteryBarNew defaultBatteryConfig 20
-      batteryTime = textBatteryNew "($time$)" 20
+      battery = batteryBarNewWithFormat defaultBatteryConfig "($time$)" 20
       mpris = mpris2New
 
       widgets
         = if monitor == 0
-            then  [ tray, clock, cpu, batteryTime, battery ]
+            then  [ tray, clock, cpu, battery ]
             else  [ mpris, clock, cpu ]
+
 
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager ]
                                         , endWidgets = widgets
                                         , monitorNumber = monitor
                                         , widgetSpacing = 20
+                                        , barHeight = 40
                                         }
