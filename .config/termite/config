@@ -5,6 +5,8 @@ clickable_url = false
 
 scrollback_lines = 100000
 
+icon_name = utilities-terminal-symbolic
+
 [colors]
 
 # special
