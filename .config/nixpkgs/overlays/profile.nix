@@ -11,8 +11,10 @@ self: super: {
       inconsolata
       lxappearance
       nixos-config
+      numix-cursor-theme
       numix-gtk-theme
       numix-icon-theme
+      numix-icon-theme-square   # application icons
       psmisc
       syncthing-gtk
       source-code-pro
