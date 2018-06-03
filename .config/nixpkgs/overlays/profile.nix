@@ -32,7 +32,7 @@ self: super: {
       emacs-custom
       emacs-edit
       gitAndTools.gitFull
-      haskellPackages.hasktags
+      #haskellPackages.hasktags
       haskellPackages.hlint
       nox
       powerlineWithGitStatus
