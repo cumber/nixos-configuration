@@ -33,3 +33,6 @@
 # Unignore .emacs.d, and ignore autosaves
 !/.emacs.d/
 /.emacs.d/auto-save-list/
+
+# Taffybar config
+!/.config/taffybar
