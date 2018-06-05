@@ -1,8 +1,8 @@
 { mkDerivation, base, compton, fetchgit, lightlocker
 , networkmanagerapplet, notify-osd, powerline, pulseaudioLight
-, setxkbmap, signal-desktop, slack, stdenv, synapse, syncthing-gtk
-, system-config-printer, taffybar, udiskie, unix, X11, xmonad
-, xmonad-contrib
+, setxkbmap, signal-desktop, slack, status-notifier-item, stdenv
+, synapse, syncthing-gtk, system-config-printer, taffybar, udiskie
+, unix, X11, xmonad, xmonad-contrib
 }:
 mkDerivation {
   pname = "xmonad-custom";
@@ -25,6 +25,7 @@ mkDerivation {
     setxkbmap
     signal-desktop
     slack
+    status-notifier-item
     synapse
     syncthing-gtk
     system-config-printer
@@ -41,6 +42,7 @@ mkDerivation {
       --replace '@setxkbmap@' '${setxkbmap}' \
       --replace '@signal-desktop@' '${signal-desktop}' \
       --replace '@slack@' '${slack}' \
+      --replace '@status-notifier-item@' '${status-notifier-item}' \
       --replace '@synapse@' '${synapse}' \
       --replace '@syncthing-gtk@' '${syncthing-gtk}' \
       --replace '@system-config-printer@' '${system-config-printer}' \

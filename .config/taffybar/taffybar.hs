@@ -1,50 +1,44 @@
-import Control.Applicative
-
-import Data.Maybe
-
-import System.Environment
-
 import System.Taffybar
-import System.Taffybar.Battery
-import System.Taffybar.MPRIS2
-import System.Taffybar.Pager
-import System.Taffybar.Systray
-import System.Taffybar.SimpleClock
-import System.Taffybar.TaffyPager
-import System.Taffybar.Widgets.PollingGraph
-import System.Taffybar.WorkspaceHUD
-import System.Information.CPU
+import System.Taffybar.SimpleConfig
+import System.Taffybar.Information.CPU
+import System.Taffybar.Widget.Battery
+import System.Taffybar.Widget.Generic.PollingGraph
+import System.Taffybar.Widget.Layout
+import System.Taffybar.Widget.MPRIS2
+import System.Taffybar.Widget.SNITray
+import System.Taffybar.Widget.SimpleClock
+import System.Taffybar.Widget.Windows
+import System.Taffybar.Widget.Workspaces
 
 cpuCallback = do
   (_, systemLoad, totalLoad) <- cpuLoad
   return [ totalLoad, systemLoad ]
 
+main :: IO ()
 main = do
-  let defaultMonitor = monitorNumber defaultTaffybarConfig
-  monitor <- maybe defaultMonitor read . listToMaybe <$> getArgs
   let cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1), (1, 0, 1, 0.5)]
                                   , graphLabel = Just "cpu"
                                   }
       clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
-      pagerConfig = defaultPagerConfig { activeWindow = escape . shorten 100
-                                       , widgetSep = colorize "grey" "" "  |  "
-                                       , emptyWorkspace = colorize "grey" "" . escape
-                                       }
-      pager = taffyPagerHUDNew pagerConfig defaultWorkspaceHUDConfig
-      tray = systrayNew
+      tray = sniTrayNew
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-      battery = batteryBarNewWithFormat defaultBatteryConfig "($time$)" 20
+      batteryText = textBatteryNew "$percentage$ ($time$)"
+      batteryIcon = batteryIconNew
       mpris = mpris2New
+      workspaces = workspacesNew defaultWorkspacesConfig
+      layout = layoutNew defaultLayoutConfig
+      window = windowsNew defaultWindowsConfig
 
-      widgets
-        = if monitor == 0
-            then  [ tray, clock, cpu, battery ]
-            else  [ mpris, clock, cpu ]
-
-
-  defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager ]
-                                        , endWidgets = widgets
-                                        , monitorNumber = monitor
-                                        , widgetSpacing = 20
-                                        , barHeight = 40
-                                        }
+  startTaffybar . toTaffyConfig
+    $ defaultSimpleTaffyConfig { startWidgets = [ workspaces, layout, window ]
+                               , endWidgets = [ mpris
+                                              , tray
+                                              , clock
+                                              , cpu
+                                              , batteryText
+                                              , batteryIcon
+                                              ]
+                               , monitorsAction = useAllMonitors
+                               , widgetSpacing = 20
+                               , barHeight = 40
+                               }

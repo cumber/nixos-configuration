@@ -2,17 +2,13 @@ module Main
   ( main )
 where
 
-import Control.Monad ((<=<))
 import Control.Monad.IO.Class (liftIO)
 
-import Data.List (intersperse)
 import Data.Monoid ((<>))
-
-import Graphics.X11.Xinerama (getScreenInfo)
 
 import System.Posix.Env (getEnv, putEnv)
 
-import System.Taffybar.Hooks.PagerHints (pagerHints)
+import System.Taffybar.Support.PagerHints (pagerHints)
 
 import XMonad
 import XMonad.Config.Desktop (desktopConfig)
@@ -51,24 +47,20 @@ myKeys =
   ]
 
 
-withScreenCount f = withDisplay $ f . length <=< liftIO . getScreenInfo
-
-
 myStartupHook
-  = do  withScreenCount startupCommands
+  = do  startupCommands
         setWMName "LG3D"  -- helps with Java GUIs
         liftIO $ mapM_ (putEnv . gtk2RcFiles) =<< getEnv "HOME"
 
   where gtk2RcFiles home = "GTK2_RC_FILES=" <> home <> "/.gtkrc-2.0"
 
 
-startupCommands screens
-  = do  mapM_ spawn simpleCommands
-        let spawnBars = [ "taffybar " ++ show n | n <- [0 .. screens - 1] ]
-        mapM_ spawn $ intersperse "sleep 0.1" spawnBars
+startupCommands
+  = mapM_ spawn simpleCommands
 
 simpleCommands
-  =   [ "@setxkbmap@/bin/setxkbmap -option 'compose:ralt'"
+  =   [ "@status-notifier-item@/bin/status-notifier-watcher"
+      , "@setxkbmap@/bin/setxkbmap -option 'compose:ralt'"
       , "@notify-osd@/bin/notify-osd"
       , "@synapse@/bin/synapse -s"
       , "@compton@/bin/compton"
@@ -80,6 +72,7 @@ simpleCommands
       , "@slack@/bin/slack --startup"
       , "@signal-desktop@/bin/signal-desktop --start-in-tray"
       , "@lightlocker@/bin/light-locker --lock-on-suspend"
+      , "taffybar"
       ]
 
 
