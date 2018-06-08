@@ -25,7 +25,8 @@ main = do
       batteryText = textBatteryNew "$percentage$ ($time$)"
       batteryIcon = batteryIconNew
       mpris = mpris2New
-      workspaces = workspacesNew defaultWorkspacesConfig
+      wsConfig = defaultWorkspacesConfig { getWindowIconPixbuf = scaledWindowIconPixbufGetter getWindowIconPixbufFromEWMH }
+      workspaces = workspacesNew wsConfig
       layout = layoutNew defaultLayoutConfig
       window = windowsNew defaultWindowsConfig
 
