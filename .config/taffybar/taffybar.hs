@@ -22,7 +22,8 @@ main = do
       clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %H:%M</span>" 1
       tray = sniTrayNew
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-      batteryText = textBatteryNew "$percentage$ ($time$)"
+      batteryPercent = textBatteryNew "$percentage$%"
+      batteryTime = textBatteryNew "$time$"
       batteryIcon = batteryIconNew
       mpris = mpris2New
       workspaces = workspacesNew defaultWorkspacesConfig
@@ -35,8 +36,9 @@ main = do
                                               , tray
                                               , clock
                                               , cpu
-                                              , batteryText
+                                              , batteryTime
                                               , batteryIcon
+                                              , batteryPercent
                                               ]
                                , monitorsAction = useAllMonitors
                                , widgetSpacing = 20
