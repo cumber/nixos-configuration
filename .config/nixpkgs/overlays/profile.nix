@@ -45,6 +45,8 @@ self: super: {
       gimp
       gnome3.eog
       libreoffice
+      signal-desktop
+      slack
       speedcrunch
       thunderbird
       vlc
