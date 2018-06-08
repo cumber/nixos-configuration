@@ -67,10 +67,10 @@ simpleCommands
       , "@networkmanagerapplet@/bin/nm-applet --sm-disable"
       , "@system-config-printer@/bin/system-config-printer-applet"
       , "@powerline@/bin/powerline-daemon --replace"
-      , "@udiskie@/bin/udiskie --tray"
+      , "@udiskie@/bin/udiskie --tray --appindicator"
       , "@syncthing-gtk@/bin/syncthing-gtk --minimized"
-      , "@slack@/bin/slack --startup"
-      , "@signal-desktop@/bin/signal-desktop --start-in-tray"
+      , "env XDG_CURRENT_DESKTOP=Unity @slack@/bin/slack"
+      , "env XDG_CURRENT_DESKTOP=Unity @signal-desktop@/bin/signal-desktop --start-in-tray"
       , "@lightlocker@/bin/light-locker --lock-on-suspend"
       , "taffybar"
       ]
