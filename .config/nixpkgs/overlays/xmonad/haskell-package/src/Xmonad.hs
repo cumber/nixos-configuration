@@ -72,7 +72,7 @@ simpleCommands
       , "env XDG_CURRENT_DESKTOP=Unity {{slack}}/bin/slack"
       , "env XDG_CURRENT_DESKTOP=Unity {{signal-desktop}}/bin/signal-desktop --start-in-tray"
       , "{{lightlocker}}/bin/light-locker --lock-on-suspend"
-      , "taffybar"
+      , "{{out}}/bin/launch-taffybar"
       ]
 
 

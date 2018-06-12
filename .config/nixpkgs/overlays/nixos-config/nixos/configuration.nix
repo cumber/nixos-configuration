@@ -72,10 +72,10 @@
       displayManager.session = [
         {
           manage = "window";
-          name = "xmonad-custom";
+          name = "xmonad";
           start = ''
             export GIO_EXTRA_MODULES="/run/current-system/sw/lib/gio/modules"
-            xmonad-custom &
+            launch-xmonad &
             waitPID=$!
           '';
         }

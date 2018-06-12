@@ -2,7 +2,7 @@
 
 set -eu
 
-packages=($(grep '{{.*}}/' src/Main.hs | sed -e 's|.*{{\(.*\)}}/.*|\1|' | sort -u))
+packages=($(grep --perl '{{.*(?<!out)}}' src/*.hs | sed -e 's|.*{{\(.*\)}}/.*|\1|' | sort -u))
 
 extra_args=(--extra-arguments fetchgit)
 for p in "${packages[@]}"; do
@@ -19,9 +19,13 @@ done
 echo "  ];"
 
 echo "  postPatch = ''";
-echo "    substituteInPlace src/Main.hs \\"
-for p in "${packages[@]}"; do
-    echo "      --replace '{{$p}}' '\${$p}' \\"
+for hs in src/*.hs; do
+    echo "    substituteInPlace $hs \\"
+    echo "      --replace '{{out}}' \"\$out\" \\"
+    for p in "${packages[@]}"; do
+        echo "      --replace '{{$p}}' '\${$p}' \\"
+    done
+    echo "    ;"
 done
 echo "  '';"
 
