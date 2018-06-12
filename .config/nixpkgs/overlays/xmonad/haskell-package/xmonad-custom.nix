@@ -31,21 +31,21 @@ mkDerivation {
     system-config-printer
     udiskie
   ];
-  patchPhase = ''
+  postPatch = ''
     substituteInPlace src/Main.hs \
-      --replace '@compton@' '${compton}' \
-      --replace '@lightlocker@' '${lightlocker}' \
-      --replace '@networkmanagerapplet@' '${networkmanagerapplet}' \
-      --replace '@notify-osd@' '${notify-osd}' \
-      --replace '@powerline@' '${powerline}' \
-      --replace '@pulseaudioLight@' '${pulseaudioLight}' \
-      --replace '@setxkbmap@' '${setxkbmap}' \
-      --replace '@signal-desktop@' '${signal-desktop}' \
-      --replace '@slack@' '${slack}' \
-      --replace '@status-notifier-item@' '${status-notifier-item}' \
-      --replace '@synapse@' '${synapse}' \
-      --replace '@syncthing-gtk@' '${syncthing-gtk}' \
-      --replace '@system-config-printer@' '${system-config-printer}' \
-      --replace '@udiskie@' '${udiskie}' \
+      --replace '{{compton}}' '${compton}' \
+      --replace '{{lightlocker}}' '${lightlocker}' \
+      --replace '{{networkmanagerapplet}}' '${networkmanagerapplet}' \
+      --replace '{{notify-osd}}' '${notify-osd}' \
+      --replace '{{powerline}}' '${powerline}' \
+      --replace '{{pulseaudioLight}}' '${pulseaudioLight}' \
+      --replace '{{setxkbmap}}' '${setxkbmap}' \
+      --replace '{{signal-desktop}}' '${signal-desktop}' \
+      --replace '{{slack}}' '${slack}' \
+      --replace '{{status-notifier-item}}' '${status-notifier-item}' \
+      --replace '{{synapse}}' '${synapse}' \
+      --replace '{{syncthing-gtk}}' '${syncthing-gtk}' \
+      --replace '{{system-config-printer}}' '${system-config-printer}' \
+      --replace '{{udiskie}}' '${udiskie}' \
   '';
 }
