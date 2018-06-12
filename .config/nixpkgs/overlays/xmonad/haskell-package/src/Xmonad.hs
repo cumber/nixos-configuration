@@ -2,22 +2,45 @@ module Main
   ( main )
 where
 
-import Control.Monad.IO.Class (liftIO)
+import Control.Monad.IO.Class ( liftIO )
 
-import Data.Monoid ((<>))
+import Data.Foldable ( traverse_ )
 
-import System.Posix.Env (getEnv, putEnv)
+import Data.Maybe ( fromMaybe )
 
-import System.Taffybar.Support.PagerHints (pagerHints)
+import Data.Monoid ( (<>) )
+
+import System.FilePath ( takeBaseName )
+
+import System.Directory ( createDirectoryIfMissing )
+
+import System.IO ( IOMode (WriteMode)
+                 , openFile
+                 )
+
+import System.Posix.Env ( getEnv
+                        , getEnvironment
+                        , putEnv
+                        )
+
+import System.Process
+
+import System.Taffybar.Support.PagerHints ( pagerHints )
 
 import XMonad
-import XMonad.Config.Desktop (desktopConfig)
-import XMonad.Hooks.ManageDocks (ToggleStruts(ToggleStruts))
-import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Layout.Fullscreen (fullscreenSupport)
-import XMonad.Layout.NoBorders (Ambiguity(Screen), lessBorders)
-import XMonad.Hooks.Place (fixed, inBounds, placeHook)
-import XMonad.Util.EZConfig (additionalKeys)
+import XMonad.Config.Desktop ( desktopConfig )
+import XMonad.Hooks.ManageDocks ( ToggleStruts (ToggleStruts) )
+import XMonad.Hooks.SetWMName ( setWMName )
+import XMonad.Layout.Fullscreen ( fullscreenSupport )
+import XMonad.Layout.NoBorders ( Ambiguity (Screen)
+                               , lessBorders
+                               )
+import XMonad.Hooks.Place ( fixed
+                          , inBounds
+                          , placeHook
+                          )
+import XMonad.Util.EZConfig ( additionalKeys )
+import XMonad.Util.Run ( safeSpawn )
 
 
 main :: IO ()
@@ -26,24 +49,37 @@ main = launch . pagerHints . fullscreenSupport $ myConfig
 
 myModMask = mod4Mask
 myKeys =
-  [ ((myModMask               , xK_p)         , spawn "{{synapse}}/bin/synapse")
-  , ((myModMask               , xK_x)         , spawn "{{synapse}}/bin/synapse")
-  , ((myModMask .|. mod1Mask  , xK_space)     , spawn "{{synapse}}/bin/synapse")
+  [ ( (myModMask               , xK_p)
+    , safeSpawn "{{synapse}}/bin/synapse" []
+    )
+  , ( (myModMask               , xK_x)
+    , safeSpawn "{{synapse}}/bin/synapse" []
+    )
+  , ( (myModMask .|. mod1Mask  , xK_space)
+    , safeSpawn "{{synapse}}/bin/synapse" []
+    )
 
-  , ((myModMask               , xK_b)         , sendMessage ToggleStruts)
+  , ( (myModMask               , xK_b)
+    , sendMessage ToggleStruts
+    )
 
   , ( (0, 0x1008FF11)
-    , spawn "{{pulseaudioLight}}/bin/pactl set-sink-volume '@DEFAULT_SINK@' '-5%'"
+    , safeSpawn "{{pulseaudioLight}}/bin/pactl"
+                 [ "set-sink-volume", "@DEFAULT_SINK@", "-5%" ]
     )
   , ( (0, 0x1008FF13)
-    , spawn "{{pulseaudioLight}}/bin/pactl set-sink-volume '@DEFAULT_SINK@' '+5%'"
+    , safeSpawn "{{pulseaudioLight}}/bin/pactl"
+                [ "set-sink-volume", "@DEFAULT_SINK@", "+5%" ]
     )
   , ( (0, 0x1008FF12)
-    , spawn "{{pulseaudioLight}}/bin/pactl set-sink-mute '@DEFAULT_SINK@' toggle"
+    , safeSpawn "{{pulseaudioLight}}/bin/pactl"
+                [ "set-sink-mute", "@DEFAULT_SINK@", "toggle" ]
     )
 
     -- Win-z locks screen
-  , ( (myModMask, xK_z) , spawn "{{lightlocker}}/bin/light-locker-command -l")
+  , ( (myModMask, xK_z)
+    , safeSpawn "{{lightlocker}}/bin/light-locker-command" ["-l"]
+    )
   ]
 
 
@@ -56,23 +92,25 @@ myStartupHook
 
 
 startupCommands
-  = mapM_ spawn simpleCommands
+  = do traverse_ (uncurry spawnWithLogs) simpleCommands
+       es <- liftIO getEnvironment
+       let desktopHackEnv = Just $ es ++ [("XDG_CURRENT_DESKTOP", "Unity")]
+       spawnWithLogsEnv "{{slack}}/bin/slack" [] desktopHackEnv
+       spawnWithLogsEnv "{{signal-desktop}}/bin/signal-desktop" ["--start-in-tray"] desktopHackEnv
 
 simpleCommands
-  =   [ "{{status-notifier-item}}/bin/status-notifier-watcher"
-      , "{{setxkbmap}}/bin/setxkbmap -option 'compose:ralt'"
-      , "{{notify-osd}}/bin/notify-osd"
-      , "{{synapse}}/bin/synapse -s"
-      , "{{compton}}/bin/compton"
-      , "{{networkmanagerapplet}}/bin/nm-applet --sm-disable"
-      , "{{system-config-printer}}/bin/system-config-printer-applet"
-      , "{{powerline}}/bin/powerline-daemon --replace"
-      , "{{udiskie}}/bin/udiskie --tray --appindicator"
-      , "{{syncthing-gtk}}/bin/syncthing-gtk --minimized"
-      , "env XDG_CURRENT_DESKTOP=Unity {{slack}}/bin/slack"
-      , "env XDG_CURRENT_DESKTOP=Unity {{signal-desktop}}/bin/signal-desktop --start-in-tray"
-      , "{{lightlocker}}/bin/light-locker --lock-on-suspend"
-      , "{{out}}/bin/launch-taffybar"
+  =   [ ("{{status-notifier-item}}/bin/status-notifier-watcher", [])
+      , ("{{setxkbmap}}/bin/setxkbmap", ["-option", "compose:ralt"])
+      , ("{{notify-osd}}/bin/notify-osd", [])
+      , ("{{synapse}}/bin/synapse", ["-s"])
+      , ("{{compton}}/bin/compton", [])
+      , ("{{networkmanagerapplet}}/bin/nm-applet", ["--sm-disable"])
+      , ("{{system-config-printer}}/bin/system-config-printer-applet", [])
+      , ("{{powerline}}/bin/powerline-daemon", ["--replace"])
+      , ("{{udiskie}}/bin/udiskie", ["--tray", "--appindicator"])
+      , ("{{syncthing-gtk}}/bin/syncthing-gtk", ["--minimized"])
+      , ("{{lightlocker}}/bin/light-locker", ["--lock-on-suspend"])
+      , ("{{out}}/bin/launch-taffybar", [])
       ]
 
 
@@ -95,3 +133,19 @@ myConfig
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
       }
     `additionalKeys` myKeys
+
+
+spawnWithLogs :: MonadIO m => FilePath -> [String] -> m ()
+spawnWithLogs cmd args = spawnWithLogsEnv cmd args Nothing
+
+spawnWithLogsEnv :: MonadIO m => FilePath -> [String] -> Maybe [(String, String)] -> m ()
+spawnWithLogsEnv cmd args es
+  = liftIO $
+     do home <- fromMaybe "/tmp/xmonad/log" <$> getEnv "HOME"
+        let logDir = home <> "/.local/var/log/" <> takeBaseName cmd
+        createDirectoryIfMissing True logDir
+        stdout <- UseHandle <$> openFile (logDir <> "/stdout") WriteMode
+        stderr <- UseHandle <$> openFile (logDir <> "/stderr") WriteMode
+        let pcfg = (proc cmd args) { std_out = stdout, std_err = stderr, env = es }
+        _ <- createProcess pcfg
+        pure ()

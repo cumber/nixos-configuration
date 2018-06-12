@@ -1,8 +1,9 @@
-{ mkDerivation, base, compton, fetchgit, lightlocker
-, networkmanagerapplet, notify-osd, powerline, pulseaudioLight
-, setxkbmap, signal-desktop, slack, status-notifier-item, stdenv
-, synapse, syncthing-gtk, system-config-printer, taffybar, udiskie
-, unix, X11, xmonad, xmonad-contrib
+{ mkDerivation, base, compton, directory, fetchgit, filepath
+, lightlocker, networkmanagerapplet, notify-osd, powerline, process
+, pulseaudioLight, setxkbmap, signal-desktop, slack
+, status-notifier-item, stdenv, synapse, syncthing-gtk
+, system-config-printer, taffybar, udiskie, unix, X11, xmonad
+, xmonad-contrib
 }:
 mkDerivation {
   pname = "xmonad-custom";
@@ -11,7 +12,8 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   executableHaskellDepends = [
-    base taffybar unix X11 xmonad xmonad-contrib
+    base directory filepath process taffybar unix X11 xmonad
+    xmonad-contrib
   ];
   description = "My XMonad build";
   license = stdenv.lib.licenses.bsd3;
