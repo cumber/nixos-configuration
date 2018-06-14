@@ -2,13 +2,13 @@ self: super: {
   haskellPackages = super.haskellPackages.extend (hpSelf: hpSuper:
     {
     taffybar = hpSuper.taffybar.overrideDerivation (drv: {
-      name = "taffybar-2.1.1";
-      version = "2.1.1";
+      name = "taffybar-2.1.2";
+      version = "2.1.2";
       src = super.fetchFromGitHub {
         owner = "taffybar";
         repo = "taffybar";
-        rev = "72ba688d824f49c24f96a09e91489cd38994b32d";
-        sha256 = "0s6m0ql062qy4ib0ir0r1sxzd962yq5ifqcqwj4qfrd7zc59ig35";
+        rev = "v2.1.2";
+        sha256 = "0snjwx75qf9ccf4j99cdsh0njh4pzl8s4lmarrfs6l0mirgh4grw";
       };
     });
 
