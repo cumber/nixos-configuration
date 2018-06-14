@@ -1,3 +1,5 @@
+-- -*-  dante-target: "launch-taffybar";  -*-
+
 import System.Taffybar
 import System.Taffybar.SimpleConfig
 import System.Taffybar.Information.CPU

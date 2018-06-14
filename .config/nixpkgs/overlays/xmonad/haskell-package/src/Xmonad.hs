@@ -1,3 +1,5 @@
+--  -*- dante-target: "exe:launch-xmonad";  -*-
+
 module Main
   ( main )
 where
