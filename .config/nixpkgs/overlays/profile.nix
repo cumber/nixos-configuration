@@ -18,7 +18,6 @@ self: super: {
       psmisc
       syncthing-gtk
       source-code-pro
-      taffybar
       termite
       tree
       xmonad-custom
