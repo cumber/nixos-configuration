@@ -104,7 +104,7 @@ simpleCommands
       , ("{{notify-osd}}/bin/notify-osd", [])
       , ("{{synapse}}/bin/synapse", ["-s"])
       , ("{{compton}}/bin/compton", [])
-      , ("{{networkmanagerapplet}}/bin/nm-applet", ["--sm-disable"])
+      , ("{{networkmanagerapplet}}/bin/nm-applet", ["--indicator"])
       , ("{{system-config-printer}}/bin/system-config-printer-applet", [])
       , ("{{powerline}}/bin/powerline-daemon", ["--replace"])
       , ("{{udiskie}}/bin/udiskie", ["--tray", "--appindicator"])
