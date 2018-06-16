@@ -34,8 +34,7 @@ main = do
 
   startTaffybar . toTaffyConfig
     $ defaultSimpleTaffyConfig { startWidgets = [ workspaces, layout, window ]
-                               , endWidgets = [ mpris
-                                              , tray
+                               , endWidgets = [ tray
                                               , clock
                                               , cpu
                                               , batteryTime
