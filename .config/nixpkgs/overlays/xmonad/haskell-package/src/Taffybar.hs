@@ -1,12 +1,13 @@
 -- -*-  dante-target: "launch-taffybar";  -*-
 
+module Main (main) where
+
 import System.Taffybar
 import System.Taffybar.SimpleConfig
 import System.Taffybar.Information.CPU
 import System.Taffybar.Widget.Battery
 import System.Taffybar.Widget.Generic.PollingGraph
 import System.Taffybar.Widget.Layout
-import System.Taffybar.Widget.MPRIS2
 import System.Taffybar.Widget.SNITray
 import System.Taffybar.Widget.SimpleClock
 import System.Taffybar.Widget.Windows
@@ -27,7 +28,6 @@ main = do
       batteryPercent = textBatteryNew "$percentage$%"
       batteryTime = textBatteryNew "$time$"
       batteryIcon = batteryIconNew
-      mpris = mpris2New
       workspaces = workspacesNew defaultWorkspacesConfig
       layout = layoutNew defaultLayoutConfig
       window = windowsNew defaultWindowsConfig
