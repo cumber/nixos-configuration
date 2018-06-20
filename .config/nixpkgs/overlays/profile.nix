@@ -39,6 +39,7 @@ self: super: {
 
       # Office
       audacious
+      firefox
       chromium
       evince
       keepassxc
