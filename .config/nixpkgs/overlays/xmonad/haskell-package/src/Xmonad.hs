@@ -113,6 +113,7 @@ simpleCommands
       , ("{{syncthing-gtk}}/bin/syncthing-gtk", ["--minimized"])
       , ("{{lightlocker}}/bin/light-locker", ["--lock-on-suspend"])
       , ("{{out}}/bin/launch-taffybar", [])
+      , ("{{keepassxc}}/bin/keepassxc", [])
       ]
 
 

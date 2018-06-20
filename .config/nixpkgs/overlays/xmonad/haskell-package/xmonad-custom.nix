@@ -1,7 +1,7 @@
 { mkDerivation, base, compton, directory, fetchgit, filepath
-, lightlocker, networkmanagerapplet, notify-osd, powerline, process
-, pulseaudioLight, setxkbmap, signal-desktop, slack
-, status-notifier-item, stdenv, synapse, syncthing-gtk
+, keepassxc, lightlocker, networkmanagerapplet, notify-osd
+, powerline, process, pulseaudioLight, setxkbmap, signal-desktop
+, slack, status-notifier-item, stdenv, synapse, syncthing-gtk
 , system-config-printer, taffybar, udiskie, unix, X11, xmonad
 , xmonad-contrib
 }:
@@ -19,6 +19,7 @@ mkDerivation {
   license = stdenv.lib.licenses.bsd3;
   executableSystemDepends = [
     compton
+    keepassxc
     lightlocker
     networkmanagerapplet
     notify-osd
@@ -37,6 +38,7 @@ mkDerivation {
     substituteInPlace src/Taffybar.hs \
       --replace '{{out}}' "$out" \
       --replace '{{compton}}' '${compton}' \
+      --replace '{{keepassxc}}' '${keepassxc}' \
       --replace '{{lightlocker}}' '${lightlocker}' \
       --replace '{{networkmanagerapplet}}' '${networkmanagerapplet}' \
       --replace '{{notify-osd}}' '${notify-osd}' \
@@ -54,6 +56,7 @@ mkDerivation {
     substituteInPlace src/Xmonad.hs \
       --replace '{{out}}' "$out" \
       --replace '{{compton}}' '${compton}' \
+      --replace '{{keepassxc}}' '${keepassxc}' \
       --replace '{{lightlocker}}' '${lightlocker}' \
       --replace '{{networkmanagerapplet}}' '${networkmanagerapplet}' \
       --replace '{{notify-osd}}' '${notify-osd}' \

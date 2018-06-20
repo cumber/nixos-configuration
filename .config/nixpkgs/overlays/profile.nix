@@ -41,6 +41,7 @@ self: super: {
       audacious
       chromium
       evince
+      keepassxc
       gimp
       gnome3.eog
       libreoffice
