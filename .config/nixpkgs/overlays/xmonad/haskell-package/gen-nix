@@ -4,7 +4,7 @@ set -eu
 
 packages=($(grep --perl '{{.*(?<!out)}}' src/*.hs | sed -e 's|.*{{\(.*\)}}/.*|\1|' | sort -u))
 
-extra_args=(--extra-arguments fetchgit)
+extra_args=(--extra-arguments fetchgit --extra-arguments wrapGAppsHook)
 for p in "${packages[@]}"; do
     extra_args+=(--extra-arguments "$p")
 done
@@ -13,6 +13,7 @@ cabal2nix . "${extra_args[@]}" \
     | head -n-1
 
 echo "  executableSystemDepends = ["
+echo "    wrapGAppsHook"
 for p in "${packages[@]}"; do
     echo "    $p"
 done

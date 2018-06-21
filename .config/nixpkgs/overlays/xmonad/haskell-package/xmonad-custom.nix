@@ -2,8 +2,8 @@
 , keepassxc, lightlocker, networkmanagerapplet, notify-osd
 , powerline, process, pulseaudioLight, setxkbmap, signal-desktop
 , slack, status-notifier-item, stdenv, synapse, syncthing-gtk
-, system-config-printer, taffybar, udiskie, unix, X11, xmonad
-, xmonad-contrib
+, system-config-printer, taffybar, udiskie, unix, wrapGAppsHook
+, X11, xmonad, xmonad-contrib
 }:
 mkDerivation {
   pname = "xmonad-custom";
@@ -18,6 +18,7 @@ mkDerivation {
   description = "My XMonad build";
   license = stdenv.lib.licenses.bsd3;
   executableSystemDepends = [
+    wrapGAppsHook
     compton
     keepassxc
     lightlocker
