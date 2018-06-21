@@ -1,9 +1,9 @@
-{ mkDerivation, base, compton, directory, fetchgit, filepath
-, keepassxc, lightlocker, networkmanagerapplet, notify-osd
-, powerline, process, pulseaudioLight, setxkbmap, signal-desktop
-, slack, status-notifier-item, stdenv, synapse, syncthing-gtk
-, system-config-printer, taffybar, udiskie, unix, wrapGAppsHook
-, X11, xmonad, xmonad-contrib
+{ mkDerivation, base, compton, directory, emacs-custom, fetchgit
+, filepath, keepassxc, lightlocker, networkmanagerapplet
+, notify-osd, powerline, process, pulseaudioLight, setxkbmap
+, signal-desktop, slack, status-notifier-item, stdenv, synapse
+, syncthing-gtk, system-config-printer, taffybar, udiskie, unix
+, wrapGAppsHook, X11, xmonad, xmonad-contrib
 }:
 mkDerivation {
   pname = "xmonad-custom";
@@ -20,6 +20,7 @@ mkDerivation {
   executableSystemDepends = [
     wrapGAppsHook
     compton
+    emacs-custom
     keepassxc
     lightlocker
     networkmanagerapplet
@@ -39,6 +40,7 @@ mkDerivation {
     substituteInPlace src/Taffybar.hs \
       --replace '{{out}}' "$out" \
       --replace '{{compton}}' '${compton}' \
+      --replace '{{emacs-custom}}' '${emacs-custom}' \
       --replace '{{keepassxc}}' '${keepassxc}' \
       --replace '{{lightlocker}}' '${lightlocker}' \
       --replace '{{networkmanagerapplet}}' '${networkmanagerapplet}' \
@@ -57,6 +59,7 @@ mkDerivation {
     substituteInPlace src/Xmonad.hs \
       --replace '{{out}}' "$out" \
       --replace '{{compton}}' '${compton}' \
+      --replace '{{emacs-custom}}' '${emacs-custom}' \
       --replace '{{keepassxc}}' '${keepassxc}' \
       --replace '{{lightlocker}}' '${lightlocker}' \
       --replace '{{networkmanagerapplet}}' '${networkmanagerapplet}' \

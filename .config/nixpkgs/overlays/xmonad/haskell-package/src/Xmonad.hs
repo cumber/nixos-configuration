@@ -114,6 +114,7 @@ simpleCommands
       , ("{{lightlocker}}/bin/light-locker", ["--lock-on-suspend"])
       , ("{{out}}/bin/launch-taffybar", [])
       , ("{{keepassxc}}/bin/keepassxc", [])
+      , ("{{emacs-custom}}/bin/emacs", ["--bg-daemon"])
       ]
 
 
