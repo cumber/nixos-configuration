@@ -16,6 +16,8 @@ self: super: {
     company-cabal
     dante
 
+    csv-mode
+
     php-mode
 
     markdown-mode
