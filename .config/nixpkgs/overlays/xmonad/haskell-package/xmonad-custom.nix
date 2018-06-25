@@ -1,5 +1,5 @@
-{ mkDerivation, base, compton, directory, emacs-custom, fetchgit
-, filepath, keepassxc, lightlocker, networkmanagerapplet
+{ mkDerivation, base, compton, directory, emacs-custom, filepath
+, gdk_pixbuf, gtk3, keepassxc, lightlocker, networkmanagerapplet
 , notify-osd, powerline, process, pulseaudioLight, setxkbmap
 , signal-desktop, slack, status-notifier-item, stdenv, synapse
 , syncthing-gtk, system-config-printer, taffybar, udiskie, unix
@@ -19,22 +19,8 @@ mkDerivation {
   license = stdenv.lib.licenses.bsd3;
   executableSystemDepends = [
     wrapGAppsHook
-    compton
-    emacs-custom
-    keepassxc
-    lightlocker
-    networkmanagerapplet
-    notify-osd
-    powerline
-    pulseaudioLight
-    setxkbmap
-    signal-desktop
-    slack
-    status-notifier-item
-    synapse
-    syncthing-gtk
-    system-config-printer
-    udiskie
+    gtk3
+    gdk_pixbuf
   ];
   postPatch = ''
     substituteInPlace src/Taffybar.hs \
