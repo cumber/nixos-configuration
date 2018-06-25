@@ -1,10 +1,11 @@
-{ stdenv, fetchurl, dpkg
+{ stdenv, fetchurl, dpkg, makeWrapper
 , alsaLib, atk, cairo, cups, curl, dbus, expat, fontconfig, freetype, glib
-, gnome2, libappindicator-gtk2, libnotify, libxcb, nspr, nss, systemd, xorg }:
+, gnome3, gtk3, gdk_pixbuf, libappindicator-gtk3, libnotify, libxcb, nspr
+, nss, pango, systemd, wget, xorg }:
 
 let
 
-  version = "3.1.0";
+  version = "3.2.1";
 
   rpath = stdenv.lib.makeLibraryPath [
     alsaLib
@@ -17,11 +18,11 @@ let
     fontconfig
     freetype
     glib
-    gnome2.GConf
-    gnome2.gdk_pixbuf
-    gnome2.gtk
-    gnome2.pango
-    libappindicator-gtk2
+    gnome3.gconf
+    gdk_pixbuf
+    gtk3
+    pango
+    libappindicator-gtk3
     libnotify
     libxcb
     nspr
@@ -47,7 +48,7 @@ let
     if stdenv.system == "x86_64-linux" then
       fetchurl {
         url = "https://downloads.slack-edge.com/linux_releases/slack-desktop-${version}-amd64.deb";
-        sha256 = "1y8xxfpqvz4q6y1zkna4cp3rqi7p03w5xgr8h1cmym8z66bj7dq3";
+        sha256 = "095dpkwvvnwlxsglyg6wi9126wpalzi736b6g6j3bd6d93z9afah";
       }
     else
       throw "Slack is not supported on ${stdenv.system}";
@@ -57,7 +58,13 @@ in stdenv.mkDerivation {
 
   inherit src;
 
-  buildInputs = [ dpkg ];
+  buildInputs = [
+    dpkg
+    gtk3  # needed for GSETTINGS_SCHEMAS_PATH
+  ];
+
+  nativeBuildInputs = [ makeWrapper ];
+
   unpackPhase = "true";
   buildCommand = ''
     mkdir -p $out
@@ -73,9 +80,10 @@ in stdenv.mkDerivation {
       patchelf --set-rpath ${rpath}:$out/lib/slack $file || true
     done
 
-    # Fix the symlink
+    # Replace the broken bin/slack symlink with a startup wrapper
     rm $out/bin/slack
-    ln -s $out/lib/slack/slack $out/bin/slack
+    makeWrapper $out/lib/slack/slack $out/bin/slack \
+      --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH
 
     # Fix the desktop link
     substituteInPlace $out/share/applications/slack.desktop \
