@@ -9,15 +9,6 @@
     # Need to allow for nix-serve to work
     networking.firewall.allowedTCPPorts = [ 5000 ];
 
-    nix = {
-      binaryCaches = [
-        "https://cache.nixos.org/"
-      ];
-      binaryCachePublicKeys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      ];
-    };
-
     services = {
       sshd.enable = true;
 
