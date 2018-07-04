@@ -6,6 +6,9 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    # Need to allow for nix-serve to work
+    networking.firewall.allowedTCPPorts = [ 5000 ];
+
     nix = {
       binaryCaches = [
         "https://cache.nixos.org/"
