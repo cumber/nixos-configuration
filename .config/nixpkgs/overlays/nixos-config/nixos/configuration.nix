@@ -113,13 +113,13 @@
 
     users = {
       root = {
-        passwordFile = "/etc/nixos/passwords/root";
+        passwordFile = "/etc/nixos/secrets/root.pass";
       };
 
       cumber = {
         isNormalUser = true;
         description = "Cumber";
-        passwordFile = "/etc/nixos/passwords/cumber";
+        passwordFile = "/etc/nixos/secrets/cumber.pass";
         extraGroups =  [ "wheel" "networkmanager" "scanner" ];
         shell = pkgs.zsh;
       };

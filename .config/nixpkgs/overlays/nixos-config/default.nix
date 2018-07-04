@@ -10,8 +10,8 @@ self: super:
         nixos-config = super.writeShellScriptBin "nixos-config" ''
           function mkdiff {
             ${self.colordiff}/bin/colordiff -Naur /etc/nixos ${configToDeploy} \
-              -x passwords \
-              -x "nix-serve.*" \
+              -x secrets \
+              -x "nix-serve.pub" \
               -x hardware-configuration.nix \
               "$@"
           }

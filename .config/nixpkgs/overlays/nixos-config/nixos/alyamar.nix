@@ -23,7 +23,7 @@
 
       nix-serve = {
         enable = true;
-        secretKeyFile = "/etc/nixos/nix-serve.sec";
+        secretKeyFile = "/etc/nixos/secrets/nix-serve.sec";
       };
 
       xserver.xrandrHeads = [ "DisplayPort-0" "DisplayPort-1" ];
