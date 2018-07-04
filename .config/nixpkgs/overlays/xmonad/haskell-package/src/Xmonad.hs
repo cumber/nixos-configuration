@@ -41,7 +41,7 @@ import XMonad.Hooks.Place ( fixed
                           , inBounds
                           , placeHook
                           )
-import XMonad.Util.EZConfig ( additionalKeys )
+import XMonad.Util.EZConfig ( additionalKeysP )
 import XMonad.Util.Run ( safeSpawn )
 
 
@@ -51,35 +51,35 @@ main = launch . pagerHints . fullscreenSupport $ myConfig
 
 myModMask = mod4Mask
 myKeys =
-  [ ( (myModMask               , xK_p)
+  [ ( "M-p"
     , safeSpawn "{{synapse}}/bin/synapse" []
     )
-  , ( (myModMask               , xK_x)
+  , ( "M-x"
     , safeSpawn "{{synapse}}/bin/synapse" []
     )
-  , ( (myModMask .|. mod1Mask  , xK_space)
+  , ( "C-<Space>"
     , safeSpawn "{{synapse}}/bin/synapse" []
     )
 
-  , ( (myModMask               , xK_b)
+  , ( "M-b"
     , sendMessage ToggleStruts
     )
 
-  , ( (0, 0x1008FF11)
+  , ( "<XF86AudioLowerVolume>"
     , safeSpawn "{{pulseaudioLight}}/bin/pactl"
                  [ "set-sink-volume", "@DEFAULT_SINK@", "-5%" ]
     )
-  , ( (0, 0x1008FF13)
+  , ( "<XF86AudioRaiseVolume>"
     , safeSpawn "{{pulseaudioLight}}/bin/pactl"
                 [ "set-sink-volume", "@DEFAULT_SINK@", "+5%" ]
     )
-  , ( (0, 0x1008FF12)
+  , ( "<XF86AudioMute>"
     , safeSpawn "{{pulseaudioLight}}/bin/pactl"
                 [ "set-sink-mute", "@DEFAULT_SINK@", "toggle" ]
     )
 
     -- Win-z locks screen
-  , ( (myModMask, xK_z)
+  , ( "M-z"
     , safeSpawn "{{lightlocker}}/bin/light-locker-command" ["-l"]
     )
   ]
@@ -136,7 +136,7 @@ myConfig
       , layoutHook = lessBorders Screen $ layoutHook desktopConfig
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
       }
-    `additionalKeys` myKeys
+    `additionalKeysP` myKeys
 
 
 spawnWithLogs :: MonadIO m => FilePath -> [String] -> m ()
