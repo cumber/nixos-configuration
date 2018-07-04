@@ -8,11 +8,11 @@
 
     nix = {
       binaryCaches = [
-        "http://alyamar.goldie:5000"
+        "http://kocka.goldie:5000"
         "https://cache.nixos.org/"
       ];
       binaryCachePublicKeys = [
-        "alyamar:6Gg2JIhXz/NTUI77hdIlTkNlArdF9yvz3dqNRhpjXuo="
+        "kocka:/M85ADJvkdibcMJtP+3uj4e3HCn/LkIAoy8r5V3QTNY="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
     };
