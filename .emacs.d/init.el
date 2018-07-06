@@ -33,6 +33,14 @@
 ;; Set theme
 (add-hook 'after-init-hook (lambda () (load-theme 'leuven)))
 
+;; Configure how backups and autosave files are made
+(make-directory "~/.cache/emacs/backups/" t)
+(make-directory "~/.cache/emacs/autosave/" t)
+(setq backup-directory-alist '(("." . "~/.cache/emacs/backups/")))
+(setq auto-save-file-name-transforms '((".*" "~/.cache/emacs/autosave/" t)))
+(setq backup-by-copying-when-linked t)
+
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
