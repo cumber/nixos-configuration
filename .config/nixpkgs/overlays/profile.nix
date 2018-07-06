@@ -7,6 +7,7 @@ self: super: {
       file
       gnome3.adwaita-icon-theme  # fallback icons from numix
       gnome3.gnome-system-monitor
+      gnome3.nautilus
       hicolor_icon_theme
       inconsolata
       lxappearance

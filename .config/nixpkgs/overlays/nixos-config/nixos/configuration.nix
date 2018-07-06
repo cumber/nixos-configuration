@@ -86,7 +86,6 @@
   environment.systemPackages = with pkgs; [
     gnome3.dconf
     gnome3.gconf
-    gnome3.nautilus
     shared_mime_info
   ];
 
