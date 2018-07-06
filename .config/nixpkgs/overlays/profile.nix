@@ -38,7 +38,6 @@ self: super: {
       powerline-fonts
 
       # Office
-      audacious
       firefox
       chromium
       evince
@@ -46,6 +45,7 @@ self: super: {
       gimp
       gnome3.eog
       libreoffice
+      lollypop
       signal-desktop
       slack
       speedcrunch
