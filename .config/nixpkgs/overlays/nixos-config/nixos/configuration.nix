@@ -31,7 +31,6 @@
   networking = {
     networkmanager = {
       enable = true;
-      dns = "dnsmasq";
     };
 
     # Needed to allow autodetection of network printer via BJNP
