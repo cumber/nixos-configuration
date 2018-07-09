@@ -122,6 +122,11 @@
         shell = pkgs.zsh;
       };
     };
+
+    groups = {
+      kvm = {};
+      render = {};
+    };
   };
 
   hardware.pulseaudio = {
