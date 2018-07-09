@@ -129,6 +129,10 @@
     };
   };
 
+  # With this enabled, we were trying to load a kernel module snd_pcm_oss that
+  # isn't actually installed.
+  sound.enableOSSEmulation = false;
+
   hardware.pulseaudio = {
     enable = true;
   };
