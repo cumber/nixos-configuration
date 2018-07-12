@@ -4,6 +4,7 @@ module Main
   ( main )
 where
 
+import Control.Monad ( void )
 import Control.Monad.IO.Class ( liftIO )
 
 import Data.Foldable ( traverse_ )
@@ -25,7 +26,13 @@ import System.Posix.Env ( getEnv
                         , putEnv
                         )
 
-import System.Process
+import System.Process ( StdStream (UseHandle)
+                      , createProcess
+                      , env
+                      , proc
+                      , std_err
+                      , std_out
+                      )
 
 import System.Taffybar.Support.PagerHints ( pagerHints )
 
@@ -144,7 +151,7 @@ spawnWithLogs cmd args = spawnWithLogsEnv cmd args Nothing
 
 spawnWithLogsEnv :: MonadIO m => FilePath -> [String] -> Maybe [(String, String)] -> m ()
 spawnWithLogsEnv cmd args es
-  = liftIO $
+  = void . xfork $
      do home <- fromMaybe "/tmp/xmonad/log" <$> getEnv "HOME"
         let logDir = home <> "/.local/var/log/" <> takeBaseName cmd
         createDirectoryIfMissing True logDir
