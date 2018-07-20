@@ -34,6 +34,7 @@ self: super: {
       gitAndTools.gitFull
       #haskellPackages.hasktags
       haskellPackages.hlint
+      nodePackages.tern   # used by js mode setup in emacs
       nox
       powerlineWithGitStatus
       powerline-fonts

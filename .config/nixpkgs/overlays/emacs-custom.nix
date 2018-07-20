@@ -18,6 +18,10 @@ self: super: {
 
     csv-mode
 
+    tern
+    company-tern
+    indium
+
     php-mode
 
     markdown-mode
