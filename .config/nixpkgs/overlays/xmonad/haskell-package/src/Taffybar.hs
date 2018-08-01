@@ -1,4 +1,5 @@
 -- -*-  dante-target: "launch-taffybar";  -*-
+{-# LANGUAGE OverloadedStrings #-}
 
 module Main (main) where
 
