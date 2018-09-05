@@ -53,7 +53,7 @@ import XMonad.Util.Run ( safeSpawn )
 
 
 main :: IO ()
-main = launch . pagerHints $ myConfig
+main = launch . fullscreenSupport . pagerHints $ myConfig
 
 
 myModMask = mod4Mask
