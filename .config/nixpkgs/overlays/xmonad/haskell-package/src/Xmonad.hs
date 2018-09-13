@@ -144,7 +144,7 @@ myConfig
   = desktopConfig
       { modMask = myModMask
       , terminal = "termite"
-      , focusedBorderColor = "#1010bb"
+      , focusedBorderColor = "#00ff70"
       , normalBorderColor = "#000000"
       , borderWidth = 2
       , startupHook = startupHook desktopConfig >> myStartupHook
