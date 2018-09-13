@@ -37,6 +37,7 @@ import System.Process ( StdStream (UseHandle)
 import System.Taffybar.Support.PagerHints ( pagerHints )
 
 import XMonad
+import XMonad.Actions.UpdatePointer ( updatePointer )
 import XMonad.Config.Desktop ( desktopConfig )
 import XMonad.Hooks.ManageDocks ( ToggleStruts (ToggleStruts) )
 import XMonad.Hooks.SetWMName ( setWMName )
@@ -132,6 +133,13 @@ myManageHooks =
   ]
 
 
+{-
+logHook to avoid window layout changes leaving the mouse pointer
+in a window that doesn't have focus, which is confusing
+-}
+moveMouseToFocussedWindow = updatePointer (0.5, 0.5) (0.5, 0.5)
+
+
 myConfig
   = desktopConfig
       { modMask = myModMask
@@ -142,6 +150,7 @@ myConfig
       , startupHook = startupHook desktopConfig >> myStartupHook
       , layoutHook = lessBorders Screen $ layoutHook desktopConfig
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
+      , logHook = logHook desktopConfig >> moveMouseToFocussedWindow
       }
     `additionalKeysP` myKeys
 
