@@ -1,4 +1,4 @@
-:set editor vim
+:set editor ee
 :set prompt "\ESC[33m%s\n\ESC[32;1m\STXλ\ESC[m\STX "
 :set prompt-cont "\ESC[32;1m\STX|\ESC[m\STX "
 :set +m +t
