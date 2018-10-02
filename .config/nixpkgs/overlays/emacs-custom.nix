@@ -1,5 +1,5 @@
 self: super: {
-  emacsPackagesNg = super.emacsPackagesNg.overrideScope (epSuper: _epSelf: {
+  emacsPackagesNg = super.emacsPackagesNg.overrideScope' (_epSelf: epSuper: {
     nix-sandbox = epSuper.nix-sandbox.overrideAttrs (_oldAttrs: {
       src = super.fetchFromGitHub {
         owner = "benley";
