@@ -6,7 +6,7 @@
     imports = [ ./systemd-boot.nix ];
 
     nix = {
-      binaryCaches = [
+      trustedBinaryCaches = [
         "http://kocka.goldie:5000"
         "https://cache.nixos.org/"
       ];
