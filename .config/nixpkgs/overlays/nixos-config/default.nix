@@ -1,11 +1,13 @@
 self: super:
   let hostName = (import <nixpkgs/nixos> {}).config.networking.hostName;
-      configToDeploy = super.runCommand "nixos-configuration-files" {} ''
-        cp -r ${./nixos} $out
-        substituteInPlace $out/configuration.nix \
-          --replace '(throw "replace this throw with machine-specific module")' \
-                    './${hostName}.nix'
-      '';
+      configToDeploy = super.runCommand "nixos-configuration-files"
+        { preferLocalBuild = true; }
+        ''
+          cp -r ${./nixos} $out
+          substituteInPlace $out/configuration.nix \
+            --replace '(throw "replace this throw with machine-specific module")' \
+                      './${hostName}.nix'
+        '';
    in {
         nixos-config = super.writeShellScriptBin "nixos-config" ''
           function mkdiff {
