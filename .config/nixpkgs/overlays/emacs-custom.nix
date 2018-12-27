@@ -18,6 +18,9 @@ self: super: {
 
     csv-mode
 
+    dockerfile-mode
+    docker-compose-mode
+
     tern
     company-tern
     indium
