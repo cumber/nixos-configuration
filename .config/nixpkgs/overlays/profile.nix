@@ -22,6 +22,7 @@ self: super: {
       termite
       tree
       xmonad-custom
+      xmonad-session-init
       xsel
       zdotdir
 

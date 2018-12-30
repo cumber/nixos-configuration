@@ -4,35 +4,13 @@ module Main
   ( main )
 where
 
-import Control.Monad ( void )
 import Control.Monad.IO.Class ( liftIO )
-
-import Data.Foldable ( traverse_ )
-
-import Data.Maybe ( fromMaybe )
 
 import Data.Monoid ( (<>) )
 
-import System.FilePath ( takeBaseName )
-
-import System.Directory ( createDirectoryIfMissing )
-
-import System.IO ( IOMode (WriteMode)
-                 , openFile
-                 )
-
 import System.Posix.Env ( getEnv
-                        , getEnvironment
                         , putEnv
                         )
-
-import System.Process ( StdStream (UseHandle)
-                      , createProcess
-                      , env
-                      , proc
-                      , std_err
-                      , std_out
-                      )
 
 import System.Taffybar.Support.PagerHints ( pagerHints )
 
@@ -94,36 +72,10 @@ myKeys =
 
 
 myStartupHook
-  = do  startupCommands
-        setWMName "LG3D"  -- helps with Java GUIs
+  = do  setWMName "LG3D"  -- helps with Java GUIs
         liftIO $ mapM_ (putEnv . gtk2RcFiles) =<< getEnv "HOME"
-
+        safeSpawn "/usr/bin/env" ["xmonad-session-init"]
   where gtk2RcFiles home = "GTK2_RC_FILES=" <> home <> "/.gtkrc-2.0"
-
-
-startupCommands
-  = do traverse_ (uncurry spawnWithLogs) simpleCommands
-       es <- liftIO getEnvironment
-       let desktopHackEnv = Just $ es ++ [("XDG_CURRENT_DESKTOP", "Unity")]
-       spawnWithLogsEnv "{{slack}}/bin/slack" [] desktopHackEnv
-       spawnWithLogsEnv "{{signal-desktop}}/bin/signal-desktop" ["--start-in-tray"] desktopHackEnv
-
-simpleCommands
-  =   [ ("{{status-notifier-item}}/bin/status-notifier-watcher", [])
-      , ("{{setxkbmap}}/bin/setxkbmap", ["-option", "compose:ralt"])
-      , ("{{notify-osd}}/bin/notify-osd", [])
-      , ("{{synapse}}/bin/synapse", ["-s"])
-      , ("{{compton}}/bin/compton", [])
-      , ("{{networkmanagerapplet}}/bin/nm-applet", ["--indicator"])
-      , ("{{system-config-printer}}/bin/system-config-printer-applet", [])
-      , ("{{powerline}}/bin/powerline-daemon", ["--replace"])
-      , ("{{udiskie}}/bin/udiskie", ["--tray", "--appindicator"])
-      , ("{{syncthing-gtk}}/bin/syncthing-gtk", ["--minimized"])
-      , ("{{lightlocker}}/bin/light-locker", ["--lock-on-suspend"])
-      , ("{{out}}/bin/launch-taffybar", [])
-      , ("{{keepassxc}}/bin/keepassxc", [])
-      , ("{{emacs-custom}}/bin/emacs", ["--bg-daemon"])
-      ]
 
 
 myManageHooks =
@@ -153,19 +105,3 @@ myConfig
       , logHook = logHook desktopConfig >> moveMouseToFocussedWindow
       }
     `additionalKeysP` myKeys
-
-
-spawnWithLogs :: MonadIO m => FilePath -> [String] -> m ()
-spawnWithLogs cmd args = spawnWithLogsEnv cmd args Nothing
-
-spawnWithLogsEnv :: MonadIO m => FilePath -> [String] -> Maybe [(String, String)] -> m ()
-spawnWithLogsEnv cmd args es
-  = void . xfork $
-     do home <- fromMaybe "/tmp/xmonad/log" <$> getEnv "HOME"
-        let logDir = home <> "/.local/var/log/" <> takeBaseName cmd
-        createDirectoryIfMissing True logDir
-        stdout <- UseHandle <$> openFile (logDir <> "/stdout") WriteMode
-        stderr <- UseHandle <$> openFile (logDir <> "/stderr") WriteMode
-        let pcfg = (proc cmd args) { std_out = stdout, std_err = stderr, env = es }
-        _ <- createProcess pcfg
-        pure ()

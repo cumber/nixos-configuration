@@ -8,10 +8,7 @@ let
                        then pkgs.haskellPackages
                        else pkgs.haskell.packages.${compiler};
 
-  drv = haskellPackages.callPackage ./xmonad-custom.nix {
-    powerline = pkgs.powerlineWithGitStatus;
-    slack = pkgs.slack;  # clash with haskellPackages.slack
-  };
+  drv = haskellPackages.callPackage ./xmonad-custom.nix {};
 
 in
 
