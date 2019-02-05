@@ -115,6 +115,9 @@
 (use-package dante
   :after haskell-mode
   :commands 'dante-mode
+  :config
+  ;; Dante's defaults use a pure nix shell, which doesn't always have cabal on the path
+  (setq dante-repl-command-line-methods '(impure-nix))
   :init
   ;; Want Dante to start after local variables have been applied (e.g. from .dir-locals.el),
   ;; otherwise it starts GHCI without applying settings (e.g. target), which is confusing
