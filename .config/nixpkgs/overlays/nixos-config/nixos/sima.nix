@@ -6,8 +6,8 @@
     imports = [ ./systemd-boot.nix ];
 
     nix = {
-      trustedBinaryCaches = [
-        "http://kocka.goldie:5000"
+      binaryCaches = [
+        "http://kocka.local:5000"
         "https://cache.nixos.org/"
       ];
       binaryCachePublicKeys = [
