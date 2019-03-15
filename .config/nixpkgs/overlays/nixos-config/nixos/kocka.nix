@@ -16,6 +16,6 @@
         secretKeyFile = "/etc/nixos/secrets/nix-serve.sec";
       };
 
-      xserver.xrandrHeads = [ "DisplayPort-0" "DisplayPort-1" ];
+      xserver.xrandrHeads = [ "DP-2" "DP-1" ];
     };
   }
