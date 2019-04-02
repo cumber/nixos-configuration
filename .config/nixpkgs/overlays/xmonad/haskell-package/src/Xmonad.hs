@@ -43,9 +43,6 @@ myKeys =
   , ( "M-x"
     , safeSpawn "{{synapse}}/bin/synapse" []
     )
-  , ( "C-<Space>"
-    , safeSpawn "{{synapse}}/bin/synapse" []
-    )
 
   , ( "M-b"
     , sendMessage ToggleStruts
