@@ -184,5 +184,10 @@
   :config
   (add-to-list 'company-backends 'company-tern))
 
+(use-package robe
+  :after company
+  :config
+  (add-hook 'ruby-mode-hook 'robe-mode)
+  (push 'company-robe company-backends))
 
 (use-package docker-compose-mode)

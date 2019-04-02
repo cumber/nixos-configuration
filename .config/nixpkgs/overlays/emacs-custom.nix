@@ -38,6 +38,8 @@ self: super: {
     gitconfig-mode
     gitignore-mode
 
+    robe
+
     web-mode
 
     yaml-mode
