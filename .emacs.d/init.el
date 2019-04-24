@@ -188,6 +188,7 @@
 (use-package robe
   :after company
   :config
+  (setq ruby-deep-indent-paren nil)
   (add-hook 'ruby-mode-hook 'robe-mode)
   (push 'company-robe company-backends))
 
