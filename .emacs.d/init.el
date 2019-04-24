@@ -15,6 +15,9 @@
 ;; 2-space indents in javascript
 (setq-default js-indent-level 2)
 
+;; 2-space indents in css/scss
+(setq-default css-indent-offset 2)
+
 (setq-default cursor-type 'bar)
 
 (global-visual-line-mode)
@@ -175,7 +178,9 @@
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (setq css-indent-offset 2))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2))
 
 (use-package tern
   :hook (js-mode . tern-mode)
