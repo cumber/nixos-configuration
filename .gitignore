@@ -30,9 +30,10 @@
 # Nix config should definitely be versioned!
 !/.config/nixpkgs
 
-# Unignore .emacs.d, and ignore autosaves
+# Unignore .emacs.d, and ignore autosaves and transient
 !/.emacs.d/
 /.emacs.d/auto-save-list/
+/.emacs.d/transient/
 
 # Taffybar config
 !/.config/taffybar
