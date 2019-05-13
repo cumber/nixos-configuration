@@ -1,5 +1,16 @@
 { config, pkgs, ... }:
   {
+    # Need to allow unfree nvidia drivers
+    nixpkgs.config = {
+      allowUnfreePredicate = (pkg:
+      builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) [
+          "nvidia-x11"
+          "nvidia-settings"
+          "nvidia-persistenced"
+        ]
+      );
+    };
+
     networking.hostName = "kocka";
 
     # Use the systemd-boot efi boot loader.
@@ -16,6 +27,9 @@
         secretKeyFile = "/etc/nixos/secrets/nix-serve.sec";
       };
 
-      xserver.xrandrHeads = [ "DP-2" "DP-1" ];
+      # Use proprietary nvidia driver
+      xserver = {
+        videoDrivers = [ "nvidia" ];
+      };
     };
   }
