@@ -159,6 +159,9 @@
     enableOnBoot = false;
   };
 
+  # Thunderbird crashes with portals enabled; will be fixed in v68
+  xdg.portal.enable = false;
+
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "18.03";
 }
