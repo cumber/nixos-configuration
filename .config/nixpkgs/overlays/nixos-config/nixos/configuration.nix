@@ -154,11 +154,6 @@
     };
   };
 
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = false;
-  };
-
   # Thunderbird crashes with portals enabled; will be fixed in v68
   xdg.portal.enable = false;
 
