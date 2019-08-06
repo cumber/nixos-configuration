@@ -13,6 +13,7 @@ in {
     overrides = pkgs.lib.composeExtensions (old.overrides or (_: _: {})) (self: super: {
       taffybar = markUnbroken super.taffybar;
       gtk-sni-tray = markUnbroken super.gtk-sni-tray;
+      gtk-strut = markUnbroken super.gtk-strut;
 
       status-notifier-item = self.callHackageDirect {
         pkg = "status-notifier-item";
