@@ -27,6 +27,8 @@
     options snd_hda_intel enable=1
   '';
 
+  boot.tmpOnTmpfs = true;
+
   # hostName is expected to be defined in machine-specific module;
   networking = {
     networkmanager = {
