@@ -13,6 +13,7 @@ self: super: {
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
     use-package
 
+    attrap
     company-cabal
     dante
 
