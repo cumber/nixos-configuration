@@ -125,7 +125,9 @@
   (add-hook 'haskell-mode-local-vars-hook 'dante-mode)
   (add-hook 'dante-mode-hook
     '(lambda () (flycheck-add-next-checker 'haskell-dante
-                 '(warning . haskell-hlint)))))
+                                           '(warning . haskell-hlint))))
+  (add-hook 'dante-mode-hook
+    '(lambda () (company-mode -1))))
 
 (use-package which-func
   :config
