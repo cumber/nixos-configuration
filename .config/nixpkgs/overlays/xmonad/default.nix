@@ -14,25 +14,25 @@ self: super: {
           { pkg = self.compton; path = "/bin/compton"; }
           { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
-          { pkg = self.powerlineWithGitStatus; path = "/bin/powerline-daemon"; args = "--replace"; }
+          { pkg = self.powerlineWithGitStatus; path = "/bin/powerline-daemon"; args = "--replace"; logName = "powerline"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
           { pkg = self.syncthing-gtk; path = "/bin/syncthing-gtk"; args = "--minimized"; }
           { pkg = self.lightlocker; path = "/bin/light-locker"; args = "--lock-on-suspend"; }
-          { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; }
+          { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
           { pkg = self.keepassxc; path = "/bin/keepassxc"; }
-          { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; }
+          { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
           { pkg = self.slack; path = "/bin/slack"; vars = desktopHack; }
           { pkg = self.signal-desktop; path = "/bin/signal-desktop"; args = "--start-in-tray"; vars = desktopHack; }
         ];
 
         logDir = "$HOME/.local/var/log";
         mkEnvs = compose (super.lib.concatStringsSep " ") (super.lib.mapAttrsToList (k: v: k + "=" + v));
-        bashify = { pkg, path, args ? "", vars ? {} }: (
+        bashify = { pkg, path, args ? "", logName ? (builtins.parseDrvName pkg.name).name, vars ? {} }: (
           let envs = mkEnvs vars;
-              logDir' = "${logDir}/${pkg.name}";
+              logDir' = "${logDir}/${logName}";
               cmd = "${envs} ${pkg}${path} ${args}  > ${logDir'}/stdout 2> ${logDir'}/stderr &!";
           in  ''
-                echo >&2 "Running ${pkg.name}:   ${cmd}"
+                echo >&2 "Running ${logName}:   ${cmd}"
                 mkdir -p ${logDir'}
                 ${cmd}
               ''
