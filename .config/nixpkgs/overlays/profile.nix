@@ -3,7 +3,6 @@ self: super: {
     name = "profile";
     paths = [
       # System
-      blueman
       file
       gnome3.adwaita-icon-theme  # fallback icons from numix
       gnome3.gnome-system-monitor

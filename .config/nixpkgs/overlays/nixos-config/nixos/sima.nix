@@ -23,6 +23,8 @@
       { x = 1920; y = 1080; }
     ];
 
+    services.blueman.enable = true;
+
     services.xserver.synaptics = {
       enable = true;
       palmDetect = true;
