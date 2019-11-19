@@ -79,18 +79,23 @@
     xserver = {
       enable = true;
 
-      displayManager.lightdm.enable = true;
-      displayManager.session = [
-        {
-          manage = "window";
-          name = "xmonad";
-          start = ''
-            export GIO_EXTRA_MODULES="/run/current-system/sw/lib/gio/modules"
-            launch-xmonad &
-            waitPID=$!
-          '';
-        }
-      ];
+      displayManager = {
+        lightdm.enable = true;
+        lightdm.greeters.enso.enable = true;
+        lightdm.greeters.gtk.enable = false;
+
+        session = [
+          {
+            manage = "window";
+            name = "xmonad";
+            start = ''
+              export GIO_EXTRA_MODULES="/run/current-system/sw/lib/gio/modules"
+              launch-xmonad &
+              waitPID=$!
+            '';
+          }
+        ];
+      };
     };
   };
 
