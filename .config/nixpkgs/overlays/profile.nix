@@ -42,6 +42,7 @@ self: super: {
       # Office
       firefox
       chromium
+      anki
       evince
       keepassxc
       gimp
