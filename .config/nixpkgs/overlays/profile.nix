@@ -43,12 +43,12 @@ self: super: {
       firefox
       chromium
       anki
+      clementine
       evince
       keepassxc
       gimp
       gnome3.eog
       libreoffice
-      lollypop
       signal-desktop
       slack
       speedcrunch
