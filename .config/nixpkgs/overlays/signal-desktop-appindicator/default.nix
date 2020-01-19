@@ -11,19 +11,19 @@ self: super: {
           installPhase = ''
             cp -r ${sd} $out
 
-            # Patch to include appindicator
-            chmod u+w $out/libexec/.signal-desktop-wrapped
-            runpath="$(readelf -d $out/libexec/.signal-desktop-wrapped | grep RUNPATH | sed -e 's/^.*\[\(.*\)]$/\1/' | sed -e "s|${sd}|$out|"):${self.libappindicator-gtk3}/lib"
-            patchelf --set-rpath $runpath $out/libexec/.signal-desktop-wrapped
-
-            # Fix previous wrapper script; absolute path to overridden package
-            substituteInPlace $out/libexec/signal-desktop \
-              --replace ${sd} $out
-
             # Replace symlink in bin; absolute path to overridden package
             chmod u+w $out/bin
-            rm $out/bin/signal-desktop
-            ln -s $out/libexec/signal-desktop $out/bin/signal-desktop
+            rm $out/bin/.signal-desktop-wrapped
+            ln -s $out/lib/Signal/signal-desktop $out/bin/.signal-desktop-wrapped
+
+            # Patch to include appindicator
+            chmod u+w $out/lib/Signal/signal-desktop
+            runpath="$(readelf -d $out/lib/Signal/signal-desktop | grep RUNPATH | sed -e 's/^.*\[\(.*\)]$/\1/' | sed -e "s|${sd}|$out|"):${self.libappindicator-gtk3}/lib"
+            patchelf --set-rpath $runpath $out/lib/Signal/signal-desktop
+
+            # Fix previous wrapper script; absolute path to overridden package
+            substituteInPlace $out/bin/signal-desktop \
+              --replace ${sd} $out
 
             # Fix path in desktop link
             substituteInPlace $out/share/applications/signal-desktop.desktop \
