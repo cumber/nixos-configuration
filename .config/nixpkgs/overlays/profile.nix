@@ -36,8 +36,6 @@ self: super: {
       haskellPackages.hlint
       nodePackages.tern   # used by js mode setup in emacs
       nox
-      powerlineWithGitStatus
-      powerline-fonts
 
       # Office
       firefox

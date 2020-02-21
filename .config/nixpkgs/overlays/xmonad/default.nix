@@ -14,7 +14,6 @@ self: super: {
           { pkg = self.compton; path = "/bin/compton"; }
           { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
-          { pkg = self.powerlineWithGitStatus; path = "/bin/powerline-daemon"; args = "--replace"; logName = "powerline"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
           { pkg = self.syncthing-gtk; path = "/bin/syncthing-gtk"; args = "--minimized"; }
           { pkg = self.lightlocker; path = "/bin/light-locker"; args = "--lock-on-suspend"; }
