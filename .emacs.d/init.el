@@ -122,12 +122,17 @@
   ;; Want Dante to start after local variables have been applied (e.g. from .dir-locals.el),
   ;; otherwise it starts GHCI without applying settings (e.g. target), which is confusing
   (put 'dante-target 'safe-local-variable 'stringp)
+
   (add-hook 'haskell-mode-local-vars-hook 'dante-mode)
   (add-hook 'dante-mode-hook
     '(lambda () (flycheck-add-next-checker 'haskell-dante
                                            '(warning . haskell-hlint))))
   (add-hook 'dante-mode-hook
-    '(lambda () (company-mode -1))))
+    '(lambda () (company-mode -1)))
+  (setq dante-load-flags
+        '("+c" "-ferror-spans" "-fdefer-typed-holes" "-fdefer-type-errors" "-Wwarn=missing-home-modules" "-fno-diagnostics-show-caret"))
+  (setq dante-tap-type-time
+        1))
 
 (use-package which-func
   :config
