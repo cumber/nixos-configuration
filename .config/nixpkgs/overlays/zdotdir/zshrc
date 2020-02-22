@@ -170,3 +170,12 @@ function nsh() {
 function termite() {
     command termite "$@" 2>&1 > /dev/null &!
 }
+
+# Termite needs this to work properly
+source "@vte@/etc/profile.d/vte.sh"
+
+# cabal/ghc completion
+source "@zsh-haskell@/haskell.plugin.zsh"
+
+# Starship prompt
+eval "$(@starship@/bin/starship init zsh)"
