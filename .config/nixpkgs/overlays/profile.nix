@@ -47,6 +47,7 @@ self: super: {
       gimp
       gnome3.eog
       libreoffice
+      lilypond   # needed for anki plugin
       signal-desktop
       slack
       speedcrunch
