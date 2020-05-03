@@ -22,10 +22,6 @@ self: super: {
     dockerfile-mode
     docker-compose-mode
 
-    tern
-    company-tern
-    indium
-
     php-mode
 
     markdown-mode
