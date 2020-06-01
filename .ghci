@@ -9,5 +9,7 @@
 :set -fno-warn-type-defaults
 :seti -XOverloadedStrings
 :seti -XPartialTypeSignatures
+:seti -XTypeApplications
 :seti -fno-warn-partial-type-signatures
 :seti -Wno-missing-import-lists
+:showi language
