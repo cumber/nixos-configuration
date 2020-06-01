@@ -115,24 +115,15 @@
         flycheck-executable-find
         (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
-(use-package dante
-  :after haskell-mode
-  :commands 'dante-mode
-  :init
-  ;; Want Dante to start after local variables have been applied (e.g. from .dir-locals.el),
-  ;; otherwise it starts GHCI without applying settings (e.g. target), which is confusing
-  (put 'dante-target 'safe-local-variable 'stringp)
-
-  (add-hook 'haskell-mode-local-vars-hook 'dante-mode)
-  (add-hook 'dante-mode-hook
-    '(lambda () (flycheck-add-next-checker 'haskell-dante
-                                           '(warning . haskell-hlint))))
-  (add-hook 'dante-mode-hook
-    '(lambda () (company-mode -1)))
-  (setq dante-load-flags
-        '("+c" "-ferror-spans" "-fdefer-typed-holes" "-fdefer-type-errors" "-Wwarn=missing-home-modules" "-fno-diagnostics-show-caret"))
-  (setq dante-tap-type-time
-        1))
+;; Haskell LSP configuration
+(use-package lsp-mode)
+(use-package lsp-ui
+  :hook (haskell-mode . lsp))
+(use-package lsp-haskell
+  :config
+  (setq lsp-haskell-process-path-hie "ghcide")
+  (setq lsp-haskell-process-args-hie '()))
+(use-package yasnippet)
 
 (use-package which-func
   :config

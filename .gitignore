@@ -34,6 +34,7 @@
 !/.emacs.d/
 /.emacs.d/auto-save-list/
 /.emacs.d/transient/
+/.emacs.d/.lsp-session-v1
 
 # Taffybar config
 !/.config/taffybar

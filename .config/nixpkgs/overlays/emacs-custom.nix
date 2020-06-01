@@ -13,9 +13,10 @@ self: super: {
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
     use-package
 
-    attrap
     company-cabal
-    dante
+    lsp-haskell
+    lsp-ui
+    yasnippet
 
     csv-mode
 
