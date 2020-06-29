@@ -31,10 +31,14 @@ main = do
       batteryIcon = batteryIconNew
       workspaces = workspacesNew defaultWorkspacesConfig
       layout = layoutNew defaultLayoutConfig
-      window = windowsNew defaultWindowsConfig
+      windowCfg = defaultWindowsConfig { getMenuLabel = truncatedGetMenuLabel 80
+                                       , getActiveLabel = truncatedGetActiveLabel 15
+                                       }
+      window = windowsNew windowCfg
 
   startTaffybar . toTaffyConfig
-    $ defaultSimpleTaffyConfig { startWidgets = [ workspaces, layout, window ]
+    $ defaultSimpleTaffyConfig { startWidgets = [ workspaces, layout ]
+                               , centerWidgets = [ window ]
                                , endWidgets = [ tray
                                               , clock
                                               , cpu
