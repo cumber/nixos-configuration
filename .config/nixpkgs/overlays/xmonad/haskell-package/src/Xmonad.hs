@@ -1,12 +1,6 @@
---  -*- dante-target: "exe:launch-xmonad";  -*-
-
 module Main
   ( main )
 where
-
-import Control.Monad.IO.Class ( liftIO )
-
-import Data.Monoid ( (<>) )
 
 import System.Posix.Env ( getEnv
                         , putEnv
