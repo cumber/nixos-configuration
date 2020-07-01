@@ -10,6 +10,24 @@ import System.Taffybar.Support.PagerHints ( pagerHints )
 
 import XMonad
 import XMonad.Actions.UpdatePointer ( updatePointer )
+import XMonad.Actions.Navigation2D ( Navigation2DConfig ( Navigation2DConfig
+                                                        , defaultTiledNavigation
+                                                        , floatNavigation
+                                                        , screenNavigation
+                                                        , layoutNavigation
+                                                        )
+                                   , navigation2D
+                                   , centerNavigation
+
+                                   , singleWindowRect
+                                   , unmappedWindowRect
+                                   , switchLayer
+
+                                   , windowGo
+                                   , windowSwap
+                                   , screenGo
+                                   , windowToScreen
+                                   )
 import XMonad.Config.Desktop ( desktopConfig, desktopLayoutModifiers )
 import XMonad.Hooks.ManageDocks ( ToggleStruts (ToggleStruts) )
 import XMonad.Hooks.SetWMName ( setWMName )
@@ -32,7 +50,7 @@ import XMonad.Util.Run ( safeSpawn )
 
 
 main :: IO ()
-main = launch . fullscreenSupport . pagerHints $ myConfig
+main = launch . fullscreenSupport . pagerHints . nav2D $ myConfig
 
 
 myModMask = mod4Mask
@@ -64,6 +82,10 @@ myKeys =
     -- Win-z locks screen
   , ( "M-z"
     , safeSpawn "{{lightlocker}}/bin/light-locker-command" ["-l"]
+    )
+
+  , ( "M-C-<Tab>"
+    , switchLayer
     )
   ]
 
@@ -104,6 +126,26 @@ myLayout
 
         nmaster = 1
         delta = 3/100
+
+
+nav2D = navigation2D navConfig
+          (xK_Up, xK_Left, xK_Down, xK_Right)
+          [ (myModMask, windowGo)
+          , (myModMask .|. shiftMask, windowSwap)
+          , (myModMask .|. controlMask, screenGo)
+          , (myModMask .|. controlMask .|. shiftMask, windowToScreen)
+          ]
+          False
+
+navConfig
+  = Navigation2DConfig
+      { defaultTiledNavigation = centerNavigation
+      , floatNavigation = centerNavigation
+      , screenNavigation = centerNavigation
+      , layoutNavigation = [("Full", centerNavigation)]
+      , unmappedWindowRect = [("Full", singleWindowRect)]
+      }
+
 
 myConfig
   = desktopConfig
