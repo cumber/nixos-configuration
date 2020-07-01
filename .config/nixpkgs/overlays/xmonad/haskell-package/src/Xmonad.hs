@@ -10,13 +10,15 @@ import System.Taffybar.Support.PagerHints ( pagerHints )
 
 import XMonad
 import XMonad.Actions.UpdatePointer ( updatePointer )
-import XMonad.Config.Desktop ( desktopConfig )
+import XMonad.Config.Desktop ( desktopConfig, desktopLayoutModifiers )
 import XMonad.Hooks.ManageDocks ( ToggleStruts (ToggleStruts) )
 import XMonad.Hooks.SetWMName ( setWMName )
 import XMonad.Layout.Fullscreen ( fullscreenSupport )
 import XMonad.Layout.NoBorders ( Ambiguity (Screen)
                                , lessBorders
                                )
+import XMonad.Layout.PerScreen ( ifWider )
+import XMonad.Layout.ThreeColumns ( ThreeCol ( ThreeCol ) )
 import XMonad.Hooks.Place ( fixed
                           , inBounds
                           , placeHook
@@ -83,6 +85,21 @@ in a window that doesn't have focus, which is confusing
 moveMouseToFocussedWindow = updatePointer (0.5, 0.5) (0.5, 0.5)
 
 
+myLayout
+  = lessBorders Screen
+    . desktopLayoutModifiers
+    $ ifWider 2500 large (ifWider 1500 medium small)
+  where small = vertical ||| Full
+        medium = horizontal ||| Full
+        large = three ||| horizontal ||| Full
+
+        three = ThreeCol nmaster delta (1/3)
+        horizontal = Tall nmaster delta (1/2)
+        vertical = Mirror horizontal
+
+        nmaster = 1
+        delta = 3/100
+
 myConfig
   = desktopConfig
       { modMask = myModMask
@@ -91,7 +108,7 @@ myConfig
       , normalBorderColor = "#000000"
       , borderWidth = 2
       , startupHook = startupHook desktopConfig >> myStartupHook
-      , layoutHook = lessBorders Screen $ layoutHook desktopConfig
+      , layoutHook = myLayout
       , manageHook = composeAll myManageHooks <+> manageHook desktopConfig
       , logHook = logHook desktopConfig >> moveMouseToFocussedWindow
       }
