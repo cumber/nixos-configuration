@@ -30,6 +30,22 @@
       # Use proprietary nvidia driver
       xserver = {
         videoDrivers = [ "nvidia" ];
+
+        screenSection = ''
+          Option         "metamodes" "DP-2: nvidia-auto-select +1200+240 {AllowGSYNCCompatible=On}, DP-4: nvidia-auto-select +0+0 {rotation=left}"
+        '';
+
+        xrandrHeads = [
+          {
+            output = "DP-4";
+            monitorConfig = ''Option "Rotate" "left"'';
+          }
+          {
+            output = "DP-2";
+            primary = true;
+            monitorConfig = ''Option "RightOf" "DP-4"'';
+          }
+        ];
       };
     };
   }
