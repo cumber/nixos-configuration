@@ -19,6 +19,10 @@ import XMonad.Layout.NoBorders ( Ambiguity (Screen)
                                )
 import XMonad.Layout.PerScreen ( ifWider )
 import XMonad.Layout.ThreeColumns ( ThreeCol ( ThreeCol ) )
+import XMonad.Hooks.InsertPosition ( Focus ( Newer )
+                                   , Position ( Below )
+                                   , insertPosition
+                                   )
 import XMonad.Hooks.Place ( fixed
                           , inBounds
                           , placeHook
@@ -75,6 +79,7 @@ myManageHooks =
   [ placeHook . inBounds . fixed $ (0.5, 0.5)
   , appName =? "synapse" --> doIgnore
   , appName =? "speedcrunch" --> doFloat
+  , insertPosition Below Newer
   ]
 
 
