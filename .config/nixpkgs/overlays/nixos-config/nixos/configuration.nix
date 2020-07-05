@@ -139,13 +139,27 @@
         extraGroups =  [ "wheel" "networkmanager" "scanner" ];
         shell = pkgs.zsh;
       };
+
+      drop = {
+        description = "A user with minimal permissions, used for privilage dropping";
+        group = "drop";
+      };
     };
 
     groups = {
+      drop = {};
       kvm = {};
       render = {};
     };
   };
+
+  security.sudo.extraRules = [
+    {
+      groups = [ "users" ];
+      runAs = "drop";
+      commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
+    }
+  ];
 
   # With this enabled, we were trying to load a kernel module snd_pcm_oss that
   # isn't actually installed.
