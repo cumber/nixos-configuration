@@ -17,3 +17,5 @@
     default = upstream
 [alias]
     tree = log --graph --decorate --oneline -n 40
+[pull]
+	rebase = true
