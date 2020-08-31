@@ -16,7 +16,7 @@ self: super: {
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
           { pkg = self.syncthing-gtk; path = "/bin/syncthing-gtk"; args = "--minimized"; }
-          { pkg = self.lightlocker; path = "/bin/light-locker"; args = "--lock-on-suspend"; }
+          { pkg = self.lightlocker; path = "/bin/light-locker"; args = "--lock-on-suspend --late-locking"; }
           { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
           { pkg = self.keepassxc; path = "/bin/keepassxc"; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
