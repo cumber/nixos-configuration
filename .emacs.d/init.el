@@ -177,14 +177,6 @@
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-css-indent-offset 2))
 
-(use-package tern
-  :hook (js-mode . tern-mode)
-  )
-(use-package company-tern
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-tern))
-
 (use-package robe
   :after company
   :config
