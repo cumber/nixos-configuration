@@ -71,7 +71,7 @@ jobs: $ncpus
 haddock
   -- keep-temp-files: False
   hoogle: True
-  -- html: False
+  html: True
   -- html-location:
   -- executables: False
   -- tests: False
