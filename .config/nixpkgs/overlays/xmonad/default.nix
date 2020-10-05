@@ -20,7 +20,6 @@ self: super: {
           { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
           { pkg = self.keepassxc; path = "/bin/keepassxc"; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
-          { pkg = self.slack; path = "/bin/slack"; vars = desktopHack; }
           { pkg = self.signal-desktop; path = "/bin/signal-desktop"; args = "--start-in-tray"; vars = desktopHack; }
         ];
 
