@@ -13,6 +13,8 @@ self: super: {
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
     use-package
 
+    flycheck
+
     company-cabal
     lsp-haskell
     lsp-ui
