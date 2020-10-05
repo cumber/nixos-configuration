@@ -48,7 +48,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Australia/Melbourne";
+  time.timeZone = "Pacific/Auckland";
 
   services = {
     avahi = {
