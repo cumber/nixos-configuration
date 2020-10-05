@@ -7,6 +7,7 @@
           "nvidia-x11"
           "nvidia-settings"
           "nvidia-persistenced"
+          "fahclient"
         ]
       );
     };
@@ -21,6 +22,11 @@
 
     services = {
       sshd.enable = true;
+
+      foldingathome = {
+        enable = true;
+        user = "cumber";
+      };
 
       nix-serve = {
         enable = true;

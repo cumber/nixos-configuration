@@ -56,6 +56,9 @@ self: super: {
 
       chatty
 
+      fahcontrol
+      fahviewer
+
       # LyX / LaTeX
       lyx
       (texlive.combine {
