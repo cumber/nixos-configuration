@@ -3,6 +3,7 @@ self: super: {
     name = "profile";
     paths = [
       # System
+      alacritty-configured
       file
       gnome3.adwaita-icon-theme  # fallback icons from numix
       gnome3.gnome-system-monitor
@@ -18,7 +19,6 @@ self: super: {
       psmisc
       syncthing-gtk
       source-code-pro
-      termite
       tree
       xmonad-custom
       xmonad-session-init

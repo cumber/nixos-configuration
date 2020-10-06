@@ -166,14 +166,6 @@ function nsh() {
     NIX_SHELL_NAME="λ $*" ns -p "ghc.withPackages (set: with set; [ $* ])"
 }
 
-# nohup termite, to easily launch a new terminal with the current env
-function termite() {
-    command termite "$@" 2>&1 > /dev/null &!
-}
-
-# Termite needs this to work properly
-source "@vte@/etc/profile.d/vte.sh"
-
 # cabal/ghc completion
 source "@zsh-haskell@/haskell.plugin.zsh"
 

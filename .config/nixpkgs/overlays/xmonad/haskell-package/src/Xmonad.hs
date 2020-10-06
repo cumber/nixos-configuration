@@ -150,7 +150,7 @@ navConfig
 myConfig
   = desktopConfig
       { modMask = myModMask
-      , terminal = "termite"
+      , terminal = "alacritty"
       , focusedBorderColor = "#00ff70"
       , normalBorderColor = "#000000"
       , borderWidth = 2

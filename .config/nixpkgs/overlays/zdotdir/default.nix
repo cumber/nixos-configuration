@@ -5,7 +5,6 @@ self: super: {
     cp ${./zshenv} $out/etc/zdotdir/.zshenv
 
     substitute "${./zshrc}" "$out/etc/zdotdir/.zshrc" \
-      --subst-var-by vte "${self.gnome3.vte}" \
       --subst-var-by zsh-haskell "${self.zsh-haskell}" \
       --subst-var-by starship "${self.starship}"
   '';
