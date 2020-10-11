@@ -4,6 +4,7 @@ self: super: {
     paths = [
       # System
       alacritty-configured
+      bibata-extra-cursors
       file
       gnome3.adwaita-icon-theme  # fallback icons from numix
       gnome3.gnome-system-monitor
@@ -12,7 +13,6 @@ self: super: {
       inconsolata
       lxappearance
       nixos-config
-      numix-cursor-theme
       numix-gtk-theme
       numix-icon-theme
       numix-icon-theme-square   # application icons
