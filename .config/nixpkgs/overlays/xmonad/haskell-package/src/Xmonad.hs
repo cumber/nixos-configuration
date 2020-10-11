@@ -34,6 +34,7 @@ import XMonad.Hooks.SetWMName ( setWMName )
 import XMonad.Layout.Fullscreen ( fullscreenSupport )
 import XMonad.Layout.NoBorders ( Ambiguity (Screen)
                                , lessBorders
+                               , hasBorder
                                )
 import XMonad.Layout.PerScreen ( ifWider )
 import XMonad.Layout.ThreeColumns ( ThreeCol ( ThreeCol ) )
@@ -55,14 +56,7 @@ main = launch . fullscreenSupport . pagerHints . nav2D $ myConfig
 
 myModMask = mod4Mask
 myKeys =
-  [ ( "M-p"
-    , safeSpawn "{{synapse}}/bin/synapse" []
-    )
-  , ( "M-x"
-    , safeSpawn "{{synapse}}/bin/synapse" []
-    )
-
-  , ( "M-b"
+  [ ( "M-b"
     , sendMessage ToggleStruts
     )
 
@@ -101,6 +95,7 @@ myManageHooks =
   [ placeHook . inBounds . fixed $ (0.5, 0.5)
   , appName =? "synapse" --> doIgnore
   , appName =? "speedcrunch" --> doFloat
+  , appName =? "albert" --> hasBorder False
   , insertPosition Below Newer
   ]
 

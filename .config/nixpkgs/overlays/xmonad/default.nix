@@ -10,7 +10,7 @@ self: super: {
           { pkg = self.haskellPackages.status-notifier-item; path = "/bin/status-notifier-watcher"; }
           { pkg = self.xorg.setxkbmap; path = "/bin/setxkbmap"; args = "-option compose:ralt"; }
           { pkg = self.dunst-custom; path = "/bin/dunst"; }
-          { pkg = self.synapse; path = "/bin/synapse"; args = "-s"; }
+          { pkg = self.albert; path = "/bin/albert"; }
           { pkg = self.compton; path = "/bin/compton"; }
           { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
