@@ -35,4 +35,8 @@
       defaults.pcm.!card 1
       defaults.ctl.!card 1
     '';
+
+    # Allow mutable time zone for laptop
+    time.timeZone = null;
+    services.localtime.enable = true;
   }
