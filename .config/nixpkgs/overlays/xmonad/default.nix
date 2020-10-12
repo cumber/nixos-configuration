@@ -11,7 +11,7 @@ self: super: {
           { pkg = self.xorg.setxkbmap; path = "/bin/setxkbmap"; args = "-option compose:ralt"; }
           { pkg = self.dunst-custom; path = "/bin/dunst"; }
           { pkg = self.albert; path = "/bin/albert"; }
-          { pkg = self.compton; path = "/bin/compton"; }
+          { pkg = self.picom; path = "/bin/picom"; }
           { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
