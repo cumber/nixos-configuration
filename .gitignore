@@ -38,3 +38,9 @@
 
 # Taffybar config
 !/.config/taffybar
+
+# Albert config, ignore transient stuff
+!/.config/albert
+/.config/albert/core.db
+/.config/albert/last_used_version
+/.config/albert/org.albert.extension.snippets/snippets.db
