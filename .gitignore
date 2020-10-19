@@ -16,6 +16,11 @@
 !/.vim
 /.vim/.netrwhist
 
+# SSH config should be versioned, but not keys, known_hosts, etc
+!/.ssh/
+/.ssh/*
+!/.ssh/config
+
 # Unignore .config and then ignore everything in it, so I can selectively
 # version some config folders
 !/.config/
