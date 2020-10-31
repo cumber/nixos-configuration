@@ -20,7 +20,7 @@ let
     ${concatMapStrings (c: ''
       f="$out/${c.name}.conf"
       [ ! -e "$f" ] || chmod +w "$f"
-      cat ${builtins.toFile "" (c.value + "\n")} >>"$f"
+      echo "${c.value}" >>"$f"
       chmod -w "$f"
     '') (mapAttrsToList nameValuePair cfg.extraConfig)}
     chmod -w $out

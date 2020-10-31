@@ -17,8 +17,11 @@
       ./reflex-frp.nix
     ];
 
+  nix.package = pkgs.nixFlakes;
+
   nix.extraOptions = ''
     auto-optimise-store = true
+    experimental-features = nix-command flakes
   '';
 
     # Allow specific unfree packages only
