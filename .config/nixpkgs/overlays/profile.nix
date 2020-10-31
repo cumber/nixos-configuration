@@ -49,7 +49,6 @@ self: super: {
       libreoffice
       lilypond   # needed for anki plugin
       signal-desktop
-      slack
       speedcrunch
       thunderbird
       vlc
