@@ -24,22 +24,6 @@
     experimental-features = nix-command flakes
   '';
 
-    # Allow specific unfree packages only
-    nixpkgs.config = {
-      allowUnfreePredicate = (pkg:
-      builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) [
-          # nvidia proprietary drivers
-          "nvidia-x11"
-          "nvidia-settings"
-          "nvidia-persistenced"
-
-          # Folding@Home
-          "fahclient"
-          "fahcontrol"
-        ]
-      );
-    };
-
   # boot.loader is expected to be defined in machine-specific module
 
   boot.extraModprobeConfig = ''
