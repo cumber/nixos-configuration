@@ -1,17 +1,5 @@
 { config, pkgs, ... }:
   {
-    # Need to allow unfree nvidia drivers
-    nixpkgs.config = {
-      allowUnfreePredicate = (pkg:
-      builtins.elem (pkg.pname or (builtins.parseDrvName pkg.name).name) [
-          "nvidia-x11"
-          "nvidia-settings"
-          "nvidia-persistenced"
-          "fahclient"
-        ]
-      );
-    };
-
     networking.hostName = "kocka";
 
     # Use the systemd-boot efi boot loader.
