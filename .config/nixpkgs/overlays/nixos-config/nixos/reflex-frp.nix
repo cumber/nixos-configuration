@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
   {
     nix = {
-      trustedBinaryCaches = [
+      binaryCaches = [
         "https://nixcache.reflex-frp.org"
       ];
 
