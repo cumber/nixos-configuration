@@ -169,5 +169,13 @@ function nsh() {
 # cabal/ghc completion
 source "@zsh-haskell@/haskell.plugin.zsh"
 
+# Use alt+x as keyboard shortcut for launching a child shell (which
+# will inherit the environment of this zsh)
+function spawn-alacritty {
+    alacritty &!
+}
+zle -N spawn-alacritty
+bindkey '^[x' spawn-alacritty
+
 # Starship prompt
 eval "$(@starship@/bin/starship init zsh)"
