@@ -17,7 +17,6 @@ self: super: {
       numix-icon-theme
       numix-icon-theme-square   # application icons
       psmisc
-      syncthing-gtk
       source-code-pro
       tree
       xmonad-custom
