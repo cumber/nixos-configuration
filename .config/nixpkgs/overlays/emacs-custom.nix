@@ -46,6 +46,7 @@ self: super: {
 
     company-flx
     counsel-projectile
+    dtrt-indent
     fill-column-indicator
     ivy
     ivy-hydra

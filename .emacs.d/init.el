@@ -53,6 +53,10 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Autodetect indent settings for many language modes
+(use-package dtrt-indent-mode
+  :hook prog-mode)
+
 ;; Relative line numbers enabled globally
 (use-package linum-relative
   :defines global-linum-relative-mode
