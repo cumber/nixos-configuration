@@ -1,0 +1,150 @@
+{
+  "nodes": {
+    "alacritty-configured": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-qsyTFgfhWt+Vcn+22Oie58Mv2NxVTOvD9f6PiWSuNW8=",
+        "path": "packages/alacritty-configured",
+        "type": "path"
+      },
+      "original": {
+        "path": "packages/alacritty-configured",
+        "type": "path"
+      }
+    },
+    "chatty": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-ms+dN5SCcf83aHn4HhOjPUM+/6/j3LLfGkMPkzU6s/o=",
+        "path": "packages/chatty",
+        "type": "path"
+      },
+      "original": {
+        "path": "packages/chatty",
+        "type": "path"
+      }
+    },
+    "desktop": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-hcdTfIbROiil6Po15yQ0yxgfx8B7ZzbMZYikKUt++os=",
+        "path": "packages/desktop",
+        "type": "path"
+      },
+      "original": {
+        "path": "packages/desktop",
+        "type": "path"
+      }
+    },
+    "emacs-custom": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-52SzXQYWCegzo+eqjlzKlmYMo5xslDEDrQlJIf/3ocA=",
+        "path": "packages/emacs-custom",
+        "type": "path"
+      },
+      "original": {
+        "path": "packages/emacs-custom",
+        "type": "path"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1608053956,
+        "narHash": "sha256-q92nhM/j5tuOtfZ4qz87DRQfamOpTpWwzpDioakihZk=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "66a68b4a58f7c554bd7746acd51ff7cc02840b0a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1607522989,
+        "narHash": "sha256-o/jWhOSAlaK7y2M57OIriRt6whuVVocS/T0mG7fd1TI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e9158eca70ae59e73fae23be5d13d3fa0cfc78b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "alacritty-configured": "alacritty-configured",
+        "chatty": "chatty",
+        "desktop": "desktop",
+        "emacs-custom": "emacs-custom",
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "zdotdir": "zdotdir",
+        "zsh-haskell": "zsh-haskell"
+      }
+    },
+    "zdotdir": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-uMp8rz1GvSka1sB6WNsaA7zw6MwPf8WdQCrM9BGfgxI=",
+        "path": "packages/zdotdir",
+        "type": "path"
+      },
+      "original": {
+        "path": "packages/zdotdir",
+        "type": "path"
+      }
+    },
+    "zsh-haskell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-SWIaFj/lJjiizblqfPXo2aw6GUXJc6n8tWDvCjNINug=",
+        "path": "packages/zsh-haskell",
+        "type": "path"
+      },
+      "original": {
+        "path": "packages/zsh-haskell",
+        "type": "path"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
