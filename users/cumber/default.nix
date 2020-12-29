@@ -69,6 +69,8 @@
     })
   ];
 
+  services.syncthing.enable = true;
+
   xsession = {
     enable = true;
     scriptPath = ".hm-xsession";
