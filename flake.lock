@@ -55,7 +55,7 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-52SzXQYWCegzo+eqjlzKlmYMo5xslDEDrQlJIf/3ocA=",
+        "narHash": "sha256-RmwFV3ohw0Xz5SJ7yhfcFc6NK+wYoQOwNnY1zCz/Ruw=",
         "path": "packages/emacs-custom",
         "type": "path"
       },

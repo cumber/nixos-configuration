@@ -189,3 +189,5 @@
   (push 'company-robe company-backends))
 
 (use-package docker-compose-mode)
+
+(use-package xah-math-input)

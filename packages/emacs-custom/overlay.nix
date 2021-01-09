@@ -55,6 +55,7 @@ self: super: {
     rainbow-delimiters
     rainbow-identifiers
     swiper
+    xah-math-input
   ]);
 
   # launcher script for using emacs client
