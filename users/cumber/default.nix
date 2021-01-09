@@ -83,7 +83,7 @@
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
-    ".emacs" = {
+    ".emacs.d" = {
       source = ./config/emacs;
       recursive = true;
     };
