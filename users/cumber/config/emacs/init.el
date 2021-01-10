@@ -6,6 +6,8 @@
 
 (setq inhibit-startup-screen t)
 
+ (set-face-attribute 'default nil :height 120)
+
 ;; Middle click paste at cursor, not at click position
 (setq mouse-yank-at-point t)
 
@@ -192,4 +194,4 @@
 
 (use-package xah-math-input
   :config
-  global-xah-math-input)
+  (global-xah-math-input-mode))
