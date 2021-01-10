@@ -123,7 +123,7 @@
         highlighters = [ "main" "brackets" ];
       };
 
-      shellInit = ''export ZDOTDIR="$HOME/.nix-profile/etc/zdotdir"'';
+      shellInit = ''export ZDOTDIR="${pkgs.zdotdir}/etc/zdotdir"'';
     };
   };
 
