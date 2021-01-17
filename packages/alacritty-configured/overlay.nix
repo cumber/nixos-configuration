@@ -5,7 +5,7 @@ self: super: {
     buildInputs = [ self.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/alacritty \
-        --add-flags "--no-live-config-reload --config-file=${./alacritty.yml}"
+        --add-flags "--config-file=${./alacritty.yml}"
     '';
   };
 }

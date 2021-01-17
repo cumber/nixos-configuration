@@ -7,7 +7,7 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-qsyTFgfhWt+Vcn+22Oie58Mv2NxVTOvD9f6PiWSuNW8=",
+        "narHash": "sha256-FLTluM2i65BXabNL2YDlqHw0esROc6AUh5BBajeXHKY=",
         "path": "packages/alacritty-configured",
         "type": "path"
       },

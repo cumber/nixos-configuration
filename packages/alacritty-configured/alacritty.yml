@@ -1,8 +1,9 @@
+live_config_reload: false
+
 font:
   normal:
     family: Source Code Pro
   size: 13
-
 
 colors:
   primary:
