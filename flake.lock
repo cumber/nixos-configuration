@@ -1,69 +1,5 @@
 {
   "nodes": {
-    "alacritty-configured": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-FLTluM2i65BXabNL2YDlqHw0esROc6AUh5BBajeXHKY=",
-        "path": "packages/alacritty-configured",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages/alacritty-configured",
-        "type": "path"
-      }
-    },
-    "chatty": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-ms+dN5SCcf83aHn4HhOjPUM+/6/j3LLfGkMPkzU6s/o=",
-        "path": "packages/chatty",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages/chatty",
-        "type": "path"
-      }
-    },
-    "desktop": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-hcdTfIbROiil6Po15yQ0yxgfx8B7ZzbMZYikKUt++os=",
-        "path": "packages/desktop",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages/desktop",
-        "type": "path"
-      }
-    },
-    "emacs-custom": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-RmwFV3ohw0Xz5SJ7yhfcFc6NK+wYoQOwNnY1zCz/Ruw=",
-        "path": "packages/emacs-custom",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages/emacs-custom",
-        "type": "path"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -102,46 +38,8 @@
     },
     "root": {
       "inputs": {
-        "alacritty-configured": "alacritty-configured",
-        "chatty": "chatty",
-        "desktop": "desktop",
-        "emacs-custom": "emacs-custom",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
-        "zdotdir": "zdotdir",
-        "zsh-haskell": "zsh-haskell"
-      }
-    },
-    "zdotdir": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-uMp8rz1GvSka1sB6WNsaA7zw6MwPf8WdQCrM9BGfgxI=",
-        "path": "packages/zdotdir",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages/zdotdir",
-        "type": "path"
-      }
-    },
-    "zsh-haskell": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "narHash": "sha256-SWIaFj/lJjiizblqfPXo2aw6GUXJc6n8tWDvCjNINug=",
-        "path": "packages/zsh-haskell",
-        "type": "path"
-      },
-      "original": {
-        "path": "packages/zsh-haskell",
-        "type": "path"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

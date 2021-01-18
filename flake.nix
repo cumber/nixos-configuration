@@ -8,45 +8,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    desktop = {
-      url = "path:packages/desktop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    alacritty-configured = {
-      url = "path:packages/alacritty-configured";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    chatty = {
-      url = "path:packages/chatty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    emacs-custom = {
-      url = "path:packages/emacs-custom";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zdotdir = {
-      url = "path:packages/zdotdir";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zsh-haskell = {
-      url = "path:packages/zsh-haskell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, desktop,
-              alacritty-configured, chatty, emacs-custom,
-              zdotdir, zsh-haskell
-            }:
+  outputs = { self, nixpkgs, home-manager }:
     let lib = import ./lib.nix { inherit (nixpkgs) lib; };
 
         machines = lib.genAttrs (lib.readSubDirs ./system/machines) makeConfig;
+
+        findAndImportOverlays = lib.composeAll [
+          (map import)
+          (lib.filter (p: baseNameOf p == "overlay.nix"))
+          lib.filesystem.listFilesRecursive
+        ];
 
         makeConfig = (name:
           nixpkgs.lib.nixosSystem rec {
@@ -60,14 +33,10 @@
             pkgs = import nixpkgs {
               inherit system;
 
-              overlays = builtins.concatLists [
-                desktop.overlays
-                alacritty-configured.overlays
-                chatty.overlays
-                emacs-custom.overlays
-                zdotdir.overlays
-                zsh-haskell.overlays
-              ];
+              overlays = (
+                findAndImportOverlays ./overrides
+                ++ findAndImportOverlays ./packages
+              );
 
               config = {
                 allowUnfreePredicate = (pkg:
