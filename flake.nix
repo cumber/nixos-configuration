@@ -26,6 +26,7 @@
             system = "x86_64-linux";
             modules = [
               home-manager.nixosModules.home-manager
+              ({ ... }: { nix.registry.nixpkgs.flake = nixpkgs; })
               (import ./system/modules/common.nix)
               (import (./system/machines + "/${name}"))
               (import (./system/machines + "/${name}/hardware-configuration.nix"))
