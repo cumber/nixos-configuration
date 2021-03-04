@@ -9,6 +9,8 @@
     networking.firewall.allowedTCPPorts = [ 5000 ];
 
     services = {
+      fstrim.enable = true;
+
       sshd.enable = true;
 
       foldingathome = {
