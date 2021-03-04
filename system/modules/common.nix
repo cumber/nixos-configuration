@@ -10,6 +10,8 @@
       ./sane-extra-config.nix
 
       ./reflex-frp.nix
+
+      ./haskell-nix.nix
     ];
 
   nix.package = pkgs.nixFlakes;
