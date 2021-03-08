@@ -122,13 +122,19 @@
         (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
 ;; Haskell LSP configuration
-(use-package lsp-mode)
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-haskell-server-path "haskell-language-server")
+  :hook ((haskell-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
 (use-package lsp-ui
-  :hook (haskell-mode . lsp))
-(use-package lsp-haskell
-  :config
-  (setq lsp-haskell-process-path-hie "ghcide")
-  (setq lsp-haskell-process-args-hie '()))
+  :commands lsp-ui-mode)
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
 (use-package yasnippet)
 
 (use-package which-func
