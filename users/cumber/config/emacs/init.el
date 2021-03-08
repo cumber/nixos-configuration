@@ -102,6 +102,12 @@
   (setq fill-column 80)
   (global-fci-mode))
 
+;; show completion for key bindings
+(use-package which-key
+  :config
+  (which-key-setup-side-window-right-bottom)
+  (which-key-mode))
+
 (defun listify (v)
   "Return V if V is a list, else wrap it in a singleton list."
   (if (listp v)

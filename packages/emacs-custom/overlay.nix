@@ -55,6 +55,7 @@ self: super: {
     rainbow-delimiters
     rainbow-identifiers
     swiper
+    which-key
     xah-math-input
   ]);
 
