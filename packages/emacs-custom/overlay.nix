@@ -11,10 +11,57 @@ self: super: {
   });
 
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
+    # foundation of package config in emacsd/init.el
     use-package
 
+    ###
+    # General editor behaviour
+    ###
+
+    # code checking in editor
     flycheck
 
+    # fuzzy matching in company code-completion
+    company-flx
+
+    # project interaction library for Emacs
+    projectile
+
+    # Ivy completion for Emacs commands
+    ivy
+    ivy-hydra
+
+    # extended search command
+    swiper
+
+    # Ivy completion support in projectile
+    counsel-projectile
+
+    # Infer indentation offset from file contents
+    dtrt-indent
+
+    # draw line at suggested max line width
+    fill-column-indicator
+
+    # show relative line numbers
+    linum-relative
+
+    # rainbow colouring for brackets and names
+    rainbow-delimiters
+    rainbow-identifiers
+
+    # show completion for multi-step key bindings
+    which-key
+
+    # easy entry of many unicode symbols
+    xah-math-input
+
+
+    #####
+    # Language support
+    #####
+
+    # haskell language support
     company-cabal
     lsp-haskell
     lsp-ui
@@ -32,31 +79,21 @@ self: super: {
     nix-mode
     nix-sandbox
 
+    # git support
     diff-hl
     magit
     gitattributes-mode
     gitconfig-mode
     gitignore-mode
 
+    # ruby language support
     robe
 
+    # HTML mode with support for embedded parts in other languages
+    # (for CSS, script tags, and templating engines in PHP, Python, etc)
     web-mode
 
     yaml-mode
-
-    company-flx
-    counsel-projectile
-    dtrt-indent
-    fill-column-indicator
-    ivy
-    ivy-hydra
-    linum-relative
-    projectile
-    rainbow-delimiters
-    rainbow-identifiers
-    swiper
-    which-key
-    xah-math-input
   ]);
 
   # launcher script for using emacs client
