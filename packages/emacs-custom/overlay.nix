@@ -21,6 +21,9 @@ self: super: {
     # code checking in editor
     flycheck
 
+    # company (code-completion) front end with icons
+    company-box
+
     # fuzzy matching in company code-completion
     company-flx
 

@@ -159,6 +159,10 @@
   :config
   (company-flx-mode +1))
 
+;; Use company-box front end for displaying company results
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 ;; Ivy provides better menus with search
 (use-package ivy
   :config
