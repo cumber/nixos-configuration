@@ -1,6 +1,19 @@
 self: super: {
   xmonad-custom = self.haskellPackages.callPackage ./xmonad-custom/xmonad-custom.nix {};
 
+  # Turn off unneeded KIO and plasmoid support in syncthing.
+  # Also override the web view engine to be Qt WebKit instead of
+  # Qt WebEngine. Supposedly it has fewer limitations, and at one point
+  # it failed to build against WebEngine in nixpkgs.
+  syncthingtray = (super.syncthingtray.override {
+    webviewSupport = false;
+    kioPluginSupport = false;
+    plasmoidSupport = false;
+  }).overrideAttrs (old: {
+    cmakeFlags = old.cmakeFlags ++ [ "-DWEBVIEW_PROVIDER:STRING=webkit" ];
+    buildInputs = old.buildInputs ++ [ self.qt5.qtwebkit ];
+  });
+
   xmonad-session-init = (
     let desktopHack = { XDG_CURRENT_DESKTOP = "Unity"; };
 
