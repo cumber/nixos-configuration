@@ -101,7 +101,14 @@ self: super: {
 
   # launcher script for using emacs client
   emacs-edit = super.writeShellScriptBin "ee" ''
+    if [[ $IN_NIX_SHELL = "" ]]; then
+      socketName="default"
+    else
+      socketName="nix-shell: $name"
+    fi
+
     ${self.emacs-custom}/bin/emacsclient \
+      --socket-name "$socketName" \
       --alternate-editor "" \
       --create-frame \
       --no-wait \
