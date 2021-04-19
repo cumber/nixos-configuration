@@ -49,6 +49,7 @@
     speedcrunch
     thunderbird
     vlc
+    calibre
 
     chatty
 
