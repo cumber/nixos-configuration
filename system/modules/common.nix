@@ -146,6 +146,7 @@
       };
 
       drop = {
+        isSystemUser = true;
         description = "A user with minimal permissions, used for privilage dropping";
         group = "drop";
       };
