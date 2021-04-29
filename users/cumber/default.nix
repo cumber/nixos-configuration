@@ -81,6 +81,13 @@
     windowManager.command  = "${pkgs.xmonad-custom}/bin/launch-xmonad";
   };
 
+  programs = {
+    starship.enable = true;
+    starship.settings = {
+      aws.disabled = true;
+    };
+  };
+
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
@@ -110,7 +117,5 @@
     "gtk-3.0/settings.ini".source = ./config/gtk/gtk3-settings.ini;
 
     ".ghci".source = ./config/haskell/config.ghci;
-
-    "starship.toml".source = ./config/starship.toml;
   };
 }
