@@ -28,7 +28,7 @@ self: super: {
           { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
-          { pkg = self.syncthingtray; path = "/bin/syncthingtray"; }
+          { pkg = self.syncthingtray; path = "/bin/syncthingtray"; args = "--wait"; }
           { pkg = self.lightlocker; path = "/bin/light-locker"; args = "--lock-on-suspend --late-locking"; }
           { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
           { pkg = self.keepassxc; path = "/bin/keepassxc"; }
