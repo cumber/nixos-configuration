@@ -21,12 +21,29 @@
           lib.filesystem.listFilesRecursive
         ];
 
+        makeNixPath = (name: [
+          "nixpkgs-raw=${nixpkgs}"
+          "repl=${nixpkgs.outputs.legacyPackages.x86_64-linux.writeText "repl" ''
+            let flake = builtins.getFlake "${./.}";
+                pkgs = flake.nixosConfigurations.${name}.pkgs;
+             in { inherit flake; }
+                  // flake
+                  // builtins
+                  // pkgs
+                  // pkgs.lib
+                  // flake.nixosConfigurations
+          ''}"
+        ]);
+
         makeConfig = (name:
           nixpkgs.lib.nixosSystem rec {
             system = "x86_64-linux";
             modules = [
               home-manager.nixosModules.home-manager
-              ({ ... }: { nix.registry.nixpkgs.flake = nixpkgs; })
+              ({ ... }: {
+                nix.registry.nixpkgs.flake = nixpkgs;
+                nix.nixPath = makeNixPath name;
+              })
               (import ./system/modules/common.nix)
               (import (./system/machines + "/${name}"))
               (import (./system/machines + "/${name}/hardware-configuration.nix"))
