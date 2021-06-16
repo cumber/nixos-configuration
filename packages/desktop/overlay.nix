@@ -15,9 +15,7 @@ self: super: {
   });
 
   xmonad-session-init = (
-    let desktopHack = { XDG_CURRENT_DESKTOP = "Unity"; };
-
-        compose = f: g: x: f (g x);
+    let compose = f: g: x: f (g x);
 
         commands = [
           { pkg = self.haskellPackages.status-notifier-item; path = "/bin/status-notifier-watcher"; }
@@ -33,7 +31,7 @@ self: super: {
           { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
           { pkg = self.keepassxc; path = "/bin/keepassxc"; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
-          { pkg = self.signal-desktop; path = "/bin/signal-desktop"; args = "--start-in-tray"; vars = desktopHack; }
+          { pkg = self.signal-desktop; path = "/bin/signal-desktop"; args = "--start-in-tray"; }
         ];
 
         logDir = "$HOME/.local/var/log";
