@@ -10,10 +10,6 @@
     gnome3.nautilus
     hicolor_icon_theme
     inconsolata
-    lxappearance
-    numix-gtk-theme
-    numix-icon-theme
-    numix-icon-theme-square   # application icons
     psmisc
     source-code-pro
     tree
@@ -88,6 +84,22 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    font = {
+      name = "TeX Gyre Schola";
+      size = 12;
+    };
+    iconTheme = {
+      name = "Numix";
+      package = pkgs.numix-icon-theme;
+    };
+    theme = {
+      name = "Numix";
+      package = pkgs.numix-gtk-theme;
+    };
+  };
+
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
@@ -99,7 +111,7 @@
     ".gitconfig".source = ./config/git/gitconfig;
     ".gitglobalignore".source = ./config/git/gitglobalignore;
 
-    ".gtkrc-2.0".source = ./config/gtk/gtk2-settings;
+    #".gtkrc-2.0".source = ./config/gtk/gtk2-settings;
 
     ".cabal/config".source = ./config/haskell/config.cabal;
 
@@ -114,7 +126,7 @@
       recursive = true;
     };
 
-    "gtk-3.0/settings.ini".source = ./config/gtk/gtk3-settings.ini;
+    #"gtk-3.0/settings.ini".source = ./config/gtk/gtk3-settings.ini;
 
     ".ghci".source = ./config/haskell/config.ghci;
   };
