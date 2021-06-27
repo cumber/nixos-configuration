@@ -35,8 +35,17 @@
       enable = true;
     };
 
-    # Needed to allow autodetection of network printer via BJNP
-    firewall.allowedUDPPorts = [ 8611 ];
+    # Used by Syncthing for syncing
+    firewall.allowedTCPPorts = [ 22000 ];
+
+    firewall.allowedUDPPorts = [
+      # Needed to allow autodetection of network printer via BJNP
+      8611
+
+      # Used by Syncthing for syncing & discovery
+      21027
+      22000
+    ];
   };
 
   # Select internationalisation properties.
