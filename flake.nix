@@ -22,7 +22,7 @@
         ];
 
         makeNixPath = (name: [
-          "nixpkgs-raw=${nixpkgs}"
+          "nixpkgs=${nixpkgs}"
           "repl=${nixpkgs.outputs.legacyPackages.x86_64-linux.writeText "repl" ''
             let flake = builtins.getFlake "${./.}";
                 pkgs = flake.nixosConfigurations.${name}.pkgs;
