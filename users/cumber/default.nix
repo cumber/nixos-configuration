@@ -62,6 +62,10 @@
         collection-latexrecommended
 
         paralist
+
+        invoice2
+        siunitx  # required by invoice2
+        translations
       ;
     })
   ];
