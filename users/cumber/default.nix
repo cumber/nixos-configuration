@@ -29,6 +29,7 @@
     haskellPackages.hlint
     nodePackages.tern   # used by js mode setup in emacs
     nox
+    oq   # awesome json pretty printer and query tool
 
     # Office
     firefox
