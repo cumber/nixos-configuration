@@ -62,9 +62,12 @@
                     "nvidia-x11"
                     "nvidia-settings"
                     "nvidia-persistenced"
+
                     "fahclient"
                     "fahcontrol"
                     "fahviewer"
+
+                    "slack"
                   ]
                 );
               };
