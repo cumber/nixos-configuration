@@ -35,6 +35,7 @@
     firefox
     chromium
     anki
+    calibre
     clementine
     evince
     keepassxc
@@ -47,7 +48,7 @@
     speedcrunch
     thunderbird
     vlc
-    calibre
+    zoom
 
     chatty
 

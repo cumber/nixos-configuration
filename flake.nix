@@ -68,6 +68,8 @@
                     "fahviewer"
 
                     "slack"
+
+                    "zoom"
                   ]
                 );
               };
