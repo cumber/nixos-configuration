@@ -48,7 +48,7 @@
     speedcrunch
     thunderbird
     vlc
-    zoom
+    zoom-us
 
     chatty
 
