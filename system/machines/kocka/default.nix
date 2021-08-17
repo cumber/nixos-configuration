@@ -8,6 +8,9 @@
     # Need to allow for nix-serve to work
     networking.firewall.allowedTCPPorts = [ 5000 ];
 
+    # Needed for use JACK apps
+    users.extraUsers.cumber.extraGroups = [ "jackaudio" ];
+
     services = {
       fstrim.enable = true;
 
@@ -16,6 +19,11 @@
       foldingathome = {
         enable = true;
         user = "cumber";
+      };
+
+      jack = {
+        jackd.enable = true;
+        jackd.extraOptions = [ "-dalsa" "-Phw:0" "-Chw:Adapter" ];
       };
 
       nix-serve = {

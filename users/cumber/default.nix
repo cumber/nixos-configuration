@@ -56,6 +56,8 @@
     fahcontrol
     fahviewer
 
+    guitarix
+
     # LyX / LaTeX
     lyx
     (texlive.combine {
