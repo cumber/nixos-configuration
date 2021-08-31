@@ -75,6 +75,10 @@ self: super: {
     dockerfile-mode
     docker-compose-mode
 
+    # JavaScript
+    tide
+    js2-mode
+
     php-mode
 
     markdown-mode

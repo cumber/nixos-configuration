@@ -206,6 +206,19 @@
   (add-hook 'ruby-mode-hook 'robe-mode)
   (push 'company-robe company-backends))
 
+(use-package js2-mode
+  :mode "\\.js\\'"
+  :interpreter "node")
+
+(use-package tide
+  :after ((:any typescript-mode js2-mode) company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (js2-mode . tide-setup)
+         (js2-mode . tide-hl-identifier-mode))
+  :config
+  (setq tide-node-executable "@nodejs@/bin/node"))
+
 (use-package docker-compose-mode)
 
 (use-package xah-math-input

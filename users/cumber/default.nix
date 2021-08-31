@@ -112,9 +112,14 @@
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
-    ".emacs.d" = {
-      source = ./config/emacs;
-      recursive = true;
+    ".emacs.d/init.el" = {
+      source = pkgs.substituteAll {
+        src = ./config/emacs/init.el;
+
+        # Emacs config for javascript mode needs nodejs, but I don't
+        # want it in my profile directly
+        inherit (pkgs) nodejs;
+      };
     };
 
     ".gitconfig".source = ./config/git/gitconfig;
