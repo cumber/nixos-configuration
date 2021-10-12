@@ -81,11 +81,6 @@
   (show-paren-mode)
   (setq show-paren-style 'expression))
 
-(use-package rainbow-identifiers
-  :commands rainbow-identifiers-mode
-  :init
-  (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
-
 ;; Visisble tabs and trailing whitespace
 (use-package whitespace
   :config

@@ -49,9 +49,8 @@ self: super: {
     # show relative line numbers
     linum-relative
 
-    # rainbow colouring for brackets and names
+    # rainbow colouring for brackets
     rainbow-delimiters
-    rainbow-identifiers
 
     # show completion for multi-step key bindings
     which-key
