@@ -62,6 +62,7 @@
                     "nvidia-x11"
                     "nvidia-settings"
                     "nvidia-persistenced"
+                    "cudatoolkit"
 
                     "fahclient"
                     "fahcontrol"
