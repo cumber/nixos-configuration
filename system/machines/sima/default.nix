@@ -16,11 +16,6 @@
 
     hardware.bluetooth.enable = true;
 
-    # Stop the high-res screen having tiny unreadable text
-    services.xserver.resolutions = [
-      { x = 1920; y = 1080; }
-    ];
-
     services.blueman.enable = true;
 
     services.xserver.synaptics = {
