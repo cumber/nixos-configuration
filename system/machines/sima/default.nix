@@ -7,7 +7,7 @@
 
     nix = {
       binaryCaches = [
-        "http://kocka.local:5000"
+        "http://kocka:5000"
       ];
       binaryCachePublicKeys = [
         "kocka:/M85ADJvkdibcMJtP+3uj4e3HCn/LkIAoy8r5V3QTNY="
