@@ -215,7 +215,3 @@
   (setq tide-node-executable "@nodejs@/bin/node"))
 
 (use-package docker-compose-mode)
-
-(use-package xah-math-input
-  :config
-  (global-xah-math-input-mode))

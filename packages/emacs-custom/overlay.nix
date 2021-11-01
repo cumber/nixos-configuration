@@ -55,9 +55,6 @@ self: super: {
     # show completion for multi-step key bindings
     which-key
 
-    # easy entry of many unicode symbols
-    xah-math-input
-
 
     #####
     # Language support
@@ -88,9 +85,6 @@ self: super: {
     # git support
     diff-hl
     magit
-    gitattributes-mode
-    gitconfig-mode
-    gitignore-mode
 
     # ruby language support
     robe
