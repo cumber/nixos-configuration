@@ -11,8 +11,9 @@
 ;; Middle click paste at cursor, not at click position
 (setq mouse-yank-at-point t)
 
-;; Don't indent with tabs
+;; Don't indent with tabs; if there are tabs make them width 4
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; 2-space indents in javascript
 (setq-default js-indent-level 2)
@@ -26,9 +27,19 @@
 
 (delete-selection-mode t)
 
-(setq safe-local-variable-values
-  '((flycheck-disabled-checkers . (emacs-lisp-checkdoc))
-    (engine . php)))
+;; Taken from https://stackoverflow.com/a/24373916/450128
+(defun add-to-list-multi (list items)
+  "Adds multiple items to LIST.
+Allows for adding a sequence of items to the same list, rather
+than having to call `add-to-list' multiple times."
+  (interactive)
+  (dolist (item items)
+    (add-to-list list item)))
+
+(add-to-list-multi 'safe-local-variable-values
+                   '((flycheck-disabled-checkers . emacs-lisp-checkdoc)
+                     (engine . php)))
+(add-to-list 'safe-local-eval-forms '(web-mode-use-tabs))
 
 ;; Provide a new MAJORMODE-local-vars-hook
 (add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
