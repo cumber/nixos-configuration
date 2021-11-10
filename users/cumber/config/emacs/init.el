@@ -27,7 +27,8 @@
 (delete-selection-mode t)
 
 (setq safe-local-variable-values
-      '((flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+  '((flycheck-disabled-checkers . (emacs-lisp-checkdoc))
+    (engine . php)))
 
 ;; Provide a new MAJORMODE-local-vars-hook
 (add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
@@ -190,6 +191,8 @@
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-enable-engine-detection t)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-css-indent-offset 2))
