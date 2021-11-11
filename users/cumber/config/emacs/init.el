@@ -37,9 +37,10 @@ than having to call `add-to-list' multiple times."
     (add-to-list list item)))
 
 (add-to-list-multi 'safe-local-variable-values
-                   '((flycheck-disabled-checkers . emacs-lisp-checkdoc)
-                     (engine . php)))
-(add-to-list 'safe-local-eval-forms '(web-mode-use-tabs))
+                   '((flycheck-disabled-checkers . emacs-lisp-checkdoc)))
+(add-to-list-multi 'safe-local-eval-forms
+                   '((web-mode-use-tabs)
+                     (web-mode-set-engine "php")))
 
 ;; Provide a new MAJORMODE-local-vars-hook
 (add-hook 'hack-local-variables-hook 'run-local-vars-mode-hook)
