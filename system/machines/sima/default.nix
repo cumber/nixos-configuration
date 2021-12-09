@@ -2,8 +2,10 @@
   {
     networking.hostName = "sima";
 
-    # Use the systemd-boot efi boot loader.
-    imports = [ ../../modules/systemd-boot.nix ];
+    imports = [
+      ../../modules/systemd-boot.nix
+      ../../modules/bluetooth.nix
+    ];
 
     nix = {
       binaryCaches = [

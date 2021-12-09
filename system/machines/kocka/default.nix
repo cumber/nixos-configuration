@@ -2,8 +2,9 @@
   {
     networking.hostName = "kocka";
 
-    # Use the systemd-boot efi boot loader.
-    imports = [ ../../modules/systemd-boot.nix ];
+    imports = [
+      ../../modules/systemd-boot.nix
+    ];
 
     # Need to allow for nix-serve to work
     networking.firewall.allowedTCPPorts = [ 5000 ];

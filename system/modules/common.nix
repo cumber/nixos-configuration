@@ -6,8 +6,6 @@
 
 {
   imports = [
-    ./bluetooth.nix
-
     # see https://nixos.wiki/wiki/Scanners#Network_scanning
     ./sane-extra-config.nix
 
