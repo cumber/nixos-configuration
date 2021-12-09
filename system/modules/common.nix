@@ -5,14 +5,16 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # see https://nixos.wiki/wiki/Scanners#Network_scanning
-      ./sane-extra-config.nix
+  imports = [
+    ./bluetooth.nix
 
-      ./reflex-frp.nix
+    # see https://nixos.wiki/wiki/Scanners#Network_scanning
+    ./sane-extra-config.nix
 
-      ./haskell-nix.nix
-    ];
+    ./reflex-frp.nix
+
+    ./haskell-nix.nix
+  ];
 
   nix.package = pkgs.nixFlakes;
 

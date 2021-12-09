@@ -14,10 +14,6 @@
       ];
     };
 
-    hardware.bluetooth.enable = true;
-
-    services.blueman.enable = true;
-
     services.xserver.synaptics = {
       enable = true;
       palmDetect = true;
