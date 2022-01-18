@@ -230,3 +230,6 @@ than having to call `add-to-list' multiple times."
   (setq tide-node-executable "@nodejs@/bin/node"))
 
 (use-package docker-compose-mode)
+
+(use-package graphviz-dot-mode)
+(use-package company-graphviz-dot)

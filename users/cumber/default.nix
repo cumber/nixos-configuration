@@ -25,6 +25,7 @@
     emacs-custom
     emacs-edit
     gitAndTools.gitFull
+    graphviz
     #haskellPackages.hasktags
     haskellPackages.hlint
     nodePackages.tern   # used by js mode setup in emacs

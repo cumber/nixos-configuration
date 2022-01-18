@@ -71,6 +71,8 @@ self: super: {
     dockerfile-mode
     docker-compose-mode
 
+    graphviz-dot-mode
+
     # JavaScript
     tide
     js2-mode
