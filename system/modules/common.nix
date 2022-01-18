@@ -115,7 +115,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    gnome3.dconf
+    dconf
     gnome2.GConf
     shared_mime_info
   ];
