@@ -24,24 +24,24 @@ self: super: {
 
         commands = [
           { pkg = self.haskellPackages.status-notifier-item; path = "/bin/status-notifier-watcher"; }
-          { pkg = self.xorg.setxkbmap; path = "/bin/setxkbmap"; args = "-option compose:ralt"; }
-          { pkg = self.dunst-custom; path = "/bin/dunst"; }
-          { pkg = self.albert; path = "/bin/albert"; }
-          { pkg = self.picom; path = "/bin/picom"; }
+          { pkg = self.xorg.setxkbmap; args = "-option compose:ralt"; }
+          { pkg = self.dunst-custom; }
+          { pkg = self.albert; }
+          { pkg = self.picom; }
           { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
-          { pkg = self.syncthing-delay-start; path = "/bin/syncthingtray"; }
-          { pkg = self.lightlocker; path = "/bin/light-locker"; args = "--lock-on-suspend --late-locking"; }
+          { pkg = self.syncthing-delay-start; }
+          { pkg = self.lightlocker; args = "--lock-on-suspend --late-locking"; }
           { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
-          { pkg = self.keepassxc; path = "/bin/keepassxc"; }
+          { pkg = self.keepassxc; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
-          { pkg = self.signal-desktop; path = "/bin/signal-desktop"; args = "--start-in-tray"; }
+          { pkg = self.signal-desktop; args = "--start-in-tray"; }
         ];
 
         logDir = "$HOME/.local/var/log";
         mkEnvs = compose (super.lib.concatStringsSep " ") (super.lib.mapAttrsToList (k: v: k + "=" + v));
-        bashify = { pkg, path, args ? "", logName ? (builtins.parseDrvName pkg.name).name, vars ? {} }: (
+        bashify = { pkg, path ? "/bin/${name}", args ? "", logName ? name, name ? (builtins.parseDrvName pkg.name).name, vars ? {} }: (
           let envs = mkEnvs vars;
               logDir' = "${logDir}/${logName}";
               cmd = "${envs} ${pkg}${path} ${args}  > ${logDir'}/stdout 2> ${logDir'}/stderr &!";
