@@ -80,7 +80,12 @@
       '';
     };
 
-    locate.enable = true;
+    locate = {
+      enable = true;
+      locate = pkgs.plocate;
+      localuser = null;
+      interval = "hourly";
+    };
 
     printing = {
       enable = true;
