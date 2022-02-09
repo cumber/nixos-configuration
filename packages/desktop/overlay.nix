@@ -37,6 +37,7 @@ self: super: {
           { pkg = self.keepassxc; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
           { pkg = self.signal-desktop; args = "--start-in-tray"; }
+          { pkg = self.gwe; args = "--hide-window"; }
         ];
 
         logDir = "$HOME/.local/var/log";
