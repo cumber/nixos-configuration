@@ -166,6 +166,9 @@ function nsh() {
     NIX_SHELL_NAME="λ $*" ns -p "ghc.withPackages (set: with set; [ $* ])"
 }
 
+# nix develop, but save the environment in gcroot, and start zsh
+alias nix-dev='nix develop --profile ./gcroots/shell -c zsh'
+
 # cabal/ghc completion
 source "@zsh-haskell@/haskell.plugin.zsh"
 
