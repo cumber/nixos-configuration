@@ -4,13 +4,11 @@
 
     imports = [
       ../../modules/systemd-boot.nix
+      ../../modules/pipewire.nix
     ];
 
     # Need to allow for nix-serve to work
     networking.firewall.allowedTCPPorts = [ 5000 ];
-
-    # Needed for use JACK apps
-    users.extraUsers.cumber.extraGroups = [ "jackaudio" ];
 
     services = {
       fstrim.enable = true;
@@ -22,14 +20,32 @@
         user = "cumber";
       };
 
-      jack = {
-        jackd.enable = true;
-        jackd.extraOptions = [ "-dalsa" "-Phw:0" "-Chw:Adapter" ];
-      };
-
       nix-serve = {
         enable = true;
         secretKeyFile = "/etc/nixos/secrets/nix-serve.sec";
+      };
+
+      # By default pipewire assigns higher priority to the headphone
+      # playback port on the webcam than to my speakers. :(
+      pipewire = {
+        media-session.config.alsa-monitor = {
+          rules = [
+            {
+              actions = {
+                update-props = {
+                  "priority.driver" = 100;
+                  "priority.session" = 100;
+                };
+              };
+              matches = [
+                {
+                  "node.nick" = "WebMic HD Pro";
+                  "media.class" = "Audio/Sink";
+                }
+              ];
+            }
+          ];
+        };
       };
 
       # Use proprietary nvidia driver

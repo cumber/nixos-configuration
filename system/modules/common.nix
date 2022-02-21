@@ -185,10 +185,6 @@
   # isn't actually installed.
   sound.enableOSSEmulation = false;
 
-  hardware.pulseaudio = {
-    enable = true;
-  };
-
   hardware.sane = {
     enable = true;
     extraConfig = {
