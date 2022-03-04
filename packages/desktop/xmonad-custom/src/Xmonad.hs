@@ -30,6 +30,7 @@ import XMonad.Actions.Navigation2D ( Navigation2DConfig ( Navigation2DConfig
                                    )
 import XMonad.Config.Desktop ( desktopConfig, desktopLayoutModifiers )
 import XMonad.Hooks.ManageDocks ( ToggleStruts (ToggleStruts) )
+import XMonad.Hooks.ManageHelpers ( isDialog )
 import XMonad.Hooks.SetWMName ( setWMName )
 import XMonad.Layout.Fullscreen ( fullscreenSupport )
 import XMonad.Layout.NoBorders ( Ambiguity (Screen)
@@ -96,7 +97,7 @@ myManageHooks =
   , appName =? "synapse" --> doIgnore
   , appName =? "speedcrunch" --> doFloat
   , appName =? "albert" --> hasBorder False
-  , insertPosition Below Newer
+  , not <$> isDialog --> insertPosition Below Newer
   ]
 
 
