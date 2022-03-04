@@ -40,6 +40,9 @@ self: super: {
     # Ivy completion support in projectile
     counsel-projectile
 
+    # Ivy interface to workspace symbols in LSP
+    lsp-ivy
+
     # Infer indentation offset from file contents
     dtrt-indent
 
@@ -51,6 +54,10 @@ self: super: {
 
     # rainbow colouring for brackets
     rainbow-delimiters
+
+    # Tree layout file explorer
+    treemacs
+    lsp-treemacs
 
     # show completion for multi-step key bindings
     which-key
