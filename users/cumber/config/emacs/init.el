@@ -72,27 +72,18 @@ than having to call `add-to-list' multiple times."
 (use-package dtrt-indent-mode
   :hook prog-mode)
 
-;; Relative line numbers enabled globally
+;; Relative line numbers enabled in all prog and text modes
 (use-package linum-relative
-  :defines global-linum-relative-mode
-  :functions global-linum-relative-mode global-linum-relative-mode-enable-in-buffers
-  :config
-  (define-globalized-minor-mode global-linum-relative-mode linum-relative-mode
-    (lambda () (linum-relative-mode t)))
-  (global-linum-relative-mode))
+  :hook ((prog-mode . linum-relative-mode)
+         (text-mode . linum-relative-mode)))
 
 ;; Match parentheses
 (use-package rainbow-delimiters
-  :defines global-rainbow-delimiters-mode
-  :functions global-rainbow-delimiters-mode global-rainbow-delimiters-mode-enable-in-buffers
-  :config
-  (define-globalized-minor-mode global-rainbow-delimiters-mode rainbow-delimiters-mode
-    (lambda () (rainbow-delimiters-mode t)))
-  (global-rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 (use-package paren
   :config
-  (show-paren-mode)
-  (setq show-paren-style 'expression))
+  (setq show-paren-style 'expression)
+  :hook (prog-mode . show-paren-mode))
 
 ;; Visisble tabs and trailing whitespace
 (use-package whitespace
@@ -102,13 +93,10 @@ than having to call `add-to-list' multiple times."
 
 ;; Ruler at fill column, fill column 80
 (use-package fill-column-indicator
-  :defines global-fci-mode
-  :functions global-fci-mode global-fci-mode-enable-in-buffers
   :config
-  (define-globalized-minor-mode global-fci-mode fci-mode
-    (lambda () (fci-mode t)))
   (setq fill-column 80)
-  (global-fci-mode))
+  :hook ((prog-mode . fci-mode)
+         (text-mode . fci-mode)))
 
 ;; show completion for key bindings
 (use-package which-key
@@ -135,7 +123,7 @@ than having to call `add-to-list' multiple times."
         flycheck-executable-find
         (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
-;; Haskell LSP configuration
+;; LSP configuration
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
@@ -144,11 +132,14 @@ than having to call `add-to-list' multiple times."
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 (use-package lsp-ui
-  :commands lsp-ui-mode)
-(use-package lsp-ivy
-  :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs
-  :commands lsp-treemacs-errors-list)
+  :config
+  (setq lsp-ui-imenu-window-width 40)
+  (setq lsp-ui-imenu-auto-refresh t)
+  (setq lsp-ui-peek-enable t)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
+(use-package lsp-ivy)
+(use-package lsp-treemacs)
 (use-package yasnippet)
 
 (use-package which-func
