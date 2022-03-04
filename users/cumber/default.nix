@@ -9,7 +9,7 @@
     gnome3.gnome-system-monitor
     gnome3.nautilus
     gwe  # fan control for GPU
-    hicolor_icon_theme
+    hicolor-icon-theme
     inconsolata
     psmisc
     source-code-pro

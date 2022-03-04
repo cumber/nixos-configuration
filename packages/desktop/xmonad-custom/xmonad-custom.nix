@@ -1,5 +1,5 @@
-{ mkDerivation, base, gdk_pixbuf, gtk3, lib, lightlocker
-, pulseaudioLight, taffybar, unix, wrapGAppsHook, X11, xmonad
+{ mkDerivation, base, gdk-pixbuf, gtk3, lib, lightlocker
+, pulseaudio, taffybar, unix, wrapGAppsHook, X11, xmonad
 , xmonad-contrib
 }:
 mkDerivation {
@@ -16,18 +16,18 @@ mkDerivation {
   executableSystemDepends = [
     wrapGAppsHook
     gtk3
-    gdk_pixbuf
+    gdk-pixbuf
   ];
   postPatch = ''
     substituteInPlace src/Taffybar.hs \
       --replace '{{out}}' "$out" \
       --replace '{{lightlocker}}' '${lightlocker}' \
-      --replace '{{pulseaudioLight}}' '${pulseaudioLight}' \
+      --replace '{{pulseaudio}}' '${pulseaudio}' \
     ;
     substituteInPlace src/Xmonad.hs \
       --replace '{{out}}' "$out" \
       --replace '{{lightlocker}}' '${lightlocker}' \
-      --replace '{{pulseaudioLight}}' '${pulseaudioLight}' \
+      --replace '{{pulseaudio}}' '${pulseaudio}' \
     ;
   '';
 }

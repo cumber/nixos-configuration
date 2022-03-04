@@ -122,7 +122,7 @@
   environment.systemPackages = with pkgs; [
     dconf
     gnome2.GConf
-    shared_mime_info
+    shared-mime-info
   ];
 
   programs = {
