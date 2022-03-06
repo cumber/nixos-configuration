@@ -68,6 +68,7 @@ self: super: {
     #####
 
     # haskell language support
+    haskell-mode
     company-cabal
     lsp-haskell
     lsp-ui
