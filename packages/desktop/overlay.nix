@@ -1,5 +1,5 @@
 self: super: {
-  xmonad-custom = self.haskellPackages.callPackage ./xmonad-custom/xmonad-custom.nix {};
+  xmonad-custom = self.haskellPackages.callPackage ./xmonad-custom/xmonad-custom.nix { sys-pulseaudio = self.pulseaudio; };
 
   # Turn off unneeded KIO and plasmoid support in syncthing.
   # Also override the web view engine to be Qt WebKit instead of
