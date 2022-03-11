@@ -30,7 +30,6 @@
     #haskellPackages.hasktags
     haskellPackages.hlint
     nodePackages.tern   # used by js mode setup in emacs
-    nox
     jq   # awesome json pretty printer and query tool
     oq   # wrapper that can run jq on other formats, inc yaml
 
