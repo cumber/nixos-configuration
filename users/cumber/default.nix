@@ -31,7 +31,8 @@
     haskellPackages.hlint
     nodePackages.tern   # used by js mode setup in emacs
     nox
-    oq   # awesome json pretty printer and query tool
+    jq   # awesome json pretty printer and query tool
+    oq   # wrapper that can run jq on other formats, inc yaml
 
     # Office
     firefox
