@@ -27,7 +27,14 @@
     [ { device = "/dev/disk/by-uuid/a0ef016b-a9fa-4ca2-863e-66c3cb9cea2d"; }
     ];
 
+  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+  # Per-interface useDHCP will be mandatory in the future, so this generated config
+  # replicates the default behaviour.
+  networking.useDHCP = lib.mkDefault false;
+  networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 }
