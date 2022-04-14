@@ -6,6 +6,7 @@
       ../../modules/systemd-boot.nix
       ../../modules/bluetooth.nix
       ../../modules/hidpi.nix
+      ../../modules/touchpad.nix
     ];
 
     nix = {
@@ -20,14 +21,6 @@
     services.xserver.monitorSection = ''
       DisplaySize  295 166
     '';
-
-    services.xserver.synaptics = {
-      enable = true;
-      palmDetect = true;
-      horizEdgeScroll = false;
-      vertEdgeScroll = false;
-      twoFingerScroll = true;
-    };
 
     sound.extraConfig = ''
       defaults.pcm.!card 1
