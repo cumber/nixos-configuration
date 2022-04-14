@@ -5,6 +5,7 @@
     imports = [
       ../../modules/systemd-boot.nix
       ../../modules/bluetooth.nix
+      ../../modules/hidpi.nix
     ];
 
     nix = {
@@ -15,6 +16,10 @@
         "kocka:/M85ADJvkdibcMJtP+3uj4e3HCn/LkIAoy8r5V3QTNY="
       ];
     };
+
+    services.xserver.monitorSection = ''
+      DisplaySize  295 166
+    '';
 
     services.xserver.synaptics = {
       enable = true;
