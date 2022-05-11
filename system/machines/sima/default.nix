@@ -5,7 +5,6 @@
     imports = [
       ../../modules/systemd-boot.nix
       ../../modules/bluetooth.nix
-      ../../modules/hidpi.nix
       ../../modules/touchpad.nix
     ];
 
@@ -18,9 +17,11 @@
       ];
     };
 
-    services.xserver.monitorSection = ''
-      DisplaySize  295 166
-    '';
+    # Run at 1080 rather than 4K to save power and avoid annoying
+    # hidpi configuration
+    services.xserver.resolutions = [
+      { x = 1920; y = 1080; }
+    ];
 
     sound.extraConfig = ''
       defaults.pcm.!card 1

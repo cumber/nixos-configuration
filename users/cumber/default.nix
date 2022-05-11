@@ -83,12 +83,6 @@
     enable = true;
     scriptPath = ".hm-xsession";
 
-    pointerCursor = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-      size = 128;
-    };
-
     numlock.enable = true;
     preferStatusNotifierItems = true;
     windowManager.command  = "${pkgs.xmonad-custom}/bin/launch-xmonad";
