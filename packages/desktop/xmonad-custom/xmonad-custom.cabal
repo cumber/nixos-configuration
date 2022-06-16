@@ -1,37 +1,37 @@
+cabal-version: 3.4
+
 name: xmonad-custom
 version: 0.0.0.0
 synopsis: My XMonad build
-license: BSD3
+license: BSD-3-Clause
 license-file: LICENSE
 author: Benjamin Mellor
 maintainer: ben@smokingkangaroo.com
-copyright: Benjamin Mellor 2017
+copyright: Benjamin Mellor 2022
 build-type: Simple
-cabal-version: >=2.0
 
-executable launch-xmonad
-  main-is: Xmonad.hs
-  -- other-modules:
-  build-depends: base >= 4.12 && <= 4.15
-               , taffybar == 3.3.*
-               , unix == 2.7.*
-               , xmonad == 0.15.*
-               , xmonad-contrib ^>= 0.15 || ^>= 0.16
-               , X11 ^>= 1.9 || ^>= 1.10
-  hs-source-dirs: src
+common settings
   default-language: Haskell2010
-  ghc-options: -Wall
-               -Wmissing-exported-signatures
-               -Wno-unticked-promoted-constructors
-
-executable launch-taffybar
-  main-is: Taffybar.hs
-  -- other-modules:
-  build-depends: base >= 4.12 && <= 4.15
-               , taffybar == 3.3.*
-  hs-source-dirs: src
-  default-language: Haskell2010
+  build-depends: base ^>= 4.15
   ghc-options: -Wall
                -Wmissing-exported-signatures
                -Wno-unticked-promoted-constructors
                -threaded
+
+executable launch-xmonad
+  import: settings
+  main-is: Xmonad.hs
+  -- other-modules:
+  build-depends: taffybar ^>= 3.3
+               , unix ^>= 2.7
+               , xmonad ^>= { 0.17 }
+               , xmonad-contrib ^>= { 0.17 }
+               , X11 ^>= { 1.10 }
+  hs-source-dirs: src
+
+executable launch-taffybar
+  import: settings
+  main-is: Taffybar.hs
+  -- other-modules:
+  build-depends: taffybar ^>= 3.3
+  hs-source-dirs: src

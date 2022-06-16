@@ -52,7 +52,8 @@ import XMonad.Util.Run ( safeSpawn )
 
 
 main :: IO ()
-main = launch . fullscreenSupport . pagerHints . nav2D $ myConfig
+main = launch xconfig =<< getDirectories
+  where xconfig = fullscreenSupport . pagerHints . nav2D $ myConfig
 
 
 myModMask = mod4Mask

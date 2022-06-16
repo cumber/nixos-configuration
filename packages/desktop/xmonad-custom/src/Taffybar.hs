@@ -47,5 +47,5 @@ main = do
                                               ]
                                , monitorsAction = useAllMonitors
                                , widgetSpacing = 20
-                               , barHeight = 40
+                               , barHeight = ExactSize 40
                                }
