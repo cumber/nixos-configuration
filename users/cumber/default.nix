@@ -77,7 +77,16 @@
     })
   ];
 
-  services.syncthing.enable = true;
+  services = {
+    network-manager-applet.enable = true;
+
+    syncthing.enable = true;
+
+    taffybar = {
+      enable = true;
+      package = pkgs.xmonad-custom;
+    };
+  };
 
   xsession = {
     enable = true;
@@ -85,7 +94,7 @@
 
     numlock.enable = true;
     preferStatusNotifierItems = true;
-    windowManager.command  = "${pkgs.xmonad-custom}/bin/launch-xmonad";
+    windowManager.command  = "${pkgs.xmonad-custom}/bin/xmonad";
   };
 
   programs = {

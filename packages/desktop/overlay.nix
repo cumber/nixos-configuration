@@ -28,12 +28,10 @@ self: super: {
           { pkg = self.dunst-custom; }
           { pkg = self.albert; }
           { pkg = self.picom; }
-          { pkg = self.networkmanagerapplet; path = "/bin/nm-applet"; args = "--indicator"; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
           { pkg = self.syncthing-delay-start; }
           { pkg = self.lightlocker; args = "--lock-on-suspend --late-locking"; }
-          { pkg = self.xmonad-custom; path = "/bin/launch-taffybar"; logName = "taffybar"; }
           { pkg = self.keepassxc; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
           { pkg = self.signal-desktop; args = "--start-in-tray"; }

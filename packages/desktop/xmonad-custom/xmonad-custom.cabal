@@ -18,7 +18,7 @@ common settings
                -Wno-unticked-promoted-constructors
                -threaded
 
-executable launch-xmonad
+executable xmonad
   import: settings
   main-is: Xmonad.hs
   -- other-modules:
@@ -29,7 +29,7 @@ executable launch-xmonad
                , X11 ^>= { 1.10 }
   hs-source-dirs: src
 
-executable launch-taffybar
+executable taffybar
   import: settings
   main-is: Taffybar.hs
   -- other-modules:
