@@ -30,5 +30,5 @@
 
     # Allow mutable time zone for laptop
     time.timeZone = null;
-    services.localtime.enable = true;
+    services.localtimed.enable = true;
   }
