@@ -120,6 +120,8 @@
     };
   };
 
+  home.stateVersion = "22.05";
+
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
