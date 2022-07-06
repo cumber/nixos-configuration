@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../modules/slack.nix
+  ];
+
   home.packages = with pkgs; [
     # System
     alacritty-configured
@@ -46,7 +50,6 @@
     libreoffice
     lilypond   # needed for anki plugin
     signal-desktop
-    slack
     speedcrunch
     thunderbird
     vlc
