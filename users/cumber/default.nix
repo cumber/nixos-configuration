@@ -85,6 +85,9 @@
 
     syncthing.enable = true;
 
+    # Starting watcher explicitly works better than letting taffybar
+    # start it
+    status-notifier-watcher.enable = true;
     taffybar = {
       enable = true;
       package = pkgs.xmonad-custom;
