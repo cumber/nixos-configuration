@@ -5,6 +5,7 @@
     imports = [
       ../../modules/systemd-boot.nix
       ../../modules/bluetooth.nix
+      ../../modules/pipewire.nix
       ../../modules/touchpad.nix
     ];
 
