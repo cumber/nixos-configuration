@@ -11,10 +11,10 @@
     file
     gnome3.adwaita-icon-theme  # fallback icons from numix
     gnome3.gnome-system-monitor
-    gnome3.nautilus
     gwe  # fan control for GPU
     hicolor-icon-theme
     inconsolata
+    pcmanfm
     psmisc
     source-code-pro
     tree
