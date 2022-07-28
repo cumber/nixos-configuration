@@ -9,11 +9,11 @@
       ../../modules/touchpad.nix
     ];
 
-    nix = {
-      binaryCaches = [
+    nix.settings = {
+      trusted-substituters = [
         "http://kocka:5000"
       ];
-      binaryCachePublicKeys = [
+      trusted-public-keys = [
         "kocka:/M85ADJvkdibcMJtP+3uj4e3HCn/LkIAoy8r5V3QTNY="
       ];
     };
