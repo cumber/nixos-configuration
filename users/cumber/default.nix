@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    ../modules/slack.nix
+    ../modules/file-manager.nix
     ../modules/git.nix
+    ../modules/slack.nix
   ];
 
   home.packages = with pkgs; [
@@ -15,7 +16,6 @@
     gwe  # fan control for GPU
     hicolor-icon-theme
     inconsolata
-    pcmanfm
     psmisc
     source-code-pro
     tree
