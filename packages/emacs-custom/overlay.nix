@@ -89,6 +89,8 @@ self: super: {
 
     markdown-mode
 
+    nginx-mode
+
     nix-mode
     nix-sandbox
 
