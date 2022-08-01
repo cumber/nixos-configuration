@@ -11,6 +11,12 @@
       tree = "log --graph --decorate --oneline -n 40";
     };
 
+    # syntax highlighter
+    delta.enable = true;
+    delta.options = {
+      light = true;
+    };
+
     extraConfig = {
       core = {
         autocrlf = "input";
