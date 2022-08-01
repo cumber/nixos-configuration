@@ -2,6 +2,7 @@
 {
   imports = [
     ../modules/slack.nix
+    ../modules/git.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,7 +30,6 @@
     colordiff
     emacs-custom
     emacs-edit
-    gitAndTools.gitFull
     graphviz
     #haskellPackages.hasktags
     haskellPackages.hlint
@@ -140,9 +140,6 @@
         inherit (pkgs) nodejs;
       };
     };
-
-    ".gitconfig".source = ./config/git/gitconfig;
-    ".gitglobalignore".source = ./config/git/gitglobalignore;
 
     #".gtkrc-2.0".source = ./config/gtk/gtk2-settings;
 
