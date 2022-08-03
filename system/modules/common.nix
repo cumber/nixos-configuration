@@ -80,6 +80,9 @@
       '';
     };
 
+    # Needed for file-manager applications to support trash, etc
+    gvfs.enable = true;
+
     locate = {
       enable = true;
       locate = pkgs.plocate;
