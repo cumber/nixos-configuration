@@ -68,5 +68,5 @@
     virtualisation.docker.enable = true;
 
     # Set your time zone.
-    time.timeZone = "Pacific/Auckland";
+    time.timeZone = "Australia/Melbourne";
   }
