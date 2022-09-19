@@ -144,6 +144,7 @@
     #".gtkrc-2.0".source = ./config/gtk/gtk2-settings;
 
     ".cabal/config".source = ./config/haskell/config.cabal;
+    ".ghc/ghci.conf".source = ./config/haskell/ghci.conf;
 
     ".pythonrc".source = ./config/pythonrc.py;
 
@@ -157,7 +158,5 @@
     };
 
     #"gtk-3.0/settings.ini".source = ./config/gtk/gtk3-settings.ini;
-
-    ".ghci".source = ./config/haskell/config.ghci;
   };
 }
