@@ -4,6 +4,7 @@
     ../modules/file-manager.nix
     ../modules/git.nix
     ../modules/slack.nix
+    ../modules/signal.nix
   ];
 
   home.packages = with pkgs; [
@@ -49,7 +50,6 @@
     gnome3.eog
     libreoffice
     lilypond   # needed for anki plugin
-    signal-desktop
     speedcrunch
     thunderbird
     vlc

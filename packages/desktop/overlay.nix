@@ -34,7 +34,6 @@ self: super: {
           { pkg = self.lightlocker; args = "--lock-on-suspend --late-locking"; }
           { pkg = self.keepassxc; }
           { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
-          { pkg = self.signal-desktop; args = "--start-in-tray"; }
           { pkg = self.gwe; args = "--hide-window"; }
         ];
 
