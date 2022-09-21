@@ -24,7 +24,6 @@ self: super: {
 
         commands = [
           { pkg = self.xorg.setxkbmap; args = "-option compose:ralt"; }
-          { pkg = self.dunst-custom; }
           { pkg = self.albert; }
           { pkg = self.picom; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
