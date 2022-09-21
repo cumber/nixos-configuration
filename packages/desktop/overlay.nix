@@ -23,7 +23,6 @@ self: super: {
     let compose = f: g: x: f (g x);
 
         commands = [
-          { pkg = self.haskellPackages.status-notifier-item; path = "/bin/status-notifier-watcher"; }
           { pkg = self.xorg.setxkbmap; args = "-option compose:ralt"; }
           { pkg = self.dunst-custom; }
           { pkg = self.albert; }
