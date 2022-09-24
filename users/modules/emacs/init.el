@@ -67,6 +67,7 @@ than having to call `add-to-list' multiple times."
 
 (eval-when-compile
   (require 'use-package))
+(require 'bind-key)
 
 ;; Autodetect indent settings for many language modes
 (use-package dtrt-indent-mode
@@ -171,7 +172,9 @@ than having to call `add-to-list' multiple times."
 
 ;; Better search with swiper
 (use-package swiper
-  :bind ("\C-s" . swiper))
+  :bind ("C-s" . swiper-isearch))
+  ;:config
+  ;(global-set-key (kbd "C-s") 'swiper-isearch))
 
 ;; Highlight diffs with indicators
 (use-package diff-hl
