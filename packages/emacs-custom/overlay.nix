@@ -1,15 +1,4 @@
 self: super: {
-  emacsPackagesNg = super.emacsPackagesNg.overrideScope' (_epSelf: epSuper: {
-    nix-sandbox = epSuper.nix-sandbox.overrideAttrs (_oldAttrs: {
-      src = super.fetchFromGitHub {
-        owner = "benley";
-        repo = "nix-emacs";
-        rev = "c98d119ec31994a9303abe0f35e465b86f39650f";
-        sha256 = "0ick49lrf906wfjvnasrrpbshnbgkxykbwm3n7ayk8172bgpdnha";
-      };
-    });
-  });
-
   emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
     # foundation of package config in emacsd/init.el
     use-package
