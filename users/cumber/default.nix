@@ -2,15 +2,15 @@
 {
   imports = [
     # notification daemon
-    ../modules/dunst.nix
+    ../modules/dunst
 
-    ../modules/file-manager.nix
+    ../modules/file-manager
 
-    ../modules/git.nix
+    ../modules/git
 
     # messaging services
-    ../modules/signal.nix
-    ../modules/slack.nix
+    ../modules/signal
+    ../modules/slack
   ];
 
   home.packages = with pkgs; [
