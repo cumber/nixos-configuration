@@ -1,5 +1,19 @@
-self: super: {
-  emacs-custom = self.emacs-gtk.pkgs.withPackages (epkgs: with epkgs; [
+{ pkgs, ... }:
+let emacs-config = pkgs.substituteAll {
+      src = ./init.el;
+
+      # Emacs config for javascript mode needs nodejs, but I don't
+      # want it in my profile directly
+      inherit (pkgs) nodejs;
+    };
+in
+{
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs-gtk;
+
+    extraConfig = builtins.readFile emacs-config;
+    extraPackages = (epkgs: with epkgs; [
     # foundation of package config in emacsd/init.el
     use-package
 
@@ -96,20 +110,23 @@ self: super: {
 
     yaml-mode
   ]);
+  };
 
   # launcher script for using emacs client
-  emacs-edit = super.writeShellScriptBin "ee" ''
+  home.packages = [(
+    pkgs.writeShellScriptBin "ee" ''
     if [[ $IN_NIX_SHELL = "" ]]; then
       socketName="default"
     else
       socketName="nix-shell: $name"
     fi
 
-    ${self.emacs-custom}/bin/emacsclient \
+    emacsclient \
       --socket-name "$socketName" \
       --alternate-editor "" \
       --create-frame \
       --no-wait \
       "$@"
-  '';
+    ''
+  )];
 }

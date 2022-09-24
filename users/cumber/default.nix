@@ -4,8 +4,8 @@
     # notification daemon
     ../modules/dunst
 
+    ../modules/emacs
     ../modules/file-manager
-
     ../modules/git
 
     # messaging services
@@ -35,8 +35,6 @@
     cabal-install
     cabal2nix
     colordiff
-    emacs-custom
-    emacs-edit
     graphviz
     #haskellPackages.hasktags
     haskellPackages.hlint
@@ -136,16 +134,6 @@
 
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
-
-    ".emacs.d/init.el" = {
-      source = pkgs.substituteAll {
-        src = ./config/emacs/init.el;
-
-        # Emacs config for javascript mode needs nodejs, but I don't
-        # want it in my profile directly
-        inherit (pkgs) nodejs;
-      };
-    };
 
     #".gtkrc-2.0".source = ./config/gtk/gtk2-settings;
 

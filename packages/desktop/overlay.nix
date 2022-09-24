@@ -31,7 +31,6 @@ self: super: {
           { pkg = self.syncthing-delay-start; }
           { pkg = self.lightlocker; args = "--lock-on-suspend --late-locking"; }
           { pkg = self.keepassxc; }
-          { pkg = self.emacs-custom; path = "/bin/emacs"; args = "--bg-daemon"; logName = "emacs-daemon"; }
           { pkg = self.gwe; args = "--hide-window"; }
         ];
 
