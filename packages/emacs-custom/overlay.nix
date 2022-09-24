@@ -1,5 +1,5 @@
 self: super: {
-  emacs-custom = self.emacsPackagesNg.emacsWithPackages (epkgs: with epkgs; [
+  emacs-custom = self.emacs-gtk.pkgs.withPackages (epkgs: with epkgs; [
     # foundation of package config in emacsd/init.el
     use-package
 
