@@ -6,7 +6,7 @@
 
 (setq inhibit-startup-screen t)
 
- (set-face-attribute 'default nil :height 120)
+(set-face-attribute 'default nil :height 120)
 
 ;; Middle click paste at cursor, not at click position
 (setq mouse-yank-at-point t)

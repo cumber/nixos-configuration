@@ -38,7 +38,6 @@
     graphviz
     #haskellPackages.hasktags
     haskellPackages.hlint
-    nodePackages.tern   # used by js mode setup in emacs
     jq   # awesome json pretty printer and query tool
     oq   # wrapper that can run jq on other formats, inc yaml
 
@@ -135,8 +134,6 @@
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
-    #".gtkrc-2.0".source = ./config/gtk/gtk2-settings;
-
     ".cabal/config".source = ./config/haskell/config.cabal;
     ".ghc/ghci.conf".source = ./config/haskell/ghci.conf;
 
@@ -150,7 +147,5 @@
       source = ./config/albert;
       recursive = true;
     };
-
-    #"gtk-3.0/settings.ini".source = ./config/gtk/gtk3-settings.ini;
   };
 }

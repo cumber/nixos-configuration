@@ -6,6 +6,22 @@ let emacs-config = pkgs.substituteAll {
       # want it in my profile directly
       inherit (pkgs) nodejs;
     };
+
+    # launcher script for using emacs client
+    ee = pkgs.writeShellScriptBin "ee" ''
+      if [[ $IN_NIX_SHELL = "" ]]; then
+        socketName="default"
+      else
+        socketName="nix-shell: $name"
+      fi
+
+      emacsclient \
+        --socket-name "$socketName" \
+        --alternate-editor "" \
+        --create-frame \
+        --no-wait \
+        "$@"
+    '';
 in
 {
   programs.emacs = {
@@ -112,21 +128,10 @@ in
     ]);
   };
 
-  # launcher script for using emacs client
-  home.packages = [(
-    pkgs.writeShellScriptBin "ee" ''
-      if [[ $IN_NIX_SHELL = "" ]]; then
-        socketName="default"
-      else
-        socketName="nix-shell: $name"
-      fi
+  home.packages = [
+    ee
 
-      emacsclient \
-        --socket-name "$socketName" \
-        --alternate-editor "" \
-        --create-frame \
-        --no-wait \
-        "$@"
-    ''
-  )];
+    # used by js mode setup in emacs
+    pkgs.nodePackages.tern
+  ];
 }
