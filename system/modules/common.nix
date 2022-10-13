@@ -14,10 +14,10 @@
     ./haskell-nix.nix
   ];
 
-  nix.extraOptions = ''
-    auto-optimise-store = true
-    experimental-features = nix-command flakes
-  '';
+  nix.settings = {
+    auto-optimise-store = true;
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # boot.loader is expected to be defined in machine-specific module
 
