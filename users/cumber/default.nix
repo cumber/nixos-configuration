@@ -18,8 +18,8 @@
     alacritty-configured
     bibata-extra-cursors
     file
-    gnome3.adwaita-icon-theme  # fallback icons from numix
-    gnome3.gnome-system-monitor
+    gnome.adwaita-icon-theme  # fallback icons from numix
+    gnome.gnome-system-monitor
     gwe  # fan control for GPU
     hicolor-icon-theme
     inconsolata
@@ -50,7 +50,7 @@
     evince
     keepassxc
     gimp
-    gnome3.eog
+    gnome.eog
     libreoffice
     lilypond   # needed for anki plugin
     speedcrunch
