@@ -15,8 +15,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-;; 2-space indents in javascript
+;; 2-space indents in javascript, including cases in switch statements
 (setq-default js-indent-level 2)
+(setq-default js-switch-indent-offset 2);
 
 ;; 2-space indents in css/scss
 (setq-default css-indent-offset 2)
