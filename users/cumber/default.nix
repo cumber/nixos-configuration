@@ -142,6 +142,16 @@
     ".ssh/config".source = ./config/ssh.config;
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = [ "org.gnome.Evince.desktop" ];
+      "application/json" = [ "emacsclient.desktop" "emacs.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+    };
+  };
+
   xdg.configFile = {
     "albert" = {
       source = ./config/albert;
