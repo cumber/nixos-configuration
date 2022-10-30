@@ -193,8 +193,12 @@
     };
   };
 
-  # Thunderbird crashes with portals enabled; will be fixed in v68
-  xdg.portal.enable = false;
+  # Use GTK portals, since most of my apps are GTK even though I'm not
+  # using Gnome.
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "18.03";
