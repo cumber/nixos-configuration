@@ -22,7 +22,7 @@ executable xmonad
   import: settings
   main-is: Xmonad.hs
   -- other-modules:
-  build-depends: taffybar ^>= 3.3
+  build-depends: taffybar ^>= { 3.3, 4.0 }
                , unix ^>= 2.7
                , xmonad ^>= { 0.17 }
                , xmonad-contrib ^>= { 0.17 }
@@ -33,5 +33,5 @@ executable taffybar
   import: settings
   main-is: Taffybar.hs
   -- other-modules:
-  build-depends: taffybar ^>= 3.3
+  build-depends: taffybar ^>= { 3.3, 4.0 }
   hs-source-dirs: src
