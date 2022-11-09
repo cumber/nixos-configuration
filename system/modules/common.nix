@@ -165,10 +165,16 @@
         description = "A user with minimal permissions, used for privilage dropping";
         group = "drop";
       };
+
+      webcam-server = {
+        isSystemUser = true;
+        description = "User for the webcam-server program to use";
+        group = "webcam-server";
+        extraGroups = [ "video" ];
+      };
     };
 
     groups = {
-      drop = {};
       kvm = {};
       render = {};
     };
@@ -178,6 +184,11 @@
     {
       groups = [ "users" ];
       runAs = "drop";
+      commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
+    }
+    {
+      groups = [ "users" ];
+      runAs = "webcam-server";
       commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
     }
   ];
