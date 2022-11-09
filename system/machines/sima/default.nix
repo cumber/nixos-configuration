@@ -10,7 +10,7 @@
     ];
 
     nix.settings = {
-      trusted-substituters = [
+      substituters = [
         "http://kocka:5000"
       ];
       trusted-public-keys = [
