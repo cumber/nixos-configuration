@@ -7,6 +7,7 @@
       ../../modules/bluetooth.nix
       ../../modules/pipewire.nix
       ../../modules/touchpad.nix
+      ../../modules/webcam-server.nix
     ];
 
     nix.settings = {
