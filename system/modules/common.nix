@@ -71,13 +71,6 @@
       };
     };
 
-    dnsmasq = {
-      enable = true;
-      settings = {
-        address = "/localhost.com/127.0.0.1";
-      };
-    };
-
     # Needed for file-manager applications to support trash, etc
     gvfs.enable = true;
 
