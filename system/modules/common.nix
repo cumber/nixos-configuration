@@ -73,9 +73,9 @@
 
     dnsmasq = {
       enable = true;
-      extraConfig = ''
-        address=/localhost.com/127.0.0.1
-      '';
+      settings = {
+        address = "/localhost.com/127.0.0.1";
+      };
     };
 
     # Needed for file-manager applications to support trash, etc
