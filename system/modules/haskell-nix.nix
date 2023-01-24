@@ -2,7 +2,7 @@
   {
     nix.settings = {
       substituters = [
-        "https://hydra.iohk.io"
+        "https://cache.iog.io"
       ];
 
       trusted-public-keys = [
