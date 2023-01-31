@@ -129,7 +129,8 @@ than having to call `add-to-list' multiple times."
 (use-package lsp-mode
   :init
   (setq lsp-keymap-prefix "C-c l")
-  (setq lsp-haskell-server-path "haskell-language-server")
+  (setq-default lsp-haskell-server-path "haskell-language-server")
+  (setq-default lsp-haskell-formatting-provider "fourmolu")
   :hook ((haskell-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
