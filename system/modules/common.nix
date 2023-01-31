@@ -16,7 +16,11 @@
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "ca-derivations"
+    ];
   };
 
   # boot.loader is expected to be defined in machine-specific module
