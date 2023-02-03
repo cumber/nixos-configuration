@@ -4,6 +4,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; Don't make an annoying sound on every ctrl-g
+(setq visible-bell t)
+
 (setq inhibit-startup-screen t)
 
 (set-face-attribute 'default nil :height 120)
