@@ -35,6 +35,7 @@
     cabal2nix
     colordiff
     graphviz
+    nix-tree
     jq   # awesome json pretty printer and query tool
     oq   # wrapper that can run jq on other formats, inc yaml
 
