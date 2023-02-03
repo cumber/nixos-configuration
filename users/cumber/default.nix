@@ -35,8 +35,6 @@
     cabal2nix
     colordiff
     graphviz
-    #haskellPackages.hasktags
-    haskellPackages.hlint
     jq   # awesome json pretty printer and query tool
     oq   # wrapper that can run jq on other formats, inc yaml
 
