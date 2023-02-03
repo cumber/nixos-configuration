@@ -15,11 +15,6 @@
 
       sshd.enable = true;
 
-      foldingathome = {
-        enable = true;
-        user = "cumber";
-      };
-
       nix-serve = {
         enable = true;
         secretKeyFile = "/etc/nixos/secrets/nix-serve.sec";

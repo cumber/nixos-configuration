@@ -16,7 +16,6 @@
   home.packages = with pkgs; [
     # System
     alacritty-configured
-    bibata-extra-cursors
     file
     gnome.adwaita-icon-theme  # fallback icons from numix
     gnome.gnome-system-monitor
@@ -59,10 +58,6 @@
     zoom-us
 
     chatty
-
-    # Folding@Home
-    fahcontrol
-    fahviewer
 
     guitarix
 

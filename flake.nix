@@ -64,10 +64,6 @@
                     "nvidia-persistenced"
                     "cudatoolkit"
 
-                    "fahclient"
-                    "fahcontrol"
-                    "fahviewer"
-
                     "slack"
 
                     "zoom"
