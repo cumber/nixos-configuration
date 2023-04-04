@@ -7,6 +7,7 @@
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
+    ../modules/xcompose-maths
 
     # messaging services
     ../modules/signal
