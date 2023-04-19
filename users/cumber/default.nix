@@ -99,6 +99,19 @@
     numlock.enable = true;
     preferStatusNotifierItems = true;
     windowManager.command  = "${pkgs.xmonad-custom}/bin/xmonad";
+
+    # This causes PATH to be added to the list of variables that get
+    # imported into systemd's user context, and thus get passed to
+    # user services. Without this, things like slack and signal are
+    # unable to open links in a browser, since they do it by xdg-open
+    # which finds the browser via my profile PATH rather than via
+    # direct hardcoded path.
+    #
+    # I'm not certain that this is okay; the importedVariables option
+    # below is undocumented. I should file an issue with
+    # home-manager. If it's a good idea they might want it, and if
+    # it's a bad idea they can probably tell me.
+    importedVariables = [ "PATH" ];
   };
 
   programs = {
