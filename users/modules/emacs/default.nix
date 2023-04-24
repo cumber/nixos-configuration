@@ -68,9 +68,6 @@ in
       # draw line at suggested max line width
       fill-column-indicator
 
-      # show relative line numbers
-      linum-relative
-
       # rainbow colouring for brackets
       rainbow-delimiters
 

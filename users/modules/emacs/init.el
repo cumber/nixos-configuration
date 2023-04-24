@@ -77,10 +77,14 @@ than having to call `add-to-list' multiple times."
 (use-package dtrt-indent-mode
   :hook prog-mode)
 
-;; Relative line numbers enabled in all prog and text modes
-(use-package linum-relative
-  :hook ((prog-mode . linum-relative-mode)
-         (text-mode . linum-relative-mode)))
+;; Show line numbers in all prog and text modes
+(use-package display-line-numbers
+  :config
+  (setq-default display-line-numbers-widen t)
+  (setq-default display-line-numbers-width-start t)
+  (set-face-attribute 'line-number-current-line t :inherit 'line-number-major-tick)
+  :hook ((prog-mode . display-line-numbers-mode)
+         (text-mode . display-line-numbers-mode)))
 
 ;; Match parentheses
 (use-package rainbow-delimiters
