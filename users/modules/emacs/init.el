@@ -132,6 +132,10 @@ than having to call `add-to-list' multiple times."
         flycheck-executable-find
         (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
 
+(use-package treemacs
+  :init
+  (setq treemacs-python-executable "@python3@/bin/python3"))
+
 ;; LSP configuration
 (use-package lsp-mode
   :init

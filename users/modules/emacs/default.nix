@@ -5,6 +5,9 @@ let emacs-config = pkgs.substituteAll {
       # Emacs config for javascript mode needs nodejs, but I don't
       # want it in my profile directly
       inherit (pkgs) nodejs;
+
+      # Treemacs wants a python3 executable
+      inherit (pkgs) python3;
     };
 
     # launcher script for using emacs client
