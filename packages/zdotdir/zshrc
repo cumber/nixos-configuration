@@ -140,6 +140,11 @@ function preexec() {
     esac
 }
 
+function panview {
+    @pandoc@/bin/pandoc "$@" --to=pdf -o /tmp/panview.pdf &&
+    evince /tmp/panview.pdf
+}
+
 # Python startup file
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 

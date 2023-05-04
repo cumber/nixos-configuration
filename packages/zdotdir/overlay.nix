@@ -6,6 +6,7 @@ self: super: {
 
     substitute "${./zshrc}" "$out/etc/zdotdir/.zshrc" \
       --subst-var-by zsh-haskell "${self.zsh-haskell}" \
-      --subst-var-by starship "${self.starship}"
+      --subst-var-by starship "${self.starship}" \
+      --subst-var-by pandoc "${self.pandoc}"
   '';
 }
