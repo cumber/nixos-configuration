@@ -4,9 +4,6 @@
     enable = true;
     package = pkgs.gitAndTools.gitFull;
 
-    userEmail = "ben@smokingkangaroo.com";
-    userName = "Benjamin Mellor";
-
     aliases = {
       tree = "log --graph --decorate --oneline -n 40";
     };

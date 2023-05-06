@@ -12,6 +12,11 @@
     # messaging services
     ../modules/signal
     ../modules/slack
+
+    # Git configurations for personal and work accounts
+    ./git/personal.nix
+    ./git/cellfield.nix
+    ./git/grantshub.nix
   ];
 
   home.packages = with pkgs; [
