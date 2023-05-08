@@ -113,24 +113,10 @@ than having to call `add-to-list' multiple times."
   (which-key-setup-side-window-right-bottom)
   (which-key-mode))
 
-(defun listify (v)
-  "Return V if V is a list, else wrap it in a singleton list."
-  (if (listp v)
-      v
-    (list v)))
-
-(use-package nix-sandbox)
-
 (use-package flycheck
   :commands flycheck-mode
   :init
-  (add-hook 'prog-mode-hook 'flycheck-mode)
-  :config
-  (setq flycheck-command-wrapper-function
-        (lambda (cmd) (apply 'nix-shell-command (nix-current-sandbox) cmd))
-
-        flycheck-executable-find
-        (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd))))
+  (add-hook 'prog-mode-hook 'flycheck-mode))
 
 (use-package treemacs
   :init

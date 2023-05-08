@@ -111,7 +111,6 @@ in
       nginx-mode
 
       nix-mode
-      nix-sandbox
 
       # git support
       diff-hl
