@@ -14,9 +14,7 @@
     ../modules/slack
 
     # Git configurations for personal and work accounts
-    ./git/personal.nix
-    ./git/cellfield.nix
-    ./git/grantshub.nix
+    ./git
   ];
 
   home.packages = with pkgs; [
