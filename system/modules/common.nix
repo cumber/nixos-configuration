@@ -16,9 +16,11 @@
 
   nix.settings = {
     auto-optimise-store = true;
+    keep-outputs = true;
     experimental-features = [
       "nix-command"
       "flakes"
+      "repl-flake"
       "ca-derivations"
     ];
   };
