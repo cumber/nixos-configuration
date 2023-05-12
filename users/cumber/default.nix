@@ -37,6 +37,7 @@
     # Devlopment
     cabal-install
     cabal2nix
+    cachix
     colordiff
     graphviz
     nix-tree

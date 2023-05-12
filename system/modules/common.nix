@@ -9,9 +9,10 @@
     # see https://nixos.wiki/wiki/Scanners#Network_scanning
     ./sane-extra-config.nix
 
+    # Extra substituters
     ./reflex-frp.nix
-
     ./haskell-nix.nix
+    ./cachix.nix
   ];
 
   nix.settings = {
