@@ -40,7 +40,7 @@ let dark_theme = {
       } else if $in < 52wk {
         'deepskyblue3b'
       } else { 'dark_gray' }
-    }    
+    }
     range: white
     float: white
     string: white
@@ -106,23 +106,23 @@ let light_theme = {
       } else { 'blue_bold' }
     }
     duration: dark_gray
-  date: {|| (date now) - $in |
-    if $in < 1hr {
-      'red3b'
-    } else if $in < 6hr {
-      'orange3'
-    } else if $in < 1day {
-      'yellow3b'
-    } else if $in < 3day {
-      'chartreuse2b'
-    } else if $in < 1wk {
-      'green3b'
-    } else if $in < 6wk {
-      'darkturquoise'
-    } else if $in < 52wk {
-      'deepskyblue3b'
-    } else { 'dark_gray' }
-  }
+    date: {|| (date now) - $in |
+      if $in < 1hr {
+        'red3b'
+      } else if $in < 6hr {
+        'orange3'
+      } else if $in < 1day {
+        'yellow3b'
+      } else if $in < 3day {
+        'chartreuse2b'
+      } else if $in < 1wk {
+        'green3b'
+      } else if $in < 6wk {
+        'darkturquoise'
+      } else if $in < 52wk {
+        'deepskyblue3b'
+      } else { 'dark_gray' }
+    }
     range: dark_gray
     float: dark_gray
     string: dark_gray
