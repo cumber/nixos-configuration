@@ -8,6 +8,7 @@
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
+    ../modules/nushell
     ../modules/xcompose-maths
 
     # messaging services
