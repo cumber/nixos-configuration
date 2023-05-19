@@ -123,6 +123,11 @@
     starship.enable = true;
     starship.settings = {
       aws.disabled = true;
+
+      directory = {
+        truncation_length = 5;
+        truncation_symbol = "…/";
+      };
     };
   };
 
