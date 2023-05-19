@@ -131,17 +131,6 @@
       startAgent = true;
       agentTimeout = "1h";
     };
-
-    zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting = {
-        enable = true;
-        highlighters = [ "main" "brackets" ];
-      };
-
-      shellInit = ''export ZDOTDIR="${pkgs.zdotdir}/etc/zdotdir"'';
-    };
   };
 
   users = {
@@ -157,7 +146,6 @@
         description = "Cumber";
         passwordFile = "/etc/nixos/secrets/cumber.pass";
         extraGroups =  [ "wheel" "networkmanager" "scanner" ];
-        shell = pkgs.zsh;
       };
 
       drop = {

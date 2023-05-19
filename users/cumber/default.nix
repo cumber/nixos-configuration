@@ -33,7 +33,6 @@
     xmonad-custom
     xmonad-session-init
     xsel
-    zdotdir
 
     # Devlopment
     cabal-install
