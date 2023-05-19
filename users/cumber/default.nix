@@ -4,6 +4,7 @@
     # notification daemon
     ../modules/dunst
 
+    ../modules/alacritty
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
@@ -19,7 +20,6 @@
 
   home.packages = with pkgs; [
     # System
-    alacritty-configured
     file
     gnome.adwaita-icon-theme  # fallback icons from numix
     gnome.gnome-system-monitor
