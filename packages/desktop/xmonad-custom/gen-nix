@@ -5,7 +5,6 @@ set -eu
 runtime_packages=($(grep --perl '{{.*(?<!out)}}' src/*.hs | sed -e 's|.*{{\(.*\)}}/.*|\1|' | sort -u))
 compiletime_packages=(
     wrapGAppsHook
-    gtk3
     gdk-pixbuf
 )
 
