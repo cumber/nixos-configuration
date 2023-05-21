@@ -16,6 +16,16 @@
       VISUAL = "'emacsclient --alternate-editor \"\" --create-frame'";
     };
 
+    extraConfig = ''
+      extern nd [...rest] {
+        nix develop --impure $rest -c nu
+      }
+
+      extern "nd up" [...rest] {
+        nix develop --impure $rest -c devenv up
+      }
+    '';
+
     shellAliases = {
       # tree won't colourise by default if LS_COLORS isn't set
       tree = "tree -C";
