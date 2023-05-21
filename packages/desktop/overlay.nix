@@ -1,5 +1,7 @@
 self: super: {
-  xmonad-custom = self.haskellPackages.callPackage ./xmonad-custom/xmonad-custom.nix { sys-pulseaudio = self.pulseaudio; };
+  # Taffybar needs to be built with GHC 9.4 or later on Linux kernel 6!
+  # See comments in inputs of flake.nix
+  xmonad-custom = self.haskell.packages.ghc94.callPackage ./xmonad-custom/xmonad-custom.nix { sys-pulseaudio = self.pulseaudio; };
 
   # Turn off unneeded KIO and plasmoid support in syncthing.
   syncthingtray = super.syncthingtray.override {
