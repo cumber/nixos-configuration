@@ -5,6 +5,7 @@
     ../modules/dunst
 
     ../modules/alacritty
+    ../modules/atuin
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
