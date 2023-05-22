@@ -12,6 +12,7 @@
     ../modules/xcompose-maths
 
     # messaging services
+    ../modules/element
     ../modules/signal
     ../modules/slack
 
