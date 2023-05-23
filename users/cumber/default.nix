@@ -4,13 +4,11 @@
     # notification daemon
     ../modules/dunst
 
-    ../modules/alacritty
-    ../modules/atuin
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
-    ../modules/nushell
     ../modules/screen-locker
+    ../modules/terminal
     ../modules/xcompose-maths
 
     # messaging services
