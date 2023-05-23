@@ -20,11 +20,17 @@
     };
 
     extraConfig = ''
-      extern nd [...rest] {
+      # Starts nushell inside `nix develop --impure`
+      extern nd [
+        ...rest # All arguments will be passed to nix develop
+      ] {
         nix develop --impure $rest -c nu
       }
 
-      extern "nd up" [...rest] {
+      # Runs `devenv up` inside `nix develop --impure`
+      extern "nd up" [
+        ...rest # All arguments will be passed to nix develop
+      ] {
         nix develop --impure $rest -c devenv up
       }
     '';
