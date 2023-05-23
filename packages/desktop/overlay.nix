@@ -25,7 +25,6 @@ self: super: {
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }
           { pkg = self.syncthing-delay-start; }
-          { pkg = self.lightlocker; args = "--lock-on-suspend --late-locking"; }
           { pkg = self.keepassxc; }
           { pkg = self.gwe; args = "--hide-window"; }
         ];

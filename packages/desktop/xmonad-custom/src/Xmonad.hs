@@ -77,7 +77,7 @@ myKeys =
 
     -- Win-z locks screen
   , ( "M-z"
-    , safeSpawn "{{lightlocker}}/bin/light-locker-command" ["-l"]
+    , safeSpawn "loginctl" ["lock-session"]
     )
 
   , ( "M-C-<Tab>"

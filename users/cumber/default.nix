@@ -10,6 +10,7 @@
     ../modules/file-manager
     ../modules/git
     ../modules/nushell
+    ../modules/screen-locker
     ../modules/xcompose-maths
 
     # messaging services
