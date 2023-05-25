@@ -24,6 +24,18 @@
         "url": "http://www.ebay.com/sch/i.html?_nkw=%s"
     },
     {
+        "iconPath": ":maps",
+        "name": "Google Maps",
+        "trigger": "maps ",
+        "url": "https://www.google.com/maps/search/%s/"
+    },
+    {
+        "iconPath": ":scholar",
+        "name": "Google Scholar",
+        "trigger": "scholar ",
+        "url": "https://scholar.google.com/scholar?q=%s"
+    },
+    {
         "iconPath": ":github",
         "name": "GitHub",
         "trigger": "gh ",

@@ -172,6 +172,11 @@
   };
 
   xdg.configFile = {
+    # Albert has a bug where it's reading its config file from the
+    # root config folder instead of its own subfolder.
+    "albert.conf" = {
+      source = ./config/albert/albert.conf;
+    };
     "albert" = {
       source = ./config/albert;
       recursive = true;
