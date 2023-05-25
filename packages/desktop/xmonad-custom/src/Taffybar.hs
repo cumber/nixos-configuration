@@ -30,8 +30,8 @@ main = do
       batteryIcon = batteryIconNew
       workspaces = workspacesNew defaultWorkspacesConfig
       layout = layoutNew defaultLayoutConfig
-      windowCfg = defaultWindowsConfig { getMenuLabel = truncatedGetMenuLabel 80
-                                       , getActiveLabel = truncatedGetActiveLabel 15
+      windowCfg = defaultWindowsConfig { getMenuLabel = truncatedGetMenuLabel 200
+                                       , getActiveLabel = truncatedGetActiveLabel 80
                                        }
       window = windowsNew windowCfg
 
