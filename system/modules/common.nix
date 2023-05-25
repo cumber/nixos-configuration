@@ -34,6 +34,10 @@
 
   boot.tmp.useTmpfs = true;
 
+  # Earlier kernels have a bug that makes Taffybar coredump!
+  # Should remove this once the default kernel is 6.3.3 or later.
+  boot.kernelPackages = pkgs.linuxPackages_6_3;
+
   # hostName is expected to be defined in machine-specific module;
   networking = {
     networkmanager = {
