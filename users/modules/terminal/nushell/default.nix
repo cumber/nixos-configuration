@@ -33,6 +33,15 @@
       ] {
         nix develop --impure $rest -c devenv up
       }
+
+      # Runs `nix repl` preloaded with the <repl> path; my system
+      # config defines this with a helpful set of variables (all of
+      # nixpkgs, builtins and lib more easily available, etc).
+      extern nr [
+        ...rest # All arguments will be passed to nix repl
+      ] {
+        nix repl --file <repl> $rest
+      }
     '';
 
     shellAliases = {
