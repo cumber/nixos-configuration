@@ -20,6 +20,13 @@
     };
 
     extraConfig = ''
+      # Starts nushell inside a `nix shell`
+      extern ns [
+         ...rest # All arguments will be passed to nix shell
+      ] {
+        nix shell $rest -c nu
+      }
+
       # Starts nushell inside `nix develop --impure`
       extern nd [
         ...rest # All arguments will be passed to nix develop
@@ -42,13 +49,8 @@
       ] {
         nix repl --file <repl> $rest
       }
+
+      source ${./ls-colors.nu}
     '';
-
-    shellAliases = {
-      # tree won't colourise by default if LS_COLORS isn't set
-      tree = "tree -C";
-
-      # TODO; nushell version of ns and nix-dev?
-    };
   };
 }
