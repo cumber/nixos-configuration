@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./alacritty.nix
+    ./alacritty
     ./atuin.nix
     ./nushell
   ];
