@@ -186,7 +186,7 @@ let-env config = {
   show_banner: false
   ls: {
     use_ls_colors: true # use the LS_COLORS environment variable to colorize output
-    clickable_links: true # enable or disable clickable links. Your terminal has to support links.
+    clickable_links: false # enable or disable clickable links. Your terminal has to support links.
   }
   rm: {
     always_trash: false # always act as if -t was given. Can be overridden with -p
