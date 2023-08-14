@@ -84,7 +84,8 @@ than having to call `add-to-list' multiple times."
   (setq-default display-line-numbers-width-start t)
   (set-face-attribute 'line-number-current-line t :inherit 'line-number-major-tick)
   :hook ((prog-mode . display-line-numbers-mode)
-         (text-mode . display-line-numbers-mode)))
+         (text-mode . display-line-numbers-mode)
+         (haskell-cabal-mode . display-line-numbers-mode)))
 
 ;; Match parentheses
 (use-package rainbow-delimiters
