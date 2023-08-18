@@ -19,12 +19,6 @@
       VISUAL = "'emacsclient --alternate-editor \"\" --create-frame'";
     };
 
-    extraEnv = ''
-      # Work around https://github.com/nushell/nushell/issues/9265
-      $env.DIRS_POSITION = 0
-      $env.DIRS_LIST = [($env.PWD | path expand)]
-    '';
-
     extraConfig = ''
       # Starts nushell inside a `nix shell`
       extern ns [
