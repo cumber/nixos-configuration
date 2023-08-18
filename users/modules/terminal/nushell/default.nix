@@ -21,8 +21,8 @@
 
     extraEnv = ''
       # Work around https://github.com/nushell/nushell/issues/9265
-      let-env DIRS_POSITION = 0
-      let-env DIRS_LIST = [($env.PWD | path expand)]
+      $env.DIRS_POSITION = 0
+      $env.DIRS_LIST = [($env.PWD | path expand)]
     '';
 
     extraConfig = ''
