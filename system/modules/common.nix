@@ -138,13 +138,13 @@
 
     users = {
       root = {
-        passwordFile = "/etc/nixos/secrets/root.pass";
+        hashedPasswordFile = "/etc/nixos/secrets/root.pass";
       };
 
       cumber = {
         isNormalUser = true;
         description = "Cumber";
-        passwordFile = "/etc/nixos/secrets/cumber.pass";
+        hashedPasswordFile = "/etc/nixos/secrets/cumber.pass";
         extraGroups =  [ "wheel" "networkmanager" "scanner" ];
       };
 
