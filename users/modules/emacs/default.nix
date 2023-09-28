@@ -127,10 +127,16 @@ in
     ]);
   };
 
-  home.packages = [
-    ee
+  home = {
+    packages = [
+      ee
 
-    # used by js mode setup in emacs
-    pkgs.nodePackages.tern
-  ];
+      # used by js mode setup in emacs
+      pkgs.nodePackages.tern
+    ];
+
+    sessionVariables = {
+      EDITOR = "emacs";
+    };
+  };
 }
