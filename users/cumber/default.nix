@@ -15,6 +15,7 @@
     ../modules/element
     ../modules/signal
     ../modules/slack
+    ../modules/tutanota
 
     # Git configurations for personal and work accounts
     ./git
