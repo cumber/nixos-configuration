@@ -21,21 +21,21 @@
 
     extraConfig = ''
       # Starts nushell inside a `nix shell`
-      extern-wrapped ns [
+      def --wrapped ns [
          ...rest # All arguments will be passed to nix shell
       ] {
         nix shell $rest -c nu
       }
 
       # Starts nushell inside `nix develop --impure`
-      extern-wrapped nd [
+      def --wrapped nd [
         ...rest # All arguments will be passed to nix develop
       ] {
         nix develop --impure $rest -c nu
       }
 
       # Runs `devenv up` inside `nix develop --impure`
-      extern-wrapped "nd up" [
+      def --wrapped "nd up" [
         ...rest # All arguments will be passed to nix develop
       ] {
         nix develop --impure $rest -c devenv up
@@ -44,7 +44,7 @@
       # Runs `nix repl` preloaded with the <repl> path; my system
       # config defines this with a helpful set of variables (all of
       # nixpkgs, builtins and lib more easily available, etc).
-      extern-wrapped nr [
+      def --wrapped nr [
         ...rest # All arguments will be passed to nix repl
       ] {
         nix repl --file <repl> $rest
