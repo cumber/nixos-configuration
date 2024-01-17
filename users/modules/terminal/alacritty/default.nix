@@ -5,7 +5,7 @@
     settings = {
       live_config_reload = false;
 
-      "import" = [ ./paper-theme.yaml ];
+      "import" = [ ./paper-theme.toml ];
 
       font = {
         normal = {
