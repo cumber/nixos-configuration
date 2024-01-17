@@ -186,6 +186,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [ "gtk" ];
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
