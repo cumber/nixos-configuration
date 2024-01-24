@@ -86,6 +86,9 @@ in
       # Language support
       #####
 
+      # Needed for treesitter based modes
+      treesit-grammars.with-all-grammars
+
       # haskell language support
       haskell-mode
       company-cabal

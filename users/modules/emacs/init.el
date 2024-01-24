@@ -214,10 +214,14 @@ than having to call `add-to-list' multiple times."
   :mode "\\.js\\'"
   :interpreter "node")
 
+(use-package typescript-ts-mode
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode)))
+
 (use-package tide
-  :after ((:any typescript-mode js2-mode) company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
+  :after ((:any typescript-ts-mode js2-mode) company flycheck)
+  :hook ((typescript-ts-mode . tide-setup)
+         (typescript-ts-mode . tide-hl-identifier-mode)
          (js2-mode . tide-setup)
          (js2-mode . tide-hl-identifier-mode))
   :config
