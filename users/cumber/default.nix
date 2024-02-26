@@ -167,6 +167,8 @@
       "application/json" = [ "emacsclient.desktop" "emacs.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "image/png" = [ "org.gnome.eog.desktop" ];
+      "image/jpeg" = [ "org.gnome.eog.desktop" ];
     };
   };
 
