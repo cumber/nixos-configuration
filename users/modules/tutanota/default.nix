@@ -1,14 +1,26 @@
 { pkgs, ... }:
-let pname = "tutanota-desktop";
-    version = "3.118.25";
-    tutanota = pkgs.tutanota-desktop.overrideAttrs (old: {
-      src = pkgs.fetchurl {
-        url = "https://github.com/tutao/tutanota/releases/download/tutanota-desktop-release-${version}/${pname}-${version}-unpacked-linux.tar.gz";
-        name = "tutanota-desktop-${version}.tar.gz";
-        hash = "sha256-iEb56vhL/gWrM8QPfkV8pD2D+BYv6Eb9MDisWfm2+L4=";
-      };
-    });
+let tuta = pkgs.tutanota-desktop;
 in
 {
-  home.packages = [ tutanota ];
+  home.packages = [ tuta ];
+
+  systemd.user.services = {
+    tutanota = {
+      Unit = {
+        Description = "Tuta email client";
+        After = [ "graphical-session-pre.target" "tray.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        # -a arg makes it start minimized
+        ExecStart = ''${tuta}/bin/tutanota-desktop -a'';
+        Restart = "on-failure";
+      };
+    };
+  };
 }
