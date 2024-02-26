@@ -64,10 +64,7 @@
     vlc
     zoom-us
 
-    # Guitarix build is broken; fix is already commited, working its
-    # way into the channel. I'm not really using it right now, so just
-    # disable for a bit.
-    #guitarix
+    guitarix
 
     # LyX / LaTeX
     lyx
