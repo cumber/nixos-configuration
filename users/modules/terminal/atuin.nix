@@ -2,7 +2,7 @@
 {
   # Shell history database
   programs.atuin = {
-    enable = true;
+    enable = false;
 
     flags = [
       "--disable-up-arrow"
