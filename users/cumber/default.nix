@@ -9,6 +9,7 @@
     ../modules/git
     ../modules/screen-locker
     ../modules/terminal
+    ../modules/ulauncher
     ../modules/xcompose-maths
 
     # messaging services
@@ -169,18 +170,6 @@
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "image/png" = [ "org.gnome.eog.desktop" ];
       "image/jpeg" = [ "org.gnome.eog.desktop" ];
-    };
-  };
-
-  xdg.configFile = {
-    # Albert has a bug where it's reading its config file from the
-    # root config folder instead of its own subfolder.
-    "albert.conf" = {
-      source = ./config/albert/albert.conf;
-    };
-    "albert" = {
-      source = ./config/albert;
-      recursive = true;
     };
   };
 }

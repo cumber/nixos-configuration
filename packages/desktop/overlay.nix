@@ -18,7 +18,6 @@ self: super: {
 
         commands = [
           { pkg = self.xorg.setxkbmap; args = "-option compose:ralt"; }
-          { pkg = self.albert; }
           { pkg = self.picom; }
           { pkg = self.system-config-printer; path = "/bin/system-config-printer-applet"; }
           { pkg = self.udiskie; path = "/bin/udiskie"; args = "--tray --appindicator"; }

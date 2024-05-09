@@ -78,6 +78,8 @@
       };
     };
 
+    displayManager.defaultSession = "home-manager";
+
     # Needed for file-manager applications to support trash, etc
     gvfs.enable = true;
 
@@ -111,11 +113,10 @@
         ];
       };
 
-      displayManager = {
-        lightdm.enable = true;
-        lightdm.greeters.enso.enable = true;
-        lightdm.greeters.gtk.enable = false;
-        defaultSession = "home-manager";
+      displayManager.lightdm = {
+        enable = true;
+        greeters.enso.enable = true;
+        greeters.gtk.enable = false;
       };
     };
   };

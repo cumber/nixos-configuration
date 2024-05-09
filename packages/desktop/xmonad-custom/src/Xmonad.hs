@@ -97,7 +97,7 @@ myManageHooks =
   [ placeHook . inBounds . fixed $ (0.5, 0.5)
   , appName =? "synapse" --> doIgnore
   , appName =? "speedcrunch" --> doFloat
-  , appName =? "albert" --> hasBorder False
+  , appName =? "ulauncher" --> hasBorder False
   , not <$> isDialog --> insertPosition Below Newer
   ]
 
