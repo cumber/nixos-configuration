@@ -11,9 +11,20 @@ let ulauncher = pkgs.ulauncher.overrideAttrs (old: {
           --replace-fail /usr/bin/ulauncher $out/bin/ulauncher
       '';
     });
+
+    ulauncher-system = pkgs.fetchFromGitHub {
+      owner = "tjquillan";
+      repo = "ulauncher-system";
+      rev = "7dedd992709fa2297735cddf852404144d4da47c";
+      hash = "sha256-joaR6B84XTSOoZ/YXFF0UkSHEECVXI3yRtx2M0DrzkU=";
+    };
 in
 {
   home.packages = [ ulauncher ];
+
+  home.file.".local/share/ulauncher/extensions/ulauncher-system" = {
+    source = "${ulauncher-system}";
+  };
 
   # Can't specify config using xdg.configFile, as ulauncher needs
   # writeable config files even if you don't actually change
