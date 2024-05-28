@@ -5,6 +5,7 @@
     imports = [
       ../../modules/systemd-boot.nix
       ../../modules/pipewire.nix
+      ../../modules/keyboard-rgb.nix
     ];
 
     # Need to allow for nix-serve to work
