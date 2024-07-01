@@ -25,5 +25,5 @@ def --wrapped "nd up" [
 def --wrapped nr [
   ...rest # All arguments will be passed to nix repl
 ] {
-  nix repl --file <repl> $rest
+  nix repl --file <repl> ...$rest
 }
