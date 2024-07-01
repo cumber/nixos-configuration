@@ -14,8 +14,5 @@ $env.config.completions.external.completer = { |spans|
     carapace $spans.0 nushell ...$spans | from json
 }
 
-# Disable clickable links in ls output
-$env.config.shell_integration.osc8 = false
-
 # Alacritty supports kitty keyboard protocol
 $env.config.use_kitty_protocol = true
