@@ -137,9 +137,5 @@ in
       # used by js mode setup in emacs
       pkgs.nodePackages.tern
     ];
-
-    sessionVariables = {
-      EDITOR = "emacs";
-    };
   };
 }

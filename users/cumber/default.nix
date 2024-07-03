@@ -7,6 +7,7 @@
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
+    ../modules/helix
     ../modules/screen-locker
     ../modules/terminal
     ../modules/ulauncher

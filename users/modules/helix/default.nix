@@ -1,0 +1,134 @@
+{ pkgs, ... }:
+{
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+
+    # Good place to install LSP servers that I want to be generally available.
+    # LSP servers that are project-specific (e.g. for Haskell) should go in the
+    # dev environments for those projects.
+    extraPackages = [
+      # LSP server for nix language
+      pkgs.nil
+
+      # LSP server for HTML, CSS, SCSS, and JSON
+      pkgs.vscode-langservers-extracted
+
+      # LSP server providing grammar and spell checking
+      pkgs.ltex-ls
+
+      # LSP server for markdown
+      pkgs.marksman
+
+      # LSP server for TOML
+      pkgs.taplo-lsp
+
+      # LSP server for typst
+      pkgs.typst-lsp
+
+      # LSP server for YAML
+      pkgs.yaml-language-server
+    ];
+
+    settings = {
+      theme = "onelight";
+
+      editor = {
+        cursor-shape.insert = "bar";
+
+        indent-guides = {
+          render = true;
+          character = "⸽";
+          skip-levels = 2;
+        };
+
+        statusline = {
+          center = [ "file-type" ];
+          right = [
+            "diagnostics"
+            "selections"
+            "register"
+            "position"
+            "total-line-numbers"
+            "file-encoding"
+          ];
+        };
+
+        whitespace = {
+          render = {
+            tab = "all";
+            nbsp = "all";
+            nnbsp = "all";
+          };
+
+          characters = {
+            tab = "→";
+            tabpad = "·";
+            nbsp = "⍽";
+            nnbsp = "␣";
+          };
+
+          smart-tab.enable = false;
+        };
+
+        lsp = {
+          enable = true;
+          auto-signature-help = true;
+          display-messages = true;
+          display-inlay-hints = true;
+          display-signature-help-docs = true;
+          snippets = true;
+        };
+      };
+    };
+
+    languages = {
+      language = [
+        {
+          name = "markdown";
+          language-servers = [
+            "marksman"
+            "ltex-ls"
+          ];
+        }
+        {
+          name = "typst";
+          language-servers = [
+            "types-lsp"
+            "ltex-ls"
+          ];
+        }
+      ];
+
+      language-server = {
+        ltex-ls.config.ltex = {
+          language = "en-AU";
+          statusBarItem = true;
+        };
+
+        nil.config.nil = {
+          formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+        };
+
+        haskell-language-server = {
+          command = "haskell-language-server";
+          config = {
+            provideFormatter = true;
+            haskell.formattingProvider = "fourmolu";
+          };
+        };
+
+        typescript-language-server = {
+          config.preferences = {
+            includeInlayEnumMemberValueHints = true;
+            includeInlayFunctionLikeReturnTypeHints = true;
+            includeInlayFunctionParameterTypeHints = true;
+            includeInlayParameterNameHints = "all";
+            includeInlayPropertyDeclarationTypeHints = true;
+            includeInlayVariableTypeHints = true;
+          };
+        };
+      };
+    };
+  };
+}

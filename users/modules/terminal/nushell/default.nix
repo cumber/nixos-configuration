@@ -18,7 +18,6 @@
 
     envFile.text = ''
       source ${./default-env.nu}
-      source ${./environment.nu}
       source ${./ls-colors.nu}
     '';
   };
