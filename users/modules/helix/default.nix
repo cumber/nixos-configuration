@@ -128,6 +128,17 @@
             includeInlayVariableTypeHints = true;
           };
         };
+
+        vscode-json-language-server = {
+          config = {
+            provideFormatter = true;
+            files.insertFinalNewline = true;
+            json = {
+              validate.enable = true;
+              keepLines.enable = true;
+            };
+          };
+        };
       };
     };
   };
