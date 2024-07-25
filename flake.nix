@@ -8,9 +8,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wired-notify = {
+      url = "github:Toqozz/wired-notify";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, wired-notify, rust-overlay }:
     let lib = import ./lib.nix { inherit (nixpkgs) lib; };
 
         machines = lib.genAttrs (lib.readSubDirs ./system/machines) makeConfig;
@@ -43,6 +53,9 @@
               ({ ... }: {
                 nix.registry.nixpkgs.flake = nixpkgs;
                 nix.nixPath = makeNixPath name;
+                home-manager.sharedModules = [
+                  wired-notify.homeManagerModules.default
+                ];
               })
               (import ./system/modules/common.nix)
               (import (./system/machines + "/${name}"))
@@ -53,7 +66,7 @@
 
               overlays = (
                 findAndImportOverlays ./overrides
-                ++ findAndImportOverlays ./packages
+                ++ [ wired-notify.overlays.default ]
               );
 
               config = {

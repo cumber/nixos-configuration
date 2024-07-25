@@ -1,0 +1,163 @@
+@define-color bubble rgba(255, 255, 255, 0.15);
+@define-color bubble-warning rgb(222, 162, 0);
+@define-color bubble-critical rgb(255, 30, 0);
+@define-color bubble-active rgb(180, 255, 255);
+
+@define-color button-hover rgba(255, 255, 255, 0.2);
+
+@define-color font white;
+@define-color font-active rgb(30, 30, 30);
+@define-color font-dim rgb(150, 150, 150);
+
+* {
+  font-family: Material Design Icons, Overpass Regular, sans-serif;
+  font-size: 5mm;
+}
+
+window#waybar {
+  background: transparent;
+  color: @font;
+}
+
+window#waybar>box {
+  /* padding/margins on the top-level window don't work, so put it on the
+     immediately contained box */
+  margin: 1mm 0;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+.module {
+  border-radius: 2mm;
+  padding: 0 0.8em;
+  margin: 0 2mm;
+  background-color: @bubble;
+}
+
+/* give widgets that only contain icons a bigger font and less padding */
+#idle_inhibitor,
+#cpu,
+#memory,
+#disk {
+  font-size: 8mm;
+  padding: 0 0.2em;
+}
+
+/* widgets that can be clicked have hover effect */
+#trags button:hover,
+#idle_inhibitor:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover {
+  box-shadow: inset 0 0 100px 100px @button-hover;
+}
+
+/* river/tags module */
+#tags {
+  background: transparent;
+  padding: 0;
+}
+
+#tags button {
+  color: @font-dim;
+  background-color: @bubble;
+  font-weight: bold;
+  border-top-width: 0.5mm;
+  border-radius: 0;
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#tags button.occupied {
+  color: @font;
+  border-top-style: solid;
+  border-color: initial;
+}
+
+#tags button.focused {
+  color: @bubble-active;
+  border-bottom-style: solid;
+  border-color: initial;
+}
+
+#tags button.urgent {
+  background-color: @bubble-critial;
+}
+
+/* river/layout module */
+#layout {}
+
+/* river/window module */
+#window {}
+
+#privacy {
+  padding: 0;
+}
+
+#privacy-item {
+  padding: 0 5px;
+  color: white;
+}
+
+#privacy-item.screenshare {
+  background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+  background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+  background-color: #0069d4;
+}
+
+#idle_inhibitor.activated {
+  background-color: @bubble-active;
+  color: @font-active;
+}
+
+/* resource usage widget highlights based on state */
+#cpu.medium,
+#memory.medium,
+#disk.medium {
+  background-color: @bubble-warning;
+}
+
+#cpu.high,
+#memory.high,
+#disk.high {
+  background-color: @bubble-critical;
+}
+
+#battery.charging,
+#battery.plugged {
+  background-color: #02b50e;
+}
+
+@keyframes blink {
+  to {
+    background-color: @bubble;
+  }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+  background-color: @bubble-critical;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray>.passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @bubble-active;
+}

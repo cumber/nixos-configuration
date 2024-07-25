@@ -1,16 +1,17 @@
 { pkgs, ... }:
 {
   imports = [
-    # notification daemon
-    ../modules/dunst
-
+    # river compositor session
+    ../modules/river-session
+  
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
+    ../modules/gtk-config
     ../modules/helix
-    ../modules/screen-locker
+    ../modules/keepassxc
+    ../modules/syncthing
     ../modules/terminal
-    ../modules/ulauncher
     ../modules/xcompose-maths
 
     # messaging services
@@ -21,12 +22,14 @@
 
     # Git configurations for personal and work accounts
     ./git
+
+    # clipboard manager
+    ../modules/copyq
   ];
 
   home.packages = with pkgs; [
     # System
     file
-    gnome.adwaita-icon-theme  # fallback icons from numix
     gnome.gnome-system-monitor
     gwe  # fan control for GPU
     hicolor-icon-theme
@@ -34,8 +37,6 @@
     psmisc
     source-code-pro
     tree
-    xmonad-custom
-    xmonad-session-init
     xsel
 
     # Devlopment
@@ -44,6 +45,7 @@
     cachix
     colordiff
     graphviz
+    nix-melt
     nix-tree
     jq   # awesome json pretty printer and query tool
     oq   # wrapper that can run jq on other formats, inc yaml
@@ -56,7 +58,6 @@
     calibre
     clementine
     evince
-    keepassxc
     gimp
     gnome.eog
     libreoffice
@@ -87,38 +88,6 @@
 
   services = {
     network-manager-applet.enable = true;
-
-    syncthing.enable = true;
-
-    # Starting watcher explicitly works better than letting taffybar
-    # start it
-    status-notifier-watcher.enable = true;
-    taffybar = {
-      enable = true;
-      package = pkgs.xmonad-custom;
-    };
-  };
-
-  xsession = {
-    enable = true;
-    scriptPath = ".hm-xsession";
-
-    numlock.enable = true;
-    preferStatusNotifierItems = true;
-    windowManager.command  = "${pkgs.xmonad-custom}/bin/xmonad";
-
-    # This causes PATH to be added to the list of variables that get
-    # imported into systemd's user context, and thus get passed to
-    # user services. Without this, things like slack and signal are
-    # unable to open links in a browser, since they do it by xdg-open
-    # which finds the browser via my profile PATH rather than via
-    # direct hardcoded path.
-    #
-    # I'm not certain that this is okay; the importedVariables option
-    # below is undocumented. I should file an issue with
-    # home-manager. If it's a good idea they might want it, and if
-    # it's a bad idea they can probably tell me.
-    importedVariables = [ "PATH" ];
   };
 
   programs = {
@@ -130,22 +99,6 @@
         truncation_length = 5;
         truncation_symbol = "…/";
       };
-    };
-  };
-
-  gtk = {
-    enable = true;
-    font = {
-      name = "TeX Gyre Schola";
-      size = 12;
-    };
-    iconTheme = {
-      name = "Numix";
-      package = pkgs.numix-icon-theme;
-    };
-    theme = {
-      name = "Numix";
-      package = pkgs.numix-gtk-theme;
     };
   };
 

@@ -13,6 +13,8 @@
     ./reflex-frp.nix
     ./haskell-nix.nix
     ./cachix.nix
+
+    ./river
   ];
 
   nix.settings = {
@@ -78,8 +80,6 @@
       };
     };
 
-    displayManager.defaultSession = "home-manager";
-
     # Needed for file-manager applications to support trash, etc
     gvfs.enable = true;
 
@@ -96,29 +96,6 @@
     };
 
     upower.enable = true;
-
-    xserver = {
-      enable = true;
-
-      desktopManager = {
-        xterm.enable = false;
-        session = [
-          {
-            name = "home-manager";
-            start = ''
-              $HOME/.hm-xsession &
-              waitPID=$!
-            '';
-          }
-        ];
-      };
-
-      displayManager.lightdm = {
-        enable = true;
-        greeters.enso.enable = true;
-        greeters.gtk.enable = false;
-      };
-    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -171,6 +148,8 @@
     }
   ];
 
+  security.pam.services.waylock = {};
+
   # With this enabled, we were trying to load a kernel module snd_pcm_oss that
   # isn't actually installed.
   sound.enableOSSEmulation = false;
@@ -180,14 +159,6 @@
     extraConfig = {
       "pixma" = "bjnp://192.168.1.229";
     };
-  };
-
-  # Use GTK portals, since most of my apps are GTK even though I'm not
-  # using Gnome.
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = [ "gtk" ];
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.

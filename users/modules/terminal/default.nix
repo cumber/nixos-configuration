@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./alacritty
+    ./foot
     ./atuin.nix
     ./broot
     ./eza.nix

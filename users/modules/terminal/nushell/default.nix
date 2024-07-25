@@ -1,12 +1,5 @@
-{ pkgs, config, ... }:
+{ ... }:
 {
-  # Have alacritty start nushell instead of default shell in /etc/passwd
-  programs.alacritty.settings.shell =
-    "${config.programs.nushell.package}/bin/nu";
-
-  # Make carapace available for completions
-  home.packages = [ pkgs.carapace ];
-
   programs.nushell = {
     enable = true;
 
@@ -20,5 +13,15 @@
       source ${./default-env.nu}
       source ${./ls-colors.nu}
     '';
+
+    environmentVariables = {
+      # Let carapace fallback to bash completion scripts; lots of packages will
+      # automatically install these in XDG_DATA_DIRS
+      CARAPACE_BRIDGES = "bash";
+    };
+  };
+
+  programs.carapace = {
+    enable = true;
   };
 }
