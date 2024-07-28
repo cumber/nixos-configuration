@@ -30,11 +30,11 @@
   home.packages = with pkgs; [
     # System
     file
-    gnome-system-monitor
     gwe  # fan control for GPU
     hicolor-icon-theme
     inconsolata
     psmisc
+    resources
     source-code-pro
     tree
     xsel
