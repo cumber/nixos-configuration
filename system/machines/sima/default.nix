@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
   {
     networking.hostName = "sima";
 
@@ -6,6 +6,7 @@
       ../../modules/systemd-boot.nix
       ../../modules/bluetooth.nix
       ../../modules/pipewire.nix
+      ../../modules/regreet.nix
       ../../modules/touchpad.nix
       ../../modules/webcam-server.nix
     ];
