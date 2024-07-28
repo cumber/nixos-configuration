@@ -1,4 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  inherit (pkgs) wlr-randr;
+in
   {
     networking.hostName = "sima";
 
@@ -22,9 +25,9 @@
 
     # Run at 1080 rather than 4K to save power and avoid annoying
     # hidpi configuration
-    services.xserver.resolutions = [
-      { x = 1920; y = 1080; }
-    ];
+    local.river.configForSystem = ''
+      ${wlr-randr}/bin/wlr-randr --output eDP-1 --custom-mode 1920x1080
+    '';
 
     # Allow mutable time zone for laptop
     time.timeZone = null;
