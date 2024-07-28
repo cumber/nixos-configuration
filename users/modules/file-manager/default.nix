@@ -2,6 +2,6 @@
 {
   home.packages = with pkgs; [
     pcmanfm
-    gnome.file-roller
+    file-roller
   ];
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
   {
     networking.hostName = "sima";
 
@@ -24,11 +24,6 @@
     services.xserver.resolutions = [
       { x = 1920; y = 1080; }
     ];
-
-    sound.extraConfig = ''
-      defaults.pcm.!card 1
-      defaults.ctl.!card 1
-    '';
 
     # Allow mutable time zone for laptop
     time.timeZone = null;

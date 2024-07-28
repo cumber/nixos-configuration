@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -149,10 +149,6 @@
   ];
 
   security.pam.services.waylock = {};
-
-  # With this enabled, we were trying to load a kernel module snd_pcm_oss that
-  # isn't actually installed.
-  sound.enableOSSEmulation = false;
 
   hardware.sane = {
     enable = true;

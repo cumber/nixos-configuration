@@ -30,7 +30,7 @@
   home.packages = with pkgs; [
     # System
     file
-    gnome.gnome-system-monitor
+    gnome-system-monitor
     gwe  # fan control for GPU
     hicolor-icon-theme
     inconsolata
@@ -57,9 +57,9 @@
     anki
     calibre
     clementine
+    eog
     evince
     gimp
-    gnome.eog
     libreoffice
     lilypond   # needed for anki plugin
     speedcrunch
