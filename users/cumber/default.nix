@@ -55,11 +55,11 @@
     anki
     calibre
     clementine
-    eog
     evince
     gimp
     libreoffice
     lilypond   # needed for anki plugin
+    qimgv
     speedcrunch
     thunderbird
     vlc
