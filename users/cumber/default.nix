@@ -30,14 +30,12 @@
   home.packages = with pkgs; [
     # System
     file
-    gwe  # fan control for GPU
     hicolor-icon-theme
     inconsolata
     psmisc
     resources
     source-code-pro
     tree
-    xsel
 
     # Devlopment
     cabal-install
