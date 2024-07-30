@@ -4,6 +4,7 @@
     # river compositor session
     ../modules/river-session
   
+    ../modules/browser
     ../modules/emacs
     ../modules/file-manager
     ../modules/git
@@ -50,8 +51,6 @@
     pandoc
 
     # Office
-    firefox
-    chromium
     anki
     calibre
     clementine
