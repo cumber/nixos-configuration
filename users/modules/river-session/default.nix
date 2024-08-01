@@ -11,6 +11,7 @@ in
   imports = [
     ./river
     ./fuzzel
+    ./udiskie
     ./waybar
     ./wired-notify
   ];
