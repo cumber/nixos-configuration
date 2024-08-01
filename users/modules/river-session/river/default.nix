@@ -118,6 +118,10 @@ in
       keyboard-layout = "-options compose:ralt au";
 
       default-layout = "rivertile";
+
+      spawn = [
+        "'rivertile -view-padding 6 -outer-padding 6'"
+      ];
     };
 
     systemd.variables =
@@ -132,8 +136,6 @@ in
         riverctl focus-output "$output"
         riverctl set-focused-tags "${toString (tags.mask-for-label 1)}"
       done
-
-      rivertile -view-padding 6 -outer-padding 6 &
 
       # Set portait monitor to top layout, then focus back to main monitor
       # TODO: configure this per machine so config works on sima too
