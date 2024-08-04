@@ -41,7 +41,7 @@ let
           service borg-backup
           host ${host}
           user ${user}
-          location vortalë
+          location ${name}
       '';
 
       extraConfig = {
@@ -94,7 +94,7 @@ in
     enable = true;
 
     backups = {
-      "vortalë" =
+      "vortalë" = (
         let
           mount = "/run/media/${user}/vortalë";
         in
@@ -105,7 +105,18 @@ in
             # the drive isn't mounted
             before_actions = [ "${util-linux}/bin/findmnt ${mount} > /dev/null || exit 75" ];
           };
-        };
+        }
+      );
+
+      borgbase = (
+        let
+          host-repos = {
+            kocka = "ssh://h3jgy72p@h3jgy72p.repo.borgbase.com/./repo";
+            sima = "ssh://ebd6bocz@ebd6bocz.repo.borgbase.com/./repo";
+          };
+        in
+        mkBackupConfig "borgbase" host-repos.${host}
+      );
     };
   };
 }
