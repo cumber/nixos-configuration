@@ -3,7 +3,8 @@
   imports = [
     # river compositor session
     ../modules/river-session
-  
+
+    ../modules/backups
     ../modules/browser
     ../modules/emacs
     ../modules/file-manager
