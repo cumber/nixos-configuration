@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (pkgs) libsecret util-linux;
+  inherit (pkgs)
+    libsecret
+    networkmanager
+    util-linux
+    writeShellApplication
+    ;
 
   host = osConfig.networking.hostName;
   user = config.home.username;
@@ -114,8 +119,27 @@ in
             kocka = "ssh://h3jgy72p@h3jgy72p.repo.borgbase.com/./repo";
             sima = "ssh://ebd6bocz@ebd6bocz.repo.borgbase.com/./repo";
           };
+
+          check-wifi = writeShellApplication {
+            name = "check-wifi";
+            runtimeInputs = [ networkmanager ];
+            text = ''
+              # exit 75 signals a soft failure to borgmatic, so it skips backup
+              # if we're not connected to specific wifi network
+              if [[ "$(nmcli --terse --fields GENERAL.STATE connection show Möbius)" == "GENERAL.STATE:activated" ]]; then
+                exit 0
+              else
+                exit 75
+              fi
+            '';
+          };
         in
-        mkBackupConfig "borgbase" host-repos.${host}
+        lib.mkMerge [
+          (mkBackupConfig "borgbase" host-repos.${host})
+          (lib.mkIf (host == "sima") {
+            hooks.extraConfig.before_actions = [ "${check-wifi}/bin/check-wifi" ];
+          })
+        ]
       );
     };
   };
