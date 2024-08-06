@@ -2,7 +2,6 @@
 let
   inherit (pkgs)
     lswt
-    waylock
     wl-clipboard
     wlr-randr
     ;
@@ -13,12 +12,12 @@ in
     ./fuzzel
     ./udiskie
     ./waybar
+    ./waylock
     ./wired-notify
   ];
 
   home.packages = [
     lswt
-    waylock # NOTE: needs system-level PAM config to be able to unlock!
     wl-clipboard
     wlr-randr
   ];

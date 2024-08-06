@@ -60,6 +60,8 @@ let
   '';
 in
 {
+  imports = [ ./waylock.nix ];
+
   options = {
     local.river.configForSystem = lib.mkOption {
       type = lib.types.lines;

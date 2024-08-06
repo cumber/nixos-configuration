@@ -148,8 +148,6 @@
     }
   ];
 
-  security.pam.services.waylock = {};
-
   hardware.sane = {
     enable = true;
     extraConfig = {

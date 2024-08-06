@@ -5,7 +5,16 @@
   ...
 }:
 let
-  inherit (pkgs) foot fuzzel jq wlr-randr;
+  inherit (lib) getExe getExe';
+  inherit (pkgs)
+    foot
+    fuzzel
+    jq
+    wlr-randr
+    ;
+
+  loginctl = getExe' pkgs.systemd "loginctl";
+  wlogout = getExe pkgs.wlogout;
 
   tags = import ./tags.nix lib;
 in
@@ -24,9 +33,9 @@ in
             # see terminal module for configuration of foot
             "Super+Shift Return" = "spawn ${foot}/bin/foot";
 
+            "Super Z" = "spawn ${wlogout}";
             "Super X" = "spawn ${fuzzel}/bin/fuzzel";
-
-            "Super+Shift Q" = "exit";
+            "Super+Shift Z" = "spawn '${loginctl} lock-session'";
             "Super+Shift C" = "close";
 
             "Super Up" = "focus-view up";
@@ -119,9 +128,7 @@ in
 
       default-layout = "rivertile";
 
-      spawn = [
-        "'rivertile -view-padding 6 -outer-padding 6'"
-      ];
+      spawn = [ "'rivertile -view-padding 6 -outer-padding 6'" ];
     };
 
     systemd.variables =
