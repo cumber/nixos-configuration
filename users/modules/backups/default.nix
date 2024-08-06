@@ -55,28 +55,22 @@ let
     };
 
     retention = {
-      keepHourly = 12;
+      keepHourly = 48;
       keepDaily = 15;
       keepMonthly = 12;
       keepYearly = -1;
     };
 
+    # NOTE: data and extract checks are impractical to run automatically for
+    # remote backups; I should manually run them occaisionally
     consistency.checks = [
       {
         name = "repository";
-        frequency = "2 weeks";
+        frequency = "1 day";
       }
       {
         name = "archives";
-        frequency = "4 weeks";
-      }
-      {
-        name = "data";
-        frequency = "6 weeks";
-      }
-      {
-        name = "extract";
-        frequency = "3 months";
+        frequency = "1 day";
       }
     ];
   };
@@ -103,14 +97,28 @@ in
         let
           mount = "/run/media/${user}/vortalë";
         in
-        mkBackupConfig "vortalë" "${mount}/${user}@${host}"
-        // {
-          hooks.extraConfig = {
-            # exit 75 signals a soft failure to borgmatic, so it skips backup if
-            # the drive isn't mounted
-            before_actions = [ "${util-linux}/bin/findmnt ${mount} > /dev/null || exit 75" ];
-          };
-        }
+        lib.mkMerge [
+          (mkBackupConfig "vortalë" "${mount}/${user}@${host}")
+          {
+            hooks.extraConfig = {
+              # exit 75 signals a soft failure to borgmatic, so it skips backup if
+              # the drive isn't mounted
+              before_actions = [ "${util-linux}/bin/findmnt ${mount} > /dev/null || exit 75" ];
+            };
+
+            # data and extract checks are fast enough to run automatically here
+            consistency.checks = [
+              {
+                name = "data";
+                frequency = "1 week";
+              }
+              {
+                name = "extract";
+                frequency = "2 weeks";
+              }
+            ];
+          }
+        ]
       );
 
       borgbase = (
