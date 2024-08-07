@@ -9,6 +9,7 @@ in
     ./disk.nix
     ../../modules/systemd-boot.nix
     ../../modules/bluetooth.nix
+    ../../modules/localtimed
     ../../modules/pipewire.nix
     ../../modules/regreet.nix
     ../../modules/touchpad.nix
@@ -25,10 +26,6 @@ in
   local.river.configForSystem = ''
     ${wlr-randr}/bin/wlr-randr --output eDP-1 --custom-mode 1920x1080
   '';
-
-  # Allow mutable time zone for laptop
-  time.timeZone = null;
-  services.localtimed.enable = true;
 
   powerManagement.cpuFreqGovernor = "powersave";
 }
