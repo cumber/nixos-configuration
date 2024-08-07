@@ -6,6 +6,7 @@ in
   networking.hostName = "sima";
 
   imports = [
+    ./disk.nix
     ../../modules/systemd-boot.nix
     ../../modules/bluetooth.nix
     ../../modules/pipewire.nix
@@ -28,4 +29,6 @@ in
   # Allow mutable time zone for laptop
   time.timeZone = null;
   services.localtimed.enable = true;
+
+  powerManagement.cpuFreqGovernor = "powersave";
 }
