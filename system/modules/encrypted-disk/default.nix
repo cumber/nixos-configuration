@@ -14,17 +14,32 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/mapper/nixos";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [
+        "subvol=@"
+        "noatime"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-label/ESP";
       fsType = "vfat";
-      options = [ "umask=0022" ];
+      options = [
+        "umask=0022"
+        "noatime"
+      ];
+    };
+
+    "/home/cumber" = {
+      device = "/dev/mapper/nixos";
+      fsType = "btrfs";
+      options = [
+        "subvol=@home_cumber"
+        "noatime"
+      ];
     };
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [ { device = "/dev/mapper/swap"; } ];
 }

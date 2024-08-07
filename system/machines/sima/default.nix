@@ -6,12 +6,12 @@ in
   networking.hostName = "sima";
 
   imports = [
-    ./disk.nix
-    ../../modules/systemd-boot.nix
     ../../modules/bluetooth.nix
+    ../../modules/encrypted-disk
     ../../modules/localtimed
     ../../modules/pipewire.nix
     ../../modules/regreet.nix
+    ../../modules/systemd-boot.nix
     ../../modules/touchpad.nix
     ../../modules/webcam-server.nix
   ];
