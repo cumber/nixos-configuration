@@ -23,8 +23,8 @@ let
           stem = "home/${user}";
         in
         [
-          "R /${stem}"
-          "- ${stem}/Downloads"
+          "R /${stem}/./"
+          "- ${stem}/Downloads/"
           "- ${stem}/.cache"
           "- ${stem}/.config/chromium"
           "- ${stem}/.config/Slack"
