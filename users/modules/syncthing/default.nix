@@ -4,6 +4,7 @@
     enable = true;
     tray = {
       enable = true;
+      command = "syncthingtray --wait";
     };
   };
 }

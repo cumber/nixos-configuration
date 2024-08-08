@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 let
-  inherit (pkgs) coreutils-full firefox resources;
+  inherit (pkgs) firefox resources;
+
   tags = import ../river/tags.nix lib;
 
   gauge-widget = icon: {
@@ -113,10 +114,6 @@ in
       }
     ];
   };
-
-  systemd.user.services.waybar.Service.ExecStartPost = ''
-    ${coreutils-full}/bin/sleep 3
-  '';
 
   home.packages = [
     pkgs.material-design-icons
