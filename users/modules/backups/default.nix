@@ -66,11 +66,11 @@ let
     consistency.checks = [
       {
         name = "repository";
-        frequency = "1 day";
+        frequency = "1 month";
       }
       {
         name = "archives";
-        frequency = "1 day";
+        frequency = "1 month";
       }
     ];
   };
@@ -110,11 +110,11 @@ in
             consistency.checks = [
               {
                 name = "data";
-                frequency = "1 week";
+                frequency = "1 month";
               }
               {
                 name = "extract";
-                frequency = "2 weeks";
+                frequency = "3 months";
               }
             ];
           }
