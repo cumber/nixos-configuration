@@ -26,10 +26,6 @@ let
           "R /${stem}/./"
           "- ${stem}/Downloads/"
           "- ${stem}/.cache"
-          "- ${stem}/.config/chromium"
-          "- ${stem}/.config/Slack"
-          "- ${stem}/.config/discord"
-          "- ${stem}/.config/Signal"
           "- ${stem}/.snapshots"
         ];
 
