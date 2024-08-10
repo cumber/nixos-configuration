@@ -30,6 +30,7 @@ let
           "- ${stem}/.config/Slack"
           "- ${stem}/.config/discord"
           "- ${stem}/.config/Signal"
+          "- ${stem}/.snapshots"
         ];
 
       repositories = [
