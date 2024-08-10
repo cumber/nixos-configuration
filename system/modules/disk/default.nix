@@ -1,3 +1,7 @@
+# NOTE: Standard disk layout module assumes that LUKS-encrypted partitions for
+# root and swap are set up with the appropriate partition labels. This has to
+# be done manually during system installation, but then this configuration will
+# work regardless of the physical disk type and partition location.
 { ... }:
 {
   boot.initrd.luks.devices = {
@@ -19,6 +23,7 @@
       options = [
         "subvol=@"
         "noatime"
+        "user_subvol_rm_allowed"
       ];
     };
 
@@ -27,15 +32,6 @@
       fsType = "vfat";
       options = [
         "umask=0022"
-        "noatime"
-      ];
-    };
-
-    "/home/cumber" = {
-      device = "/dev/mapper/nixos";
-      fsType = "btrfs";
-      options = [
-        "subvol=@home_cumber"
         "noatime"
       ];
     };

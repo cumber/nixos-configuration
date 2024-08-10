@@ -7,7 +7,7 @@ in
 
   imports = [
     ../../modules/bluetooth.nix
-    ../../modules/encrypted-disk
+    ../../modules/disk
     ../../modules/localtimed
     ../../modules/pipewire.nix
     ../../modules/regreet.nix
