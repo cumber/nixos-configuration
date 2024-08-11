@@ -144,6 +144,14 @@ in
           (lib.mkIf (host == "sima") {
             hooks.extraConfig.before_actions = [ "${check-wifi}/bin/check-wifi" ];
           })
+          {
+            location.extraConfig = {
+              # Allow marking specific folders to be left out of remote backups
+              # by including a file with this name. There are some large but
+              # low-value stuff I'm okay with only being backed up locally.
+              exclude_if_present = [ "EXCLUDE-FROM-REMOTE-BACKUP" ];
+            };
+          }
         ]
       );
     };
