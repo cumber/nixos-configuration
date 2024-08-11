@@ -47,6 +47,9 @@ let
       '';
 
       extraConfig = {
+        # More readable and easy to type archive names; one per minute is enough
+        archive_name_format = "{now:%Y-%m-%d_%H:%M}";
+
         compression = "auto,zstd";
       };
     };
