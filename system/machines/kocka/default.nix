@@ -7,6 +7,7 @@ in
 
     imports = [
       ../../modules/disk
+      ../../modules/sshd
       ../../modules/systemd-boot.nix
       ../../modules/pipewire.nix
       ../../modules/regreet.nix
@@ -28,14 +29,7 @@ in
       ${wlr-randr}/bin/wlr-randr --output DP-3 --transform 90
     '';
 
-    # Need to allow for nix-serve to work
-    networking.firewall.allowedTCPPorts = [ 5000 ];
-
     powerManagement.cpuFreqGovernor = "ondemand";
-
-    services = {
-      sshd.enable = true;
-    };
 
     virtualisation.docker.enable = true;
 

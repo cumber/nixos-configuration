@@ -11,6 +11,7 @@ in
     ../../modules/localtimed
     ../../modules/pipewire.nix
     ../../modules/regreet.nix
+    ../../modules/sshd
     ../../modules/systemd-boot.nix
     ../../modules/touchpad.nix
     ../../modules/webcam-server.nix
