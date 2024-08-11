@@ -6,6 +6,7 @@ in
     networking.hostName = "kocka";
 
     imports = [
+      ../../modules/disk
       ../../modules/systemd-boot.nix
       ../../modules/pipewire.nix
       ../../modules/regreet.nix
@@ -30,15 +31,10 @@ in
     # Need to allow for nix-serve to work
     networking.firewall.allowedTCPPorts = [ 5000 ];
 
+    powerManagement.cpuFreqGovernor = "ondemand";
+
     services = {
-      fstrim.enable = true;
-
       sshd.enable = true;
-
-      nix-serve = {
-        enable = true;
-        secretKeyFile = "/etc/nixos/secrets/nix-serve.sec";
-      };
     };
 
     virtualisation.docker.enable = true;
