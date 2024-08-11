@@ -153,6 +153,7 @@ in
               # by including a file with this name. There are some large but
               # low-value stuff I'm okay with only being backed up locally.
               exclude_if_present = [ "EXCLUDE-FROM-REMOTE-BACKUP" ];
+              keep_exclude_tags = true;
             };
           }
         ]
