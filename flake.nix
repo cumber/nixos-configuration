@@ -21,15 +21,9 @@
   };
 
   outputs = { self, nixpkgs, home-manager, wired-notify, rust-overlay }:
-    let lib = import ./lib.nix { inherit (nixpkgs) lib; };
+    let local-lib = (import ./lib { inherit (nixpkgs) lib; }).lib.local;
 
-        machines = lib.genAttrs (lib.readSubDirs ./system/machines) makeConfig;
-
-        findAndImportOverlays = lib.composeAll [
-          (map import)
-          (lib.filter (p: baseNameOf p == "overlay.nix"))
-          lib.filesystem.listFilesRecursive
-        ];
+        machines = nixpkgs.lib.genAttrs (local-lib.readSubDirs ./system/machines) makeConfig;
 
         makeNixPath = (name: [
           "nixpkgs=${nixpkgs}"
@@ -57,6 +51,7 @@
                   wired-notify.homeManagerModules.default
                 ];
               })
+              (import ./lib)
               (import ./system/modules/common.nix)
               (import (./system/machines + "/${name}"))
               (import (./system/machines + "/${name}/hardware-configuration.nix"))
@@ -65,7 +60,7 @@
               inherit system;
 
               overlays = (
-                findAndImportOverlays ./overrides
+                local-lib.findAndImportOverlays ./overrides
                 ++ [ wired-notify.overlays.default ]
               );
 
