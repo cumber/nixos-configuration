@@ -21,9 +21,10 @@
   };
 
   outputs = { self, nixpkgs, home-manager, wired-notify, rust-overlay }:
-    let local-lib = (import ./lib { inherit (nixpkgs) lib; }).lib.local;
+    let # TODO: avoid this weird hack to import local lib outside of module system
+        local = (import ./lib/local.nix { inherit (nixpkgs) lib; })._module.args.local;
 
-        machines = nixpkgs.lib.genAttrs (local-lib.readSubDirs ./system/machines) makeConfig;
+        machines = nixpkgs.lib.genAttrs (local.readSubDirs ./system/machines) makeConfig;
 
         makeNixPath = (name: [
           "nixpkgs=${nixpkgs}"
@@ -48,19 +49,20 @@
                 nix.registry.nixpkgs.flake = nixpkgs;
                 nix.nixPath = makeNixPath name;
                 home-manager.sharedModules = [
+                  ./lib
                   wired-notify.homeManagerModules.default
                 ];
               })
-              (import ./lib)
-              (import ./system/modules/common.nix)
-              (import (./system/machines + "/${name}"))
-              (import (./system/machines + "/${name}/hardware-configuration.nix"))
+              ./lib
+              ./system/modules/common.nix
+              (./system/machines + "/${name}")
+              (./system/machines + "/${name}/hardware-configuration.nix")
             ];
             pkgs = import nixpkgs {
               inherit system;
 
               overlays = (
-                local-lib.findAndImportOverlays ./overrides
+                local.findAndImportOverlays ./overrides
                 ++ [ wired-notify.overlays.default ]
               );
 
