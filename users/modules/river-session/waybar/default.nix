@@ -1,12 +1,18 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  commands,
+  ...
+}:
 let
-  inherit (pkgs) firefox resources;
+  inherit (commands) firefox resources;
+  inherit (pkgs) material-design-icons overpass;
 
   tags = import ../river/tags.nix lib;
 
   gauge-widget = icon: {
     interval = 5;
-    on-click = "${resources}/bin/resources";
+    on-click = resources;
     states = {
       low = 20;
       medium = 50;
@@ -100,7 +106,8 @@ in
             };
           };
 
-          on-click = "${firefox}/bin/firefox --new-window 'https://calendar.google.com'";
+          on-click = "${firefox} --new-window 'https://calendar.google.com'";
+
           actions = {
             on-click-right = "mode";
             on-scroll-up = "shift_up";
@@ -116,7 +123,7 @@ in
   };
 
   home.packages = [
-    pkgs.material-design-icons
-    pkgs.overpass
+    material-design-icons
+    overpass
   ];
 }

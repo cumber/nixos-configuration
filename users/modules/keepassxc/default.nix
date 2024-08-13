@@ -1,8 +1,8 @@
-{ pkgs, ... }:
-let inherit (pkgs) keepassxc;
+{ commands, ... }:
+let inherit (commands) keepassxc;
 in
 {
-  home.packages = [ keepassxc ];
+  home.packages = [ keepassxc.pkg ];
 
   systemd.user.services = {
     keepassxc = {
@@ -17,7 +17,7 @@ in
       };
 
       Service = {
-        ExecStart = ''${keepassxc}/bin/keepassxc'';
+        ExecStart = keepassxc.getExe "keepassxc";
         Restart = "on-failure";
       };
     };

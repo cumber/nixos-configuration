@@ -1,14 +1,18 @@
-{ pkgs, ... }:
-let tuta = pkgs.tutanota-desktop;
+{ commands, ... }:
+let
+  inherit (commands) tutanota-desktop;
 in
 {
-  home.packages = [ tuta ];
+  home.packages = [ tutanota-desktop.pkg ];
 
   systemd.user.services = {
     tutanota = {
       Unit = {
         Description = "Tuta email client";
-        After = [ "graphical-session-pre.target" "tray.target" ];
+        After = [
+          "graphical-session-pre.target"
+          "tray.target"
+        ];
         PartOf = [ "graphical-session.target" ];
       };
 
@@ -18,7 +22,7 @@ in
 
       Service = {
         # -a arg makes it start minimized
-        ExecStart = ''${tuta}/bin/tutanota-desktop -a'';
+        ExecStart = "${tutanota-desktop} -a";
         Restart = "on-failure";
       };
     };

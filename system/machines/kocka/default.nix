@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ commands, ... }:
 let
-  inherit (pkgs) wlr-randr;
+  inherit (commands) wlr-randr;
 in
   {
     networking.hostName = "kocka";
@@ -26,7 +26,7 @@ in
     };
 
     local.river.configForSystem = ''
-      ${wlr-randr}/bin/wlr-randr --output DP-3 --transform 90
+      ${wlr-randr} --output DP-3 --transform 90
     '';
 
     powerManagement.cpuFreqGovernor = "ondemand";

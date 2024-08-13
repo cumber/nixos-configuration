@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.helix = {
     enable = true;
@@ -107,7 +107,7 @@
         };
 
         nil.config.nil = {
-          formatting.command = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+          formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
         };
 
         haskell-language-server = {

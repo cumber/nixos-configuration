@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ commands, ... }:
+let
+  inherit (commands) signal-desktop;
+in
 {
-  home.packages = [ pkgs.signal-desktop ];
+  home.packages = [ signal-desktop.pkg ];
 
   systemd.user.services = {
     signal = {
@@ -15,7 +18,7 @@
       };
 
       Service = {
-        ExecStart = ''${pkgs.signal-desktop}/bin/signal-desktop --start-in-tray'';
+        ExecStart = "${signal-desktop} --start-in-tray";
         Restart = "on-failure";
       };
     };

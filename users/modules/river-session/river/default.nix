@@ -1,20 +1,18 @@
 {
   lib,
-  pkgs,
   options,
+  commands,
   ...
 }:
 let
-  inherit (lib) getExe getExe';
-  inherit (pkgs)
+  inherit (commands)
     foot
     fuzzel
     jq
+    systemd
+    wlogout
     wlr-randr
     ;
-
-  loginctl = getExe' pkgs.systemd "loginctl";
-  wlogout = getExe pkgs.wlogout;
 
   tags = import ./tags.nix lib;
 in
@@ -31,11 +29,11 @@ in
         normal =
           {
             # see terminal module for configuration of foot
-            "Super+Shift Return" = "spawn ${foot}/bin/foot";
+            "Super+Shift Return" = "spawn ${foot}";
 
             "Super Z" = "spawn ${wlogout}";
-            "Super X" = "spawn ${fuzzel}/bin/fuzzel";
-            "Super+Shift Z" = "spawn '${loginctl} lock-session'";
+            "Super X" = "spawn ${fuzzel}";
+            "Super+Shift Z" = "spawn '${systemd.getExe "loginctl"} lock-session'";
             "Super+Shift C" = "close";
 
             "Super Up" = "focus-view up";
@@ -139,7 +137,7 @@ in
 
     extraConfig = ''
       # Set all outputs to focus tag label 1
-      for output in $(${wlr-randr}/bin/wlr-randr --json | ${jq}/bin/jq --raw-output .[].name); do
+      for output in $(${wlr-randr} --json | ${jq} --raw-output .[].name); do
         riverctl focus-output "$output"
         riverctl set-focused-tags "${toString (tags.mask-for-label 1)}"
       done

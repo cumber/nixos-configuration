@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ commands, ... }:
+let inherit (commands) slack;
+in
 {
-  home.packages = [ pkgs.slack ];
+  home.packages = [ slack.pkg ];
 
   systemd.user.services = {
     slack = {
@@ -17,7 +19,7 @@
       Service = {
         # --startup arg makes it start minimized
         # --disable-gpu-compositing seems to help flickering on wayland
-        ExecStart = ''${pkgs.slack}/bin/slack --startup --disable-gpu-compositing'';
+        ExecStart = "${slack} --startup --disable-gpu-compositing";
         Restart = "on-failure";
       };
     };

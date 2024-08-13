@@ -1,6 +1,9 @@
-{ pkgs, ... }:
+{ commands, ... }:
+let
+  inherit (commands) element-desktop;
+in
 {
-  home.packages = [ pkgs.element-desktop ];
+  home.packages = [ element-desktop.pkg ];
 
   systemd.user.services = {
     element = {
@@ -15,7 +18,7 @@
       };
 
       Service = {
-        ExecStart = ''${pkgs.element-desktop}/bin/element-desktop --hidden'';
+        ExecStart = "${element-desktop} --hidden";
         Restart = "on-failure";
       };
     };

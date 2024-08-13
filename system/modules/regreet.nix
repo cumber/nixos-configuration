@@ -2,12 +2,15 @@
   pkgs,
   config,
   lib,
+  commands,
   ...
 }:
 let
-  run-regreet = pkgs.writeScript "run-regreet" ''
-    #!${pkgs.stdenv.shell}
-    ${pkgs.wlr-randr}/bin/wlr-randr \
+  inherit (pkgs) graphite-gtk-theme graphite-cursors tela-icon-theme;
+  inherit (commands) cage dbus wlr-randr;
+
+  run-regreet = pkgs.writeShellScript "run-regreet" ''
+    ${wlr-randr} \
       --output DP-2 --preferred \
       --output DP-3 --preferred --transform 90 --off
     exec ${lib.getExe config.programs.regreet.package}
@@ -29,17 +32,17 @@ in
   };
 
   environment.systemPackages = [
-    (pkgs.graphite-gtk-theme.override { tweaks = [ "nord" ]; })
-    (pkgs.graphite-cursors)
-    (pkgs.tela-icon-theme)
+    (graphite-gtk-theme.override { tweaks = [ "nord" ]; })
+    (graphite-cursors)
+    (tela-icon-theme)
   ];
 
   # Note: this is a single string, not shell syntax, so don't use a multiline
   # string with \ escaped newlines
-  services.greetd.settings.default_session.command = builtins.concatStringsSep " " [
-    "${pkgs.dbus}/bin/dbus-run-session"
-    "${lib.getExe pkgs.cage}"
-    "${lib.escapeShellArgs config.programs.regreet.cageArgs}"
-    "${run-regreet}"
+  services.greetd.settings.default_session.command = toString [
+    (dbus.getExe "dbus-run-session")
+    cage
+    (lib.escapeShellArgs config.programs.regreet.cageArgs)
+    run-regreet
   ];
 }

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ commands, ... }:
 let
-  inherit (pkgs) wlr-randr;
+  inherit (commands) wlr-randr;
 in
 {
   networking.hostName = "sima";
@@ -25,7 +25,7 @@ in
   # Run at 1080 rather than 4K to save power and avoid annoying
   # hidpi configuration
   local.river.configForSystem = ''
-    ${wlr-randr}/bin/wlr-randr --output eDP-1 --custom-mode 1920x1080
+    ${wlr-randr} --output eDP-1 --custom-mode 1920x1080
   '';
 
   powerManagement.cpuFreqGovernor = "powersave";

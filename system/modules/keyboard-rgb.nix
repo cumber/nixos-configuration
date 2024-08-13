@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ commands, ... }:
+let
+  inherit (commands) openrgb;
+in
 {
   # Enable the OpenRGB server
   services.hardware.openrgb.enable = true;
@@ -14,7 +17,7 @@
     serviceConfig = {
       Type = "oneshot";
       DynamicUsers = "yes";
-      ExecStart = "${pkgs.openrgb}/bin/openrgb --mode Static --color ffffff --brightness 4";
+      ExecStart = "${openrgb} --mode Static --color ffffff --brightness 4";
     };
   };
 }

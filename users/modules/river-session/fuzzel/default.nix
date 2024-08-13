@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ commands, ... }:
 let
-  inherit (pkgs) foot;
+  inherit (commands) foot;
 in
 {
   programs.fuzzel = {
@@ -8,7 +8,7 @@ in
 
     settings = {
       main = {
-        terminal = "${foot}/bin/foot";
+        terminal = foot.exe;
 
         font = "Overpass:size=15";
 
