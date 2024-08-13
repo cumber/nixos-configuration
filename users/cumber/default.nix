@@ -6,7 +6,6 @@
 
     ../modules/backups
     ../modules/browser
-    ../modules/emacs
     ../modules/file-manager
     ../modules/git
     ../modules/gtk-config
@@ -117,7 +116,6 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = [ "org.gnome.Evince.desktop" ];
-      "application/json" = [ "emacsclient.desktop" "emacs.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "image/png" = [ "org.gnome.eog.desktop" ];
