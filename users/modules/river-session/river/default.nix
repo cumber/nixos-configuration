@@ -144,9 +144,9 @@ in
 
       # Set portait monitor to top layout, then focus back to main monitor
       # TODO: configure this per machine so config works on sima too
-      riverctl focus-output "DP-3"
-      riverctl send-layout-cmd rivertile "main-location top"
       riverctl focus-output "DP-2"
+      riverctl send-layout-cmd rivertile "main-location top"
+      riverctl focus-output "DP-1"
     '';
   };
 }

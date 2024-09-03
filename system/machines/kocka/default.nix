@@ -14,19 +14,11 @@ in
       ../../modules/keyboard-rgb.nix
     ];
 
-    # Use proprietary nvidia driver; even though this setting is named for
-    # xserver it works for wayland
-    services.xserver.videoDrivers = [ "nvidia" ];
-    boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
-
-    # Wayland needs these to use nVidia GPU properly
-    hardware.nvidia.modesetting.enable = true;
-    environment.variables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-    };
+    # nVidia recommends open source driver now
+    hardware.nvidia.open = true;
 
     local.river.configForSystem = ''
-      ${wlr-randr} --output DP-3 --transform 90
+      ${wlr-randr} --output DP-2 --transform 90
     '';
 
     powerManagement.cpuFreqGovernor = "ondemand";

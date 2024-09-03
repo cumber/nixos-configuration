@@ -11,8 +11,8 @@ let
 
   run-regreet = pkgs.writeShellScript "run-regreet" ''
     ${wlr-randr} \
-      --output DP-2 --preferred \
-      --output DP-3 --preferred --transform 90 --off
+      --output DP-1 --preferred \
+      --output DP-2 --off
     exec ${lib.getExe config.programs.regreet.package}
   '';
 in
@@ -20,22 +20,19 @@ in
   programs.regreet = {
     enable = true;
 
-    settings = {
-      GTK = {
-        # Note; have to actually install themes system-wide, no way to point
-        # direclty to theme packages from this config
-        theme_name = "Graphite-Light-nord";
-        icon_theme_name = "Tela-blue-light";
-        cursor_theme_name = "graphite-light";
-      };
+    theme = {
+      name = "Graphite-Light-nord";
+      package = graphite-gtk-theme.override { tweaks = [ "nord" ]; };
+    };
+    cursorTheme = {
+      name = "graphite-light";
+      package = graphite-cursors;
+    };
+    iconTheme = {
+      name = "Tela-blue-light";
+      package = tela-icon-theme;
     };
   };
-
-  environment.systemPackages = [
-    (graphite-gtk-theme.override { tweaks = [ "nord" ]; })
-    (graphite-cursors)
-    (tela-icon-theme)
-  ];
 
   # Note: this is a single string, not shell syntax, so don't use a multiline
   # string with \ escaped newlines

@@ -17,7 +17,7 @@
     environmentVariables = {
       # Let carapace fallback to bash completion scripts; lots of packages will
       # automatically install these in XDG_DATA_DIRS
-      CARAPACE_BRIDGES = "bash";
+      CARAPACE_BRIDGES = "'bash'";
     };
   };
 
