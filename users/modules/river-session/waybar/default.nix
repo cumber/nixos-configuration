@@ -10,9 +10,9 @@ let
 
   tags = import ../river/tags.nix lib;
 
-  gauge-widget = icon: {
+  gauge-widget = icon: on-click: {
     interval = 5;
-    on-click = resources;
+    inherit on-click;
     states = {
       low = 20;
       medium = 50;
@@ -72,15 +72,15 @@ in
           tooltip-format-deactivated = "Idle detection normal";
         };
 
-        cpu = gauge-widget "󰍛";
+        cpu = gauge-widget "󰍛" "${resources} -t cpu";
 
-        memory = gauge-widget "󰒋" // {
+        memory = gauge-widget "󰒋" "${resources} -t memory"// {
           tooltip-format = ''
             RAM: {used:0.1f} GiB of {total:0.1f} GiB
             Swap: {swapUsed:0.1f} GiB of {swapTotal:0.1f} GiB'';
         };
 
-        disk = lib.recursiveUpdate (gauge-widget "󰆼") (rec {
+        disk = lib.recursiveUpdate (gauge-widget "󰆼" resources) (rec {
           states.medium = 80; # disk space is cheap; no highlight needed at 50%
           tooltip-format = ''
             Free: {percentage_free}% — {specific_free:0.1f} ${unit}
