@@ -52,7 +52,7 @@
 
     # Office
     anki
-    calibre
+    # calibre  - temporarily disabled until fix hits unstable
     clementine
     evince
     gimp
