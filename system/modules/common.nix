@@ -45,9 +45,6 @@
     firewall.allowedTCPPorts = [ 22000 ];
 
     firewall.allowedUDPPorts = [
-      # Needed to allow autodetection of network printer via BJNP
-      8611
-
       # Used by Syncthing for syncing & discovery
       21027
       22000
@@ -91,7 +88,7 @@
 
     printing = {
       enable = true;
-      drivers = [ pkgs.cups-bjnp pkgs.gutenprint ];
+      drivers = [ pkgs.gutenprint ];
     };
 
     upower.enable = true;
@@ -149,9 +146,6 @@
 
   hardware.sane = {
     enable = true;
-    extraConfig = {
-      "pixma" = "bjnp://192.168.1.229";
-    };
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
