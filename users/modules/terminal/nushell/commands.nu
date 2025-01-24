@@ -1,15 +1,15 @@
-# Starts nushell inside a `nix shell`
+# Starts nushell inside a `nix shell`, using nix-output-monitor
 def --wrapped ns [
    ...rest # All arguments will be passed to nix shell
 ] {
-  nix shell ...$rest -c nu
+  nom shell ...$rest -c nu
 }
 
-# Starts nushell inside `nix develop --impure`
+# Starts nushell inside `nix develop --impure`, using nix-output-monitor
 def --wrapped nd [
   ...rest # All arguments will be passed to nix develop
 ] {
-  nix develop --impure ...$rest -c nu
+  nom develop --impure ...$rest -c nu
 }
 
 # Runs `devenv up` inside `nix develop --impure`
