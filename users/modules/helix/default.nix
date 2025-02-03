@@ -24,7 +24,7 @@
       pkgs.taplo-lsp
 
       # LSP server for typst
-      pkgs.typst-lsp
+      pkgs.tinymist
 
       # LSP server for YAML
       pkgs.yaml-language-server
@@ -94,7 +94,7 @@
         {
           name = "typst";
           language-servers = [
-            "types-lsp"
+            "tinymist"
             "ltex-ls"
           ];
         }
