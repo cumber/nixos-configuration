@@ -11,8 +11,8 @@ let
 
   run-regreet = pkgs.writeShellScript "run-regreet" ''
     ${wlr-randr} \
-      --output DP-1 --preferred \
-      --output DP-2 --preferred --off
+      --output DP-2 --preferred \
+      --output DP-3 --preferred --off
     exec ${lib.getExe config.programs.regreet.package}
   '';
 in

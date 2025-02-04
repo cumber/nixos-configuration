@@ -18,7 +18,7 @@ in
     hardware.nvidia.open = true;
 
     local.river.configForSystem = ''
-      ${wlr-randr} --output DP-2 --transform 90
+      ${wlr-randr} --output DP-3 --transform 90
     '';
 
     powerManagement.cpuFreqGovernor = "ondemand";
