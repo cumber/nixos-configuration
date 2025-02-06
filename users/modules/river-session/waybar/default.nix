@@ -49,6 +49,7 @@ in
           "memory"
           "disk"
           "battery"
+          "wireplumber"
           "clock"
           "tray"
         ];
@@ -87,6 +88,12 @@ in
             Used: {specific_used:0.1f} ${unit} of {specific_total:0.1f} ${unit}'';
           unit = "GB";
         });
+
+        wireplumber = {
+          format = "{volume}% {icon}";
+          format-muted = "󰖁";
+          format-icons = ["󰕿" "󰖀" "󰕾"];
+        };
 
         clock = {
           format = "{:%I:%M %p}";

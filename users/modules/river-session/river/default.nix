@@ -10,6 +10,7 @@ let
     fuzzel
     jq
     systemd
+    wireplumber
     wlogout
     wlr-randr
     ;
@@ -35,6 +36,10 @@ in
             "Super X" = "spawn ${fuzzel}";
             "Super+Shift Z" = "spawn '${systemd.getExe "loginctl"} lock-session'";
             "Super+Shift C" = "close";
+
+            "None XF86AudioMute" = "spawn '${wireplumber.getExe "wpctl"} set-mute @DEFAULT_AUDIO_SINK@ toggle'";
+            "None XF86AudioRaiseVolume" = "spawn '${wireplumber.getExe "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ --limit 1.0 1%+'";
+            "None XF86AudioLowerVolume" = "spawn '${wireplumber.getExe "wpctl"} set-volume @DEFAULT_AUDIO_SINK@ --limit 1.0 1%-'";
 
             "Super Up" = "focus-view up";
             "Super Down" = "focus-view down";

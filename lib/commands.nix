@@ -23,7 +23,7 @@
     environment.systemPackages = [
       hello.pkg
       (pkgs.writeShellScript "example.sh" ''
-        echo "Callind hello"
+        echo "Calling hello"
         ${hello}
       '')
     ];
