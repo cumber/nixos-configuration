@@ -57,6 +57,9 @@
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
+
+    # Needed for now to make font selection work properly
+    earlySetup = true;
   };
 
   home-manager = {
