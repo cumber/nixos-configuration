@@ -1,7 +1,9 @@
+use std/config light-theme
+
 # No welcome banner on every startup, please
 $env.config.show_banner = false
 
-$env.config.color_config = $light_theme
+$env.config.color_config = (light-theme)
 
 # Better history
 $env.config.history.file_format = "sqlite"

@@ -4,13 +4,11 @@
     enable = true;
 
     configFile.text = ''
-      source ${./default-config.nu}
       source ${./config.nu}
       source ${./commands.nu}
     '';
 
     envFile.text = ''
-      source ${./default-env.nu}
       source ${./ls-colors.nu}
     '';
 
