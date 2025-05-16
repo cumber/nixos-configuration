@@ -101,9 +101,14 @@ in
           (mkBackupConfig "vortalë" "${mount}/${user}@${host}")
           {
             hooks.extraConfig = {
-              # exit 75 signals a soft failure to borgmatic, so it skips backup if
-              # the drive isn't mounted
-              before_actions = [ "${util-linux}/bin/findmnt ${mount} > /dev/null || exit 75" ];
+              commands = [
+                {
+                  # exit 75 signals a soft failure to borgmatic, so it skips backup if
+                  # the drive isn't mounted
+                  run = [ "${util-linux}/bin/findmnt ${mount} > /dev/null || exit 75" ];
+                  before = "repository";
+                }
+              ];
             };
 
             # data and extract checks are fast enough to run automatically here
