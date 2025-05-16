@@ -12,6 +12,7 @@ in
       ../../modules/pipewire.nix
       ../../modules/regreet.nix
       ../../modules/keyboard-rgb.nix
+      ../../modules/serve-nix-store.nix
     ];
 
     # nVidia recommends open source driver now

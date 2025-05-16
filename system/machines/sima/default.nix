@@ -17,10 +17,10 @@ in
     ../../modules/webcam-server.nix
   ];
 
-  #nix.settings = {
-  #  substituters = [ "http://kocka:5000" ];
-  #  trusted-public-keys = [ "kocka:/M85ADJvkdibcMJtP+3uj4e3HCn/LkIAoy8r5V3QTNY=" ];
-  #};
+  nix.settings = {
+    substituters = [ "ssh-ng://nix-ssh@kocka" ];
+    trusted-public-keys = [ "kocka-1:7vlCSOFsUsip5vdrIcrmCR21Wh+st2tl3IXHsFXaV+o=" ];
+  };
 
   # Run at 1080 rather than 4K to save power and avoid annoying
   # hidpi configuration
