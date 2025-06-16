@@ -14,6 +14,9 @@
       # LSP server for HTML, CSS, SCSS, and JSON
       pkgs.vscode-langservers-extracted
 
+      # Better LSP server for HTML
+      pkgs.superhtml
+
       # LSP server providing grammar and spell checking
       pkgs.ltex-ls
 
@@ -96,6 +99,13 @@
           language-servers = [
             "tinymist"
             "ltex-ls"
+          ];
+        }
+
+        {
+          name = "html";
+          language-servers = [
+            "superhtml"
           ];
         }
       ];
