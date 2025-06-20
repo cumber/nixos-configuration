@@ -15,8 +15,7 @@ in
       ../../modules/serve-nix-store.nix
     ];
 
-    # nVidia recommends open source driver now
-    hardware.nvidia.open = true;
+    services.xserver.videoDrivers = [ "nvidia" ];
 
     local.river.configForSystem = ''
       ${wlr-randr} --output DP-3 --transform 90
