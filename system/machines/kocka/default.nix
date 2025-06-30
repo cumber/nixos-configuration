@@ -15,6 +15,7 @@ in
       ../../modules/serve-nix-store.nix
     ];
 
+    hardware.nvidia.open = true;
     services.xserver.videoDrivers = [ "nvidia" ];
 
     local.river.configForSystem = ''
