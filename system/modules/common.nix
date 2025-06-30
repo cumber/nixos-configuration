@@ -98,7 +98,6 @@
 
   environment.systemPackages = with pkgs; [
     dconf
-    gnome2.GConf
     shared-mime-info
   ];
 
