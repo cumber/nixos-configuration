@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (pkgs) river writeTextFile writeShellScript;
+  inherit (pkgs) river-classic writeTextFile writeShellScript;
 
   # Provide our own desktop session file for river, so we can wrap river with
   # some environment variables
@@ -34,7 +34,7 @@ let
       source $hmSessionVars
     fi
 
-    exec "${lib.getExe river}" -c "${river-pre-init}"
+    exec "${lib.getExe river-classic}" -c "${river-pre-init}"
   '';
 
   # We use our own init instead of letting river find one, so we can apply
@@ -70,13 +70,13 @@ in
   };
 
   config = {
-    programs.river = {
+    programs.river-classic = {
       enable = true;
 
       # Seeing how far I can get without xwayland
       xwayland.enable = false;
 
-      package = river.overrideAttrs (old: {
+      package = river-classic.overrideAttrs (old: {
         postInstall = ''
           install "${river-desktop}" -D "$out/share/wayland-sessions/river.desktop"
         '';
