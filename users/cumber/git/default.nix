@@ -15,8 +15,10 @@ let make-rules = import ./make-github-remote-rules.nix;
 in
 {
   programs.git = {
-    userEmail = "ben@smokingkangaroo.com";
-    userName = "Benjamin Mellor";
+    settings.user = {
+      email = "ben@smokingkangaroo.com";
+      name = "Benjamin Mellor";
+    };
 
     includes = cellfield-rules ++ grantshub-rules;
   };

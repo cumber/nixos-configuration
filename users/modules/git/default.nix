@@ -1,33 +1,38 @@
 { pkgs, ... }:
 {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      light = true;
+    };
+  };
+
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
 
-    aliases = {
-      tree = "log --graph --decorate --oneline -n 40";
-    };
-
-    # syntax highlighter
-    delta.enable = true;
-    delta.options = {
-      light = true;
-    };
-
-    extraConfig = {
-      core = {
-        autocrlf = "input";
-        safecrlf = "warn";
+    settings = {
+      alias = {
+        tree = "log --graph --decorate --oneline -n 40";
       };
 
-      diff = {
-        algorithm = "histogram";
-        mnemonicprefix = true;
-        renames = "copies";
-      };
+      extraConfig = {
+        core = {
+          autocrlf = "input";
+          safecrlf = "warn";
+        };
 
-      push.default = "upstream";
-      pull.rebase = true;
+        diff = {
+          algorithm = "histogram";
+          mnemonicprefix = true;
+          renames = "copies";
+        };
+
+        push.default = "upstream";
+        pull.rebase = true;
+      };
     };
 
     ignores = [
