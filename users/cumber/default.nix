@@ -104,7 +104,6 @@
   home.file = {
     ".colordiffrc".source = ./config/colordiffrc;
 
-    ".cabal/config".source = ./config/haskell/config.cabal;
     ".ghc/ghci.conf".source = ./config/haskell/ghci.conf;
 
     ".pythonrc".source = ./config/pythonrc.py;
