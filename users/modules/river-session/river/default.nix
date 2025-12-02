@@ -138,7 +138,7 @@ in
       let
         default = options.wayland.windowManager.river.systemd.variables.default;
       in
-      default ++ [ "XDG_SESSION_TYPE" ];
+      default ++ [ "XDG_SESSION_TYPE" "PATH" ];
 
     extraConfig = ''
       # Set all outputs to focus tag label 1
