@@ -25,6 +25,8 @@
 
     # clipboard manager
     ../modules/copyq
+
+    ../modules/angband
   ];
 
   home.packages = with pkgs; [
