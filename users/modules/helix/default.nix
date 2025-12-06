@@ -24,7 +24,7 @@
       pkgs.marksman
 
       # LSP server for TOML
-      pkgs.taplo-lsp
+      pkgs.taplo
 
       # LSP server for typst
       pkgs.tinymist
