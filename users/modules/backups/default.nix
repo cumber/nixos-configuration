@@ -150,7 +150,10 @@ in
         lib.mkMerge [
           (mkBackupConfig "borgbase" host-repos.${host})
           (lib.mkIf (host == "sima") {
-            hooks.extraConfig.before_actions = [ "${lib.getExe check-wifi}" ];
+            hooks.extraConfig.commands = [{
+              run = [ "${lib.getExe check-wifi}" ];
+              before = "repository";
+            }];
           })
           {
             location.extraConfig = {
