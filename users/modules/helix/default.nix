@@ -83,6 +83,36 @@
           snippets = true;
         };
       };
+
+      keys = (
+        let
+          arrows = {
+            C-left = "move_prev_word_end";
+            C-right = "move_next_word_start";
+            C-up = "goto_prev_paragraph";
+            C-down = "goto_next_paragraph";
+
+            S-left = "extend_char_left";
+            S-right = "extend_char_right";
+            S-up = "extend_visual_line_up";
+            S-down = "extend_visual_line_down";
+
+            C-S-left = "extend_prev_word_end";
+            C-S-right = "extend_next_word_start";
+
+            S-home = "extend_to_line_start";
+            S-end = "extend_to_line_end";
+          };
+        in
+        {
+          normal = arrows;
+          insert = arrows;
+          select = arrows // {
+            C-left = "extend_prev_word_end";
+            C-right = "extend_next_word_start";
+          };
+        }
+      );
     };
 
     languages = {
