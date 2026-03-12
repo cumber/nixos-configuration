@@ -11,9 +11,11 @@
         pad = "0x0 center";
 
         font = "Source Code Pro:size=14";
+
+        initial-color-theme = "light";
       };
 
-      colors = {
+      colors-light = {
         background = "faf6fa";
         foreground = "000000";
 
