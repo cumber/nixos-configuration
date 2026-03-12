@@ -66,8 +66,6 @@
     vlc
     zoom-us
 
-    guitarix
-
     # LyX / LaTeX
     lyx
     (texlive.combine {
