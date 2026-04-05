@@ -1,4 +1,7 @@
-{ ... }:
+{ osConfig, ... }:
+let
+  host = osConfig.networking.hostName;
+in
 {
   programs.foot = {
     enable = true;
@@ -10,7 +13,10 @@
         dpi-aware = "yes";
         pad = "0x0 center";
 
-        font = "Source Code Pro:size=14";
+        font = (
+          let size = if host == "sima" then 8 else 14;
+          in "Source Code Pro:size=${toString size}"
+        );
 
         initial-color-theme = "light";
       };
