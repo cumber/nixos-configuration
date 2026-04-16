@@ -8,7 +8,7 @@ in
 
     settings = {
       main = {
-        shell = "nu";
+        shell = "elvish";
 
         dpi-aware = "yes";
         pad = "0x0 center";

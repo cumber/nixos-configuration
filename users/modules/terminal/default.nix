@@ -6,5 +6,7 @@
     ./broot
     ./eza.nix
     ./nushell
+    ./elvish
+    ./starship
   ];
 }

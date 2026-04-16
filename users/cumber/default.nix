@@ -87,18 +87,6 @@
     network-manager-applet.enable = true;
   };
 
-  programs = {
-    starship.enable = true;
-    starship.settings = {
-      aws.disabled = true;
-
-      directory = {
-        truncation_length = 5;
-        truncation_symbol = "…/";
-      };
-    };
-  };
-
   home.stateVersion = "22.05";
 
   home.file = {
