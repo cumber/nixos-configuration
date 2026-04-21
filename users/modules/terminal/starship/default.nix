@@ -4,7 +4,7 @@
     starship.enable = true;
     starship.settings = {
       format = "$all$shlvl$character";
-      
+
       aws.disabled = true;
 
       directory = {
