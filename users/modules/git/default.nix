@@ -35,6 +35,8 @@
       };
     };
 
+    signing.format = null;
+
     ignores = [
       # vim swap files
       ".*.swp"
