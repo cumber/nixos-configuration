@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   gtk = {
     enable = true;
@@ -20,12 +20,16 @@
       size = 12;
     };
 
-    gtk4.extraCss = ''
-      /* Graphite theme styles subtitles black, but when they're in a row that
-         is selected the background is dark, so override to be more readable */
-      .navigation-sidebar > row:selected label.subtitle {
-        color: rgba(255, 255, 255, 0.6);
-      }
-    '';
+    gtk4 = {
+      theme = config.gtk.theme;
+
+      extraCss = ''
+        /* Graphite theme styles subtitles black, but when they're in a row that
+           is selected the background is dark, so override to be more readable */
+        .navigation-sidebar > row:selected label.subtitle {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      '';
+    };
   };
 }
